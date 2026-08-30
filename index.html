@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Wababe Digital Apps - Android applications and downloads.">
+<meta name="description" content="Wababe Digital Apps - Android applications and APK downloads.">
 <meta name="theme-color" content="#0f172a">
 <title>Wababe Digital Apps</title>
 
@@ -19,7 +19,10 @@ color:#0f172a;
 line-height:1.6
 }
 
-a{text-decoration:none;color:inherit}
+a{
+text-decoration:none;
+color:inherit
+}
 
 .container{
 width:min(1100px,92%);
@@ -70,7 +73,9 @@ font-size:14px;
 font-weight:700
 }
 
-nav a:hover{color:#2563eb}
+nav a:hover{
+color:#2563eb
+}
 
 .hero{
 padding:75px 0 55px;
@@ -123,7 +128,8 @@ padding:0 20px;
 border-radius:13px;
 font-weight:800;
 border:1px solid #cbd5e1;
-background:white
+background:white;
+cursor:pointer
 }
 
 .btn-primary{
@@ -156,14 +162,18 @@ font-size:40px;
 margin-bottom:18px
 }
 
-.hero-card h2{margin-bottom:7px}
+.hero-card h2{
+margin-bottom:7px
+}
 
 .hero-card p{
 font-size:14px;
 color:#64748b
 }
 
-section{padding:60px 0}
+section{
+padding:60px 0
+}
 
 .section-title{
 margin-bottom:25px
@@ -263,7 +273,7 @@ margin-bottom:17px
 width:100%
 }
 
-.loading{
+.status{
 text-align:center;
 padding:30px;
 color:#64748b
@@ -335,7 +345,9 @@ font-size:13px
 
 @media(max-width:800px){
 
-nav{display:none}
+nav{
+display:none
+}
 
 .hero{
 padding-top:52px
@@ -396,8 +408,6 @@ padding:28px
 
 <main>
 
-<!-- HOME -->
-
 <section class="hero" id="home">
 
 <div class="container hero-grid">
@@ -454,8 +464,6 @@ for mobile devices and slower internet connections.
 </section>
 
 
-<!-- APPS -->
-
 <section id="apps">
 
 <div class="container">
@@ -465,7 +473,7 @@ for mobile devices and slower internet connections.
 <h2>Our Apps</h2>
 
 <p>
-Search and choose an application to download.
+Applications published by Wababe Digital.
 </p>
 
 </div>
@@ -482,7 +490,7 @@ aria-label="Search apps"
 
 <div class="apps-grid" id="appsGrid">
 
-<div class="loading" id="loading">
+<div class="status">
 Loading applications...
 </div>
 
@@ -497,8 +505,6 @@ No application found.
 
 </section>
 
-
-<!-- ABOUT -->
 
 <section id="about">
 
@@ -522,8 +528,6 @@ for applications published and shared through Wababe Digital.
 
 </section>
 
-
-<!-- CONTACT -->
 
 <section id="contact">
 
@@ -604,62 +608,116 @@ Android Apps & Digital Solutions
 /*
 ====================================================
 WABABE DIGITAL APPS
-AUTOMATIC APK LOADER
+AUTOMATIC GITHUB RELEASE LOADER
 ====================================================
 
-Put APK files inside:
+IMPORTANT:
 
-apps/
+When you publish a new GitHub Release containing
+an APK, this website will automatically find it.
 
-Example:
+You do NOT need to edit index.html for every new app.
 
-apps/Waazoji-v1.0.apk
-apps/Quran-App-v1.0.apk
-
-The website will automatically read APK files
-from the GitHub repository.
+Repository:
+wababe-digital/wababe-digital-apps
 ====================================================
 */
 
 
 const OWNER = "wababe-digital";
+
 const REPOSITORY = "wababe-digital-apps";
-const BRANCH = "main";
-const APPS_FOLDER = "apps";
+
+const API_URL =
+`https://api.github.com/repos/${OWNER}/${REPOSITORY}/releases?per_page=100`;
 
 
-const appsGrid = document.getElementById("appsGrid");
-const search = document.getElementById("search");
-const empty = document.getElementById("empty");
+const appsGrid =
+document.getElementById("appsGrid");
+
+const search =
+document.getElementById("search");
+
+const empty =
+document.getElementById("empty");
+
 
 let allApps = [];
 
 
-/* LOAD APK FILES FROM GITHUB */
+/* LOAD GITHUB RELEASES */
 
 async function loadApps(){
 
 try{
 
-const apiURL =
-`https://api.github.com/repos/${OWNER}/${REPOSITORY}/contents/${APPS_FOLDER}?ref=${BRANCH}`;
-
-const response = await fetch(apiURL);
+const response =
+await fetch(API_URL);
 
 if(!response.ok){
 
-throw new Error("Apps folder not found");
+throw new Error("GitHub API error");
 
 }
 
-const files = await response.json();
+
+const releases =
+await response.json();
 
 
-allApps = files.filter(file =>
-file.type === "file" &&
-file.name.toLowerCase().endsWith(".apk")
-);
+const apps = [];
 
+
+/*
+Each GitHub Release can contain one or
+more APK files.
+*/
+
+releases.forEach(release => {
+
+if(release.draft){
+return;
+}
+
+
+release.assets.forEach(asset => {
+
+if(
+asset.name &&
+asset.name.toLowerCase().endsWith(".apk")
+){
+
+apps.push({
+
+name: cleanName(asset.name),
+
+fileName: asset.name,
+
+version: release.tag_name || "Latest",
+
+description:
+release.body ||
+"Android application available from Wababe Digital.",
+
+downloadURL:
+asset.browser_download_url,
+
+size:
+formatSize(asset.size),
+
+date:
+formatDate(release.published_at)
+
+});
+
+}
+
+});
+
+});
+
+
+allApps = apps;
 
 displayApps(allApps);
 
@@ -667,8 +725,9 @@ displayApps(allApps);
 }catch(error){
 
 appsGrid.innerHTML = `
-<div class="loading">
-No applications have been uploaded yet.
+<div class="status">
+Unable to load applications right now.
+Please try again later.
 </div>
 `;
 
@@ -677,11 +736,12 @@ No applications have been uploaded yet.
 }
 
 
-/* DISPLAY APPS */
+/* DISPLAY APPLICATIONS */
 
 function displayApps(apps){
 
 appsGrid.innerHTML = "";
+
 
 if(apps.length === 0){
 
@@ -691,18 +751,20 @@ return;
 
 }
 
+
 empty.style.display = "none";
 
 
-apps.forEach(file => {
+apps.forEach(app => {
 
-const name = cleanAppName(file.name);
 
-const card = document.createElement("article");
+const card =
+document.createElement("article");
 
 card.className = "app-card";
 
-card.dataset.name = name.toLowerCase();
+card.dataset.name =
+app.name.toLowerCase();
 
 
 card.innerHTML = `
@@ -720,7 +782,7 @@ ANDROID APP
 </span>
 
 <h3>
-${escapeHTML(name)}
+${escapeHTML(app.name)}
 </h3>
 
 </div>
@@ -729,19 +791,22 @@ ${escapeHTML(name)}
 
 
 <p>
-Download ${escapeHTML(name)}
-Android application directly from Wababe Digital.
+${escapeHTML(shortDescription(app.description))}
 </p>
 
 
 <div class="meta">
 
 <span>
-APK
+Version: ${escapeHTML(app.version)}
 </span>
 
 <span>
-Updated: 2026
+Size: ${escapeHTML(app.size)}
+</span>
+
+<span>
+${escapeHTML(app.date)}
 </span>
 
 </div>
@@ -749,7 +814,7 @@ Updated: 2026
 
 <a
 class="btn btn-primary download"
-href="${file.download_url}"
+href="${app.downloadURL}"
 download
 >
 ⬇️ DOWNLOAD APK
@@ -765,9 +830,9 @@ appsGrid.appendChild(card);
 }
 
 
-/* CLEAN APK FILE NAME */
+/* CLEAN APK NAME */
 
-function cleanAppName(filename){
+function cleanName(filename){
 
 return filename
 .replace(/\.apk$/i,"")
@@ -775,6 +840,78 @@ return filename
 .replace(/\bv\d+(\.\d+)*\b/gi,"")
 .replace(/\s+/g," ")
 .trim();
+
+}
+
+
+/* DESCRIPTION */
+
+function shortDescription(text){
+
+text =
+text.replace(/\*\*/g,"")
+.replace(/\n/g," ")
+.trim();
+
+
+if(!text){
+
+return "Android application available from Wababe Digital.";
+
+}
+
+
+if(text.length > 150){
+
+return text.substring(0,147) + "...";
+
+}
+
+
+return text;
+
+}
+
+
+/* FILE SIZE */
+
+function formatSize(bytes){
+
+if(!bytes || bytes <= 0){
+
+return "APK";
+
+}
+
+
+const mb =
+bytes / (1024 * 1024);
+
+
+return mb >= 1
+? mb.toFixed(1) + " MB"
+: Math.round(bytes / 1024) + " KB";
+
+}
+
+
+/* RELEASE DATE */
+
+function formatDate(date){
+
+if(!date){
+
+return "Recently updated";
+
+}
+
+
+const d =
+new Date(date);
+
+
+return "Updated: " +
+d.getFullYear();
 
 }
 
@@ -798,13 +935,15 @@ displayApps(filtered);
 });
 
 
-/* SECURITY */
+/* BASIC HTML ESCAPING */
 
 function escapeHTML(text){
 
-const div = document.createElement("div");
+const div =
+document.createElement("div");
 
-div.textContent = text;
+div.textContent =
+String(text);
 
 return div.innerHTML;
 
