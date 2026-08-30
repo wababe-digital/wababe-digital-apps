@@ -1,310 +1,821 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Wababe Digital Apps - Android applications and downloads.">
-  <meta name="theme-color" content="#0f172a">
-  <title>Wababe Digital Apps</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Wababe Digital Apps - Android applications and downloads.">
+<meta name="theme-color" content="#0f172a">
+<title>Wababe Digital Apps</title>
 
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f8fafc;
-      color: #0f172a;
-      line-height: 1.6;
-    }
-    a { color: inherit; text-decoration: none; }
-    .container { width: min(1100px, 92%); margin: auto; }
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
 
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(255,255,255,.96);
-      border-bottom: 1px solid #e2e8f0;
-      backdrop-filter: blur(8px);
-    }
-    .nav {
-      min-height: 68px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 800;
-      font-size: 20px;
-    }
-    .brand-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      display: grid;
-      place-items: center;
-      background: #0f172a;
-      color: white;
-      font-size: 20px;
-    }
-    nav { display: flex; gap: 22px; font-size: 14px; font-weight: 700; }
-    nav a:hover { color: #2563eb; }
+html{scroll-behavior:smooth}
 
-    .hero {
-      padding: 72px 0 50px;
-      background: linear-gradient(135deg, #e0f2fe, #f8fafc 55%, #dbeafe);
-    }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.4fr .8fr;
-      gap: 40px;
-      align-items: center;
-    }
-    .eyebrow {
-      display: inline-block;
-      padding: 7px 12px;
-      border-radius: 999px;
-      background: #dbeafe;
-      color: #1d4ed8;
-      font-size: 12px;
-      font-weight: 800;
-      margin-bottom: 16px;
-    }
-    h1 { font-size: clamp(38px, 7vw, 64px); line-height: 1.05; margin-bottom: 18px; }
-    .hero p { color: #475569; font-size: 18px; max-width: 650px; }
-    .hero-buttons { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 46px;
-      padding: 0 18px;
-      border-radius: 12px;
-      font-weight: 800;
-      border: 1px solid #cbd5e1;
-      background: white;
-    }
-    .btn-primary { background: #2563eb; color: white; border-color: #2563eb; }
-    .btn-primary:hover { background: #1d4ed8; }
-    .hero-card {
-      background: white;
-      border: 1px solid #e2e8f0;
-      border-radius: 24px;
-      padding: 30px;
-      box-shadow: 0 18px 50px rgba(15,23,42,.10);
-    }
-    .hero-card-icon {
-      width: 80px; height: 80px; border-radius: 20px;
-      display: grid; place-items: center; background: #0f172a; color: white;
-      font-size: 38px; margin-bottom: 18px;
-    }
-    .hero-card h2 { margin-bottom: 7px; }
-    .hero-card p { font-size: 14px; color: #64748b; }
+body{
+font-family:Arial,Helvetica,sans-serif;
+background:#f8fafc;
+color:#0f172a;
+line-height:1.6
+}
 
-    section { padding: 58px 0; }
-    .section-title { margin-bottom: 24px; }
-    .section-title h2 { font-size: 32px; margin-bottom: 5px; }
-    .section-title p { color: #64748b; }
+a{text-decoration:none;color:inherit}
 
-    .search {
-      width: 100%;
-      min-height: 50px;
-      border: 1px solid #cbd5e1;
-      border-radius: 14px;
-      padding: 0 16px;
-      font-size: 16px;
-      outline: none;
-      margin-bottom: 24px;
-      background: white;
-    }
-    .search:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,.12); }
+.container{
+width:min(1100px,92%);
+margin:auto
+}
 
-    .apps-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-    .app-card {
-      background: white;
-      border: 1px solid #e2e8f0;
-      border-radius: 20px;
-      padding: 20px;
-      box-shadow: 0 8px 25px rgba(15,23,42,.05);
-      transition: transform .2s, box-shadow .2s;
-    }
-    .app-card:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(15,23,42,.09); }
-    .app-top { display: flex; gap: 14px; align-items: center; margin-bottom: 14px; }
-    .app-icon {
-      width: 64px; height: 64px; flex: 0 0 64px; border-radius: 16px;
-      display: grid; place-items: center; background: #eff6ff; font-size: 30px;
-    }
-    .app-card h3 { font-size: 20px; }
-    .app-card .tag { color: #2563eb; font-size: 12px; font-weight: 800; }
-    .app-card p { color: #64748b; font-size: 14px; margin: 12px 0 16px; }
-    .meta { display: flex; gap: 12px; flex-wrap: wrap; color: #64748b; font-size: 12px; margin-bottom: 17px; }
-    .download { width: 100%; }
+header{
+position:sticky;
+top:0;
+z-index:100;
+background:rgba(255,255,255,.97);
+border-bottom:1px solid #e2e8f0;
+backdrop-filter:blur(10px)
+}
 
-    .about-box {
-      background: #0f172a;
-      color: white;
-      border-radius: 24px;
-      padding: 34px;
-    }
-    .about-box p { color: #cbd5e1; max-width: 800px; }
+.nav{
+min-height:68px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:20px
+}
 
-    footer {
-      background: #0f172a;
-      color: #cbd5e1;
-      padding: 30px 0;
-      margin-top: 20px;
-    }
-    .footer-row {
-      display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap;
-      font-size: 13px;
-    }
+.brand{
+display:flex;
+align-items:center;
+gap:10px;
+font-weight:800;
+font-size:20px
+}
 
-    .empty { display: none; padding: 25px; text-align: center; color: #64748b; }
+.brand-icon{
+width:42px;
+height:42px;
+border-radius:13px;
+display:grid;
+place-items:center;
+background:#0f172a;
+color:white;
+font-size:22px;
+font-weight:900
+}
 
-    @media (max-width: 800px) {
-      nav { display: none; }
-      .hero { padding-top: 50px; }
-      .hero-grid { grid-template-columns: 1fr; }
-      .apps-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 520px) {
-      .apps-grid { grid-template-columns: 1fr; }
-      .hero-card { display: none; }
-      section { padding: 45px 0; }
-    }
-  </style>
+nav{
+display:flex;
+gap:22px;
+font-size:14px;
+font-weight:700
+}
+
+nav a:hover{color:#2563eb}
+
+.hero{
+padding:75px 0 55px;
+background:linear-gradient(135deg,#e0f2fe,#f8fafc 55%,#dbeafe)
+}
+
+.hero-grid{
+display:grid;
+grid-template-columns:1.4fr .8fr;
+gap:40px;
+align-items:center
+}
+
+.eyebrow{
+display:inline-block;
+padding:8px 14px;
+border-radius:999px;
+background:#dbeafe;
+color:#1d4ed8;
+font-size:12px;
+font-weight:800;
+margin-bottom:17px
+}
+
+h1{
+font-size:clamp(40px,7vw,65px);
+line-height:1.05;
+margin-bottom:20px
+}
+
+.hero p{
+color:#475569;
+font-size:18px;
+max-width:650px
+}
+
+.hero-buttons{
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+margin-top:28px
+}
+
+.btn{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+min-height:48px;
+padding:0 20px;
+border-radius:13px;
+font-weight:800;
+border:1px solid #cbd5e1;
+background:white
+}
+
+.btn-primary{
+background:#2563eb;
+color:white;
+border-color:#2563eb
+}
+
+.btn-primary:hover{
+background:#1d4ed8
+}
+
+.hero-card{
+background:white;
+border:1px solid #e2e8f0;
+border-radius:25px;
+padding:30px;
+box-shadow:0 18px 50px rgba(15,23,42,.10)
+}
+
+.hero-card-icon{
+width:82px;
+height:82px;
+border-radius:21px;
+display:grid;
+place-items:center;
+background:#0f172a;
+color:white;
+font-size:40px;
+margin-bottom:18px
+}
+
+.hero-card h2{margin-bottom:7px}
+
+.hero-card p{
+font-size:14px;
+color:#64748b
+}
+
+section{padding:60px 0}
+
+.section-title{
+margin-bottom:25px
+}
+
+.section-title h2{
+font-size:34px;
+margin-bottom:6px
+}
+
+.section-title p{
+color:#64748b
+}
+
+.search{
+width:100%;
+min-height:52px;
+border:1px solid #cbd5e1;
+border-radius:15px;
+padding:0 17px;
+font-size:16px;
+outline:none;
+margin-bottom:25px;
+background:white
+}
+
+.search:focus{
+border-color:#2563eb;
+box-shadow:0 0 0 3px rgba(37,99,235,.12)
+}
+
+.apps-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px
+}
+
+.app-card{
+background:white;
+border:1px solid #e2e8f0;
+border-radius:21px;
+padding:20px;
+box-shadow:0 8px 25px rgba(15,23,42,.05);
+transition:.2s
+}
+
+.app-card:hover{
+transform:translateY(-3px);
+box-shadow:0 14px 30px rgba(15,23,42,.09)
+}
+
+.app-top{
+display:flex;
+gap:14px;
+align-items:center;
+margin-bottom:14px
+}
+
+.app-icon{
+width:65px;
+height:65px;
+flex:0 0 65px;
+border-radius:17px;
+display:grid;
+place-items:center;
+background:#eff6ff;
+font-size:31px
+}
+
+.app-card h3{
+font-size:20px;
+word-break:break-word
+}
+
+.tag{
+color:#2563eb;
+font-size:12px;
+font-weight:800
+}
+
+.app-card p{
+color:#64748b;
+font-size:14px;
+margin:12px 0 16px
+}
+
+.meta{
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+color:#64748b;
+font-size:12px;
+margin-bottom:17px
+}
+
+.download{
+width:100%
+}
+
+.loading{
+text-align:center;
+padding:30px;
+color:#64748b
+}
+
+.empty{
+display:none;
+padding:30px;
+text-align:center;
+color:#64748b
+}
+
+.about-box{
+background:#0f172a;
+color:white;
+border-radius:25px;
+padding:36px
+}
+
+.about-box h2{
+font-size:30px;
+margin-bottom:12px
+}
+
+.about-box p{
+color:#cbd5e1;
+max-width:800px
+}
+
+.contact-box{
+background:white;
+border:1px solid #e2e8f0;
+border-radius:22px;
+padding:30px;
+box-shadow:0 8px 25px rgba(15,23,42,.05)
+}
+
+.contact-buttons{
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+margin-top:20px
+}
+
+.whatsapp{
+background:#16a34a;
+color:white;
+border-color:#16a34a
+}
+
+.whatsapp:hover{
+background:#15803d
+}
+
+footer{
+background:#0f172a;
+color:#cbd5e1;
+padding:32px 0;
+margin-top:20px
+}
+
+.footer-row{
+display:flex;
+justify-content:space-between;
+gap:20px;
+flex-wrap:wrap;
+font-size:13px
+}
+
+@media(max-width:800px){
+
+nav{display:none}
+
+.hero{
+padding-top:52px
+}
+
+.hero-grid{
+grid-template-columns:1fr
+}
+
+.apps-grid{
+grid-template-columns:1fr 1fr
+}
+
+}
+
+@media(max-width:520px){
+
+.apps-grid{
+grid-template-columns:1fr
+}
+
+.hero-card{
+display:none
+}
+
+section{
+padding:45px 0
+}
+
+.about-box{
+padding:28px
+}
+
+}
+</style>
 </head>
 
 <body>
-  <header>
-    <div class="container nav">
-      <a class="brand" href="#">
-        <span class="brand-icon">W</span>
-        <span>Wababe Digital</span>
-      </a>
-      <nav>
-        <a href="#home">Home</a>
-        <a href="#apps">Apps</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
 
-  <main>
-    <section class="hero" id="home">
-      <div class="container hero-grid">
-        <div>
-          <span class="eyebrow">ANDROID APPS & DIGITAL SOLUTIONS</span>
-          <h1>Wababe Digital Apps</h1>
-          <p>Discover useful Android applications, learn about each app, and download APK files directly from Wababe Digital.</p>
-          <div class="hero-buttons">
-            <a class="btn btn-primary" href="#apps">Explore Apps</a>
-            <a class="btn" href="#about">About Us</a>
-          </div>
-        </div>
+<header>
+<div class="container nav">
 
-        <div class="hero-card">
-          <div class="hero-card-icon">📱</div>
-          <h2>Simple. Fast. Useful.</h2>
-          <p>A lightweight app-download website designed to work well on mobile devices and slower internet connections.</p>
-        </div>
-      </div>
-    </section>
+<a class="brand" href="#home">
+<span class="brand-icon">W</span>
+<span>Wababe Digital</span>
+</a>
 
-    <section id="apps">
-      <div class="container">
-        <div class="section-title">
-          <h2>Our Apps</h2>
-          <p>Search and choose an application to download.</p>
-        </div>
+<nav>
+<a href="#home">Home</a>
+<a href="#apps">Apps</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+</nav>
 
-        <input class="search" id="search" type="search" placeholder="🔎 Search apps..." aria-label="Search apps">
+</div>
+</header>
 
-        <div class="apps-grid" id="appsGrid">
-          <!-- APP CARD: Duplicate this block when adding another app -->
-          <article class="app-card" data-name="Wa'azoji">
-            <div class="app-top">
-              <div class="app-icon">🎧</div>
-              <div>
-                <span class="tag">ANDROID APP</span>
-                <h3>Wa'azoji</h3>
-              </div>
-            </div>
-            <p>Listen to Islamic sermons and audio lessons easily on your Android phone.</p>
-            <div class="meta">
-              <span>Version: 1.0</span>
-              <span>Size: —</span>
-              <span>Updated: 2026</span>
-            </div>
-            <!-- Replace # with the direct APK URL after uploading the APK -->
-            <a class="btn btn-primary download" href="#" onclick="return apkNotReady()">DOWNLOAD APK</a>
-          </article>
 
-          <!-- Future apps can be added here -->
-        </div>
+<main>
 
-        <div class="empty" id="empty">No app found.</div>
-      </div>
-    </section>
+<!-- HOME -->
 
-    <section id="about">
-      <div class="container">
-        <div class="about-box">
-          <h2>About Wababe Digital</h2>
-          <p>Wababe Digital provides Android applications and digital solutions. This website is the official download page for applications published by Wababe Digital.</p>
-        </div>
-      </div>
-    </section>
+<section class="hero" id="home">
 
-    <section id="contact">
-      <div class="container">
-        <div class="section-title">
-          <h2>Contact</h2>
-          <p>More contact and social-media links can be added here later.</p>
-        </div>
-        <a class="btn btn-primary" href="mailto:YOUR-EMAIL@example.com">Email Us</a>
-      </div>
-    </section>
-  </main>
+<div class="container hero-grid">
 
-  <footer>
-    <div class="container footer-row">
-      <span>© 2026 Wababe Digital Apps</span>
-      <span>Android Apps & Digital Solutions</span>
-    </div>
-  </footer>
+<div>
 
-  <script>
-    const search = document.getElementById('search');
-    const cards = [...document.querySelectorAll('.app-card')];
-    const empty = document.getElementById('empty');
+<span class="eyebrow">
+ANDROID APPS & DIGITAL SOLUTIONS
+</span>
 
-    search.addEventListener('input', () => {
-      const term = search.value.toLowerCase().trim();
-      let shown = 0;
+<h1>
+Wababe Digital Apps
+</h1>
 
-      cards.forEach(card => {
-        const match = card.dataset.name.toLowerCase().includes(term);
-        card.style.display = match ? '' : 'none';
-        if (match) shown++;
-      });
+<p>
+Discover useful Android applications, learn about each app,
+and download APK files directly from Wababe Digital.
+</p>
 
-      empty.style.display = shown ? 'none' : 'block';
-    });
+<div class="hero-buttons">
 
-    function apkNotReady() {
-      alert('The APK download link will be added after the APK is uploaded.');
-      return false;
-    }
-  </script>
+<a class="btn btn-primary" href="#apps">
+Explore Apps
+</a>
+
+<a class="btn" href="#about">
+About Us
+</a>
+
+</div>
+
+</div>
+
+
+<div class="hero-card">
+
+<div class="hero-card-icon">
+📱
+</div>
+
+<h2>
+Simple. Fast. Useful.
+</h2>
+
+<p>
+A lightweight application-download website designed
+for mobile devices and slower internet connections.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- APPS -->
+
+<section id="apps">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>Our Apps</h2>
+
+<p>
+Search and choose an application to download.
+</p>
+
+</div>
+
+
+<input
+class="search"
+id="search"
+type="search"
+placeholder="🔎 Search apps..."
+aria-label="Search apps"
+>
+
+
+<div class="apps-grid" id="appsGrid">
+
+<div class="loading" id="loading">
+Loading applications...
+</div>
+
+</div>
+
+
+<div class="empty" id="empty">
+No application found.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section id="about">
+
+<div class="container">
+
+<div class="about-box">
+
+<h2>
+About Wababe Digital
+</h2>
+
+<p>
+Wababe Digital provides Android applications and digital
+solutions. This website is the official download platform
+for applications published and shared through Wababe Digital.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>
+Contact Us
+</h2>
+
+<p>
+Have an application you want us to publish? Contact Wababe Digital.
+</p>
+
+</div>
+
+
+<div class="contact-box">
+
+<h3>
+Get in touch with us
+</h3>
+
+<p>
+You can contact Wababe Digital through WhatsApp or Email.
+</p>
+
+
+<div class="contact-buttons">
+
+<a
+class="btn whatsapp"
+href="https://wa.me/2348106414154"
+target="_blank"
+>
+💬 WhatsApp
+</a>
+
+
+<a
+class="btn btn-primary"
+href="mailto:wababedigitalcentre@gmail.com"
+>
+✉️ Email Us
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+<div class="container footer-row">
+
+<span>
+© 2026 Wababe Digital Apps
+</span>
+
+<span>
+Android Apps & Digital Solutions
+</span>
+
+</div>
+
+</footer>
+
+
+<script>
+
+/*
+====================================================
+WABABE DIGITAL APPS
+AUTOMATIC APK LOADER
+====================================================
+
+Put APK files inside:
+
+apps/
+
+Example:
+
+apps/Waazoji-v1.0.apk
+apps/Quran-App-v1.0.apk
+
+The website will automatically read APK files
+from the GitHub repository.
+====================================================
+*/
+
+
+const OWNER = "wababe-digital";
+const REPOSITORY = "wababe-digital-apps";
+const BRANCH = "main";
+const APPS_FOLDER = "apps";
+
+
+const appsGrid = document.getElementById("appsGrid");
+const search = document.getElementById("search");
+const empty = document.getElementById("empty");
+
+let allApps = [];
+
+
+/* LOAD APK FILES FROM GITHUB */
+
+async function loadApps(){
+
+try{
+
+const apiURL =
+`https://api.github.com/repos/${OWNER}/${REPOSITORY}/contents/${APPS_FOLDER}?ref=${BRANCH}`;
+
+const response = await fetch(apiURL);
+
+if(!response.ok){
+
+throw new Error("Apps folder not found");
+
+}
+
+const files = await response.json();
+
+
+allApps = files.filter(file =>
+file.type === "file" &&
+file.name.toLowerCase().endsWith(".apk")
+);
+
+
+displayApps(allApps);
+
+
+}catch(error){
+
+appsGrid.innerHTML = `
+<div class="loading">
+No applications have been uploaded yet.
+</div>
+`;
+
+}
+
+}
+
+
+/* DISPLAY APPS */
+
+function displayApps(apps){
+
+appsGrid.innerHTML = "";
+
+if(apps.length === 0){
+
+empty.style.display = "block";
+
+return;
+
+}
+
+empty.style.display = "none";
+
+
+apps.forEach(file => {
+
+const name = cleanAppName(file.name);
+
+const card = document.createElement("article");
+
+card.className = "app-card";
+
+card.dataset.name = name.toLowerCase();
+
+
+card.innerHTML = `
+
+<div class="app-top">
+
+<div class="app-icon">
+📱
+</div>
+
+<div>
+
+<span class="tag">
+ANDROID APP
+</span>
+
+<h3>
+${escapeHTML(name)}
+</h3>
+
+</div>
+
+</div>
+
+
+<p>
+Download ${escapeHTML(name)}
+Android application directly from Wababe Digital.
+</p>
+
+
+<div class="meta">
+
+<span>
+APK
+</span>
+
+<span>
+Updated: 2026
+</span>
+
+</div>
+
+
+<a
+class="btn btn-primary download"
+href="${file.download_url}"
+download
+>
+⬇️ DOWNLOAD APK
+</a>
+
+`;
+
+
+appsGrid.appendChild(card);
+
+});
+
+}
+
+
+/* CLEAN APK FILE NAME */
+
+function cleanAppName(filename){
+
+return filename
+.replace(/\.apk$/i,"")
+.replace(/[-_]+/g," ")
+.replace(/\bv\d+(\.\d+)*\b/gi,"")
+.replace(/\s+/g," ")
+.trim();
+
+}
+
+
+/* SEARCH */
+
+search.addEventListener("input",()=>{
+
+const term =
+search.value.toLowerCase().trim();
+
+
+const filtered =
+allApps.filter(app =>
+app.name.toLowerCase().includes(term)
+);
+
+
+displayApps(filtered);
+
+});
+
+
+/* SECURITY */
+
+function escapeHTML(text){
+
+const div = document.createElement("div");
+
+div.textContent = text;
+
+return div.innerHTML;
+
+}
+
+
+/* START */
+
+loadApps();
+
+</script>
+
 </body>
 </html>
