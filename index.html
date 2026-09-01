@@ -3,55 +3,79 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Wababe Digital Apps - Android applications and APK downloads.">
+
+<meta name="description"
+content="Wababe Digital Apps - Download useful Android applications and digital solutions.">
+
 <meta name="theme-color" content="#0f172a">
+
 <title>Wababe Digital Apps</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
 
-html{scroll-behavior:smooth}
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+html{
+scroll-behavior:smooth;
+}
 
 body{
 font-family:Arial,Helvetica,sans-serif;
 background:#f8fafc;
 color:#0f172a;
-line-height:1.6
+line-height:1.6;
+transition:.3s;
+}
+
+body.dark{
+background:#020617;
+color:#f8fafc;
 }
 
 a{
 text-decoration:none;
-color:inherit
+color:inherit;
 }
 
 .container{
 width:min(1100px,92%);
-margin:auto
+margin:auto;
 }
+
+/* HEADER */
 
 header{
 position:sticky;
 top:0;
-z-index:100;
-background:rgba(255,255,255,.97);
+z-index:1000;
+background:rgba(255,255,255,.96);
 border-bottom:1px solid #e2e8f0;
-backdrop-filter:blur(10px)
+backdrop-filter:blur(10px);
+}
+
+.dark header{
+background:rgba(2,6,23,.96);
+border-color:#1e293b;
 }
 
 .nav{
-min-height:68px;
+min-height:70px;
 display:flex;
 align-items:center;
 justify-content:space-between;
-gap:20px
+gap:20px;
 }
 
 .brand{
 display:flex;
 align-items:center;
 gap:10px;
+font-size:20px;
 font-weight:800;
-font-size:20px
 }
 
 .brand-icon{
@@ -63,30 +87,57 @@ place-items:center;
 background:#0f172a;
 color:white;
 font-size:22px;
-font-weight:900
 }
 
 nav{
 display:flex;
 gap:22px;
 font-size:14px;
-font-weight:700
+font-weight:700;
 }
 
 nav a:hover{
-color:#2563eb
+color:#2563eb;
 }
 
+.header-actions{
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.icon-btn{
+border:1px solid #cbd5e1;
+background:white;
+width:42px;
+height:42px;
+border-radius:12px;
+font-size:18px;
+cursor:pointer;
+}
+
+.dark .icon-btn{
+background:#0f172a;
+color:white;
+border-color:#334155;
+}
+
+/* HERO */
+
 .hero{
-padding:75px 0 55px;
-background:linear-gradient(135deg,#e0f2fe,#f8fafc 55%,#dbeafe)
+padding:75px 0 60px;
+background:linear-gradient(135deg,#e0f2fe,#f8fafc 55%,#dbeafe);
+}
+
+.dark .hero{
+background:linear-gradient(135deg,#0f172a,#020617,#172554);
 }
 
 .hero-grid{
 display:grid;
 grid-template-columns:1.4fr .8fr;
 gap:40px;
-align-items:center
+align-items:center;
 }
 
 .eyebrow{
@@ -97,26 +148,30 @@ background:#dbeafe;
 color:#1d4ed8;
 font-size:12px;
 font-weight:800;
-margin-bottom:17px
+margin-bottom:18px;
 }
 
 h1{
-font-size:clamp(40px,7vw,65px);
+font-size:clamp(40px,7vw,68px);
 line-height:1.05;
-margin-bottom:20px
+margin-bottom:20px;
 }
 
 .hero p{
 color:#475569;
 font-size:18px;
-max-width:650px
+max-width:650px;
+}
+
+.dark .hero p{
+color:#cbd5e1;
 }
 
 .hero-buttons{
 display:flex;
 gap:12px;
 flex-wrap:wrap;
-margin-top:28px
+margin-top:28px;
 }
 
 .btn{
@@ -129,17 +184,17 @@ border-radius:13px;
 font-weight:800;
 border:1px solid #cbd5e1;
 background:white;
-cursor:pointer
+cursor:pointer;
 }
 
 .btn-primary{
 background:#2563eb;
 color:white;
-border-color:#2563eb
+border-color:#2563eb;
 }
 
 .btn-primary:hover{
-background:#1d4ed8
+background:#1d4ed8;
 }
 
 .hero-card{
@@ -147,117 +202,144 @@ background:white;
 border:1px solid #e2e8f0;
 border-radius:25px;
 padding:30px;
-box-shadow:0 18px 50px rgba(15,23,42,.10)
+box-shadow:0 18px 50px rgba(15,23,42,.10);
+}
+
+.dark .hero-card{
+background:#0f172a;
+border-color:#334155;
 }
 
 .hero-card-icon{
-width:82px;
-height:82px;
-border-radius:21px;
+width:85px;
+height:85px;
+border-radius:22px;
 display:grid;
 place-items:center;
-background:#0f172a;
-color:white;
-font-size:40px;
-margin-bottom:18px
+background:#eff6ff;
+font-size:42px;
+margin-bottom:18px;
 }
 
-.hero-card h2{
-margin-bottom:7px
-}
-
-.hero-card p{
-font-size:14px;
-color:#64748b
-}
+/* SECTIONS */
 
 section{
-padding:60px 0
+padding:60px 0;
 }
 
 .section-title{
-margin-bottom:25px
+margin-bottom:25px;
 }
 
 .section-title h2{
 font-size:34px;
-margin-bottom:6px
+margin-bottom:5px;
 }
 
 .section-title p{
-color:#64748b
+color:#64748b;
 }
+
+.dark .section-title p{
+color:#94a3b8;
+}
+
+/* SEARCH */
 
 .search{
 width:100%;
-min-height:52px;
+min-height:54px;
 border:1px solid #cbd5e1;
 border-radius:15px;
 padding:0 17px;
 font-size:16px;
 outline:none;
-margin-bottom:25px;
-background:white
+margin-bottom:28px;
+background:white;
+color:#0f172a;
+}
+
+.dark .search{
+background:#0f172a;
+color:white;
+border-color:#334155;
 }
 
 .search:focus{
 border-color:#2563eb;
-box-shadow:0 0 0 3px rgba(37,99,235,.12)
+box-shadow:0 0 0 3px rgba(37,99,235,.12);
 }
+
+/* APP CARD */
 
 .apps-grid{
 display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px
+grid-template-columns:repeat(2,1fr);
+gap:22px;
 }
 
 .app-card{
 background:white;
 border:1px solid #e2e8f0;
-border-radius:21px;
-padding:20px;
-box-shadow:0 8px 25px rgba(15,23,42,.05);
-transition:.2s
+border-radius:22px;
+padding:22px;
+box-shadow:0 8px 25px rgba(15,23,42,.06);
+transition:.25s;
+}
+
+.dark .app-card{
+background:#0f172a;
+border-color:#334155;
 }
 
 .app-card:hover{
-transform:translateY(-3px);
-box-shadow:0 14px 30px rgba(15,23,42,.09)
+transform:translateY(-4px);
+box-shadow:0 15px 35px rgba(15,23,42,.12);
 }
 
 .app-top{
 display:flex;
-gap:14px;
+gap:15px;
 align-items:center;
-margin-bottom:14px
+margin-bottom:15px;
 }
 
 .app-icon{
-width:65px;
-height:65px;
-flex:0 0 65px;
-border-radius:17px;
+width:76px;
+height:76px;
+flex:0 0 76px;
+border-radius:19px;
+overflow:hidden;
 display:grid;
 place-items:center;
-background:#eff6ff;
-font-size:31px
+background:linear-gradient(135deg,#dbeafe,#eff6ff);
+font-size:36px;
+}
+
+.app-icon img{
+width:100%;
+height:100%;
+object-fit:cover;
 }
 
 .app-card h3{
-font-size:20px;
-word-break:break-word
+font-size:23px;
 }
 
-.tag{
+.app-card .tag{
 color:#2563eb;
 font-size:12px;
-font-weight:800
+font-weight:800;
 }
 
 .app-card p{
 color:#64748b;
 font-size:14px;
-margin:12px 0 16px
+margin:13px 0 16px;
+}
+
+.dark .app-card p{
+color:#94a3b8;
 }
 
 .meta{
@@ -266,73 +348,196 @@ gap:12px;
 flex-wrap:wrap;
 color:#64748b;
 font-size:12px;
-margin-bottom:17px
+margin-bottom:17px;
+}
+
+.dark .meta{
+color:#94a3b8;
 }
 
 .download{
-width:100%
+width:100%;
 }
 
-.status{
-text-align:center;
-padding:30px;
-color:#64748b
-}
+/* DOWNLOAD PROGRESS */
 
-.empty{
+.progress-box{
 display:none;
-padding:30px;
-text-align:center;
-color:#64748b
+margin-top:15px;
+padding:13px;
+border-radius:14px;
+background:#eff6ff;
 }
+
+.dark .progress-box{
+background:#172554;
+}
+
+.progress-row{
+display:flex;
+justify-content:space-between;
+font-size:13px;
+font-weight:700;
+margin-bottom:8px;
+}
+
+.progress-bar{
+width:100%;
+height:9px;
+background:#dbeafe;
+border-radius:20px;
+overflow:hidden;
+}
+
+.progress-fill{
+width:0%;
+height:100%;
+background:#2563eb;
+border-radius:20px;
+transition:width .2s;
+}
+
+/* SCREENSHOTS */
+
+.screenshots{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:16px;
+margin-top:25px;
+}
+
+.screenshot{
+border-radius:18px;
+overflow:hidden;
+background:#e2e8f0;
+aspect-ratio:9/16;
+box-shadow:0 8px 25px rgba(15,23,42,.08);
+}
+
+.screenshot img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
+}
+
+.screenshot-placeholder{
+height:100%;
+display:grid;
+place-items:center;
+text-align:center;
+padding:20px;
+color:#64748b;
+font-size:14px;
+}
+
+/* ACTIONS */
+
+.app-actions{
+display:flex;
+gap:10px;
+margin-top:12px;
+}
+
+.small-btn{
+flex:1;
+min-height:42px;
+border:1px solid #cbd5e1;
+border-radius:11px;
+background:white;
+font-weight:700;
+cursor:pointer;
+}
+
+.dark .small-btn{
+background:#0f172a;
+color:white;
+border-color:#334155;
+}
+
+.small-btn:hover{
+border-color:#2563eb;
+}
+
+/* ABOUT */
 
 .about-box{
 background:#0f172a;
 color:white;
 border-radius:25px;
-padding:36px
-}
-
-.about-box h2{
-font-size:30px;
-margin-bottom:12px
+padding:35px;
 }
 
 .about-box p{
 color:#cbd5e1;
-max-width:800px
+max-width:800px;
+margin-top:10px;
 }
 
-.contact-box{
+/* STATS */
+
+.stats{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:18px;
+margin-top:25px;
+}
+
+.stat{
 background:white;
 border:1px solid #e2e8f0;
-border-radius:22px;
-padding:30px;
-box-shadow:0 8px 25px rgba(15,23,42,.05)
+border-radius:18px;
+padding:25px;
+text-align:center;
 }
+
+.dark .stat{
+background:#0f172a;
+border-color:#334155;
+}
+
+.stat-number{
+font-size:30px;
+font-weight:800;
+color:#2563eb;
+}
+
+.stat-label{
+font-size:13px;
+color:#64748b;
+}
+
+/* CONTACT */
 
 .contact-buttons{
 display:flex;
 gap:12px;
 flex-wrap:wrap;
-margin-top:20px
+margin-top:20px;
 }
 
 .whatsapp{
 background:#16a34a;
 color:white;
-border-color:#16a34a
+border-color:#16a34a;
 }
 
-.whatsapp:hover{
-background:#15803d
+/* EMPTY */
+
+.empty{
+display:none;
+padding:30px;
+text-align:center;
+color:#64748b;
 }
+
+/* FOOTER */
 
 footer{
 background:#0f172a;
 color:#cbd5e1;
-padding:32px 0;
-margin-top:20px
+padding:35px 0;
+margin-top:20px;
 }
 
 .footer-row{
@@ -340,73 +545,130 @@ display:flex;
 justify-content:space-between;
 gap:20px;
 flex-wrap:wrap;
-font-size:13px
+font-size:13px;
 }
+
+/* TOAST */
+
+.toast{
+position:fixed;
+left:50%;
+bottom:25px;
+transform:translateX(-50%) translateY(100px);
+background:#0f172a;
+color:white;
+padding:13px 20px;
+border-radius:12px;
+font-size:14px;
+font-weight:700;
+opacity:0;
+transition:.3s;
+z-index:9999;
+}
+
+.toast.show{
+transform:translateX(-50%) translateY(0);
+opacity:1;
+}
+
+/* MOBILE */
 
 @media(max-width:800px){
 
 nav{
-display:none
+display:none;
 }
 
 .hero{
-padding-top:52px
+padding-top:55px;
 }
 
 .hero-grid{
-grid-template-columns:1fr
+grid-template-columns:1fr;
+}
+
+.hero-card{
+display:none;
 }
 
 .apps-grid{
-grid-template-columns:1fr 1fr
+grid-template-columns:1fr;
+}
+
+.screenshots{
+grid-template-columns:repeat(3,1fr);
 }
 
 }
 
 @media(max-width:520px){
 
-.apps-grid{
-grid-template-columns:1fr
-}
-
-.hero-card{
-display:none
+h1{
+font-size:43px;
 }
 
 section{
-padding:45px 0
+padding:45px 0;
 }
 
-.about-box{
-padding:28px
+.screenshots{
+gap:8px;
+}
+
+.stats{
+grid-template-columns:1fr;
+}
+
+.app-actions{
+flex-direction:column;
 }
 
 }
+
 </style>
 </head>
 
 <body>
 
+<!-- HEADER -->
+
 <header>
+
 <div class="container nav">
 
 <a class="brand" href="#home">
+
 <span class="brand-icon">W</span>
+
 <span>Wababe Digital</span>
+
 </a>
 
 <nav>
+
 <a href="#home">Home</a>
 <a href="#apps">Apps</a>
 <a href="#about">About</a>
 <a href="#contact">Contact</a>
+
 </nav>
 
+<div class="header-actions">
+
+<button class="icon-btn" onclick="toggleDark()" id="darkBtn">
+🌙
+</button>
+
 </div>
+
+</div>
+
 </header>
 
 
 <main>
+
+<!-- HERO -->
 
 <section class="hero" id="home">
 
@@ -424,7 +686,8 @@ Wababe Digital Apps
 
 <p>
 Discover useful Android applications, learn about each app,
-and download APK files directly from Wababe Digital.
+view screenshots and download APK files directly from
+Wababe Digital.
 </p>
 
 <div class="hero-buttons">
@@ -453,7 +716,7 @@ Simple. Fast. Useful.
 </h2>
 
 <p>
-A lightweight application-download website designed
+A lightweight Android app download website designed
 for mobile devices and slower internet connections.
 </p>
 
@@ -464,16 +727,20 @@ for mobile devices and slower internet connections.
 </section>
 
 
+<!-- APPS -->
+
 <section id="apps">
 
 <div class="container">
 
 <div class="section-title">
 
-<h2>Our Apps</h2>
+<h2>
+Our Apps
+</h2>
 
 <p>
-Applications published by Wababe Digital.
+Search and choose an application to download.
 </p>
 
 </div>
@@ -490,21 +757,288 @@ aria-label="Search apps"
 
 <div class="apps-grid" id="appsGrid">
 
-<div class="status">
-Loading applications...
+
+<!-- ========================= -->
+<!-- USULUS SALAS AUDIO -->
+<!-- ========================= -->
+
+<article
+class="app-card"
+data-name="Usulus Salas Audio"
+>
+
+<div class="app-top">
+
+<div class="app-icon">
+
+<!-- APP ICON -->
+<!-- Za mu iya maye gurbin wannan da real icon daga baya -->
+
+<div>🎧</div>
+
+</div>
+
+<div>
+
+<span class="tag">
+ANDROID APP
+</span>
+
+<h3>
+Usulus Salas Audio
+</h3>
+
 </div>
 
 </div>
 
 
-<div class="empty" id="empty">
-No application found.
+<p>
+
+Audio application for listening to
+Usulus Salas lessons.
+
+</p>
+
+
+<div class="meta">
+
+<span>
+Version: 1.0.0
+</span>
+
+<span>
+Size: 133 MB
+</span>
+
+<span>
+Updated: 2026
+</span>
+
+</div>
+
+
+<!-- DOWNLOAD -->
+
+<a
+class="btn btn-primary download"
+href="https://github.com/wababe-digital/wababe-digital-apps/releases/download/v1.0.0/Usulus_Salas_Audio.apk"
+onclick="startDownload(event,this)"
+>
+
+⬇️ DOWNLOAD APK
+
+</a>
+
+
+<!-- PROGRESS -->
+
+<div
+class="progress-box"
+id="progress-usulus"
+>
+
+<div class="progress-row">
+
+<span id="progress-text-usulus">
+Preparing download...
+</span>
+
+<span id="progress-percent-usulus">
+0%
+</span>
+
+</div>
+
+<div class="progress-bar">
+
+<div
+class="progress-fill"
+id="progress-fill-usulus"
+>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ACTION BUTTONS -->
+
+<div class="app-actions">
+
+<button
+class="small-btn"
+onclick="shareApp()"
+>
+📤 Share
+</button>
+
+<button
+class="small-btn"
+onclick="copyLink()"
+>
+🔗 Copy Link
+</button>
+
+</div>
+
+
+<!-- SCREENSHOTS -->
+
+<div class="screenshots">
+
+
+<div class="screenshot">
+
+<img
+src="assets/usulus-salas-1.jpg"
+alt="Usulus Salas Audio Screenshot"
+onerror="this.style.display='none';this.nextElementSibling.style.display='grid';"
+>
+
+<div
+class="screenshot-placeholder"
+style="display:none"
+>
+📱 Screenshot 1
+</div>
+
+</div>
+
+
+<div class="screenshot">
+
+<img
+src="assets/usulus-salas-2.jpg"
+alt="Usulus Salas Audio Screenshot"
+onerror="this.style.display='none';this.nextElementSibling.style.display='grid';"
+>
+
+<div
+class="screenshot-placeholder"
+style="display:none"
+>
+📱 Screenshot 2
+</div>
+
+</div>
+
+
+<div class="screenshot">
+
+<img
+src="assets/usulus-salas-3.jpg"
+alt="Usulus Salas Audio Screenshot"
+onerror="this.style.display='none';this.nextElementSibling.style.display='grid';"
+>
+
+<div
+class="screenshot-placeholder"
+style="display:none"
+>
+📱 Screenshot 3
+</div>
+
+</div>
+
+
+</div>
+
+
+</article>
+
+
+</div>
+
+
+<div
+class="empty"
+id="empty"
+>
+No app found.
 </div>
 
 </div>
 
 </section>
 
+
+<!-- STATISTICS -->
+
+<section>
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>
+Website Statistics
+</h2>
+
+<p>
+Public download information from GitHub.
+</p>
+
+</div>
+
+
+<div class="stats">
+
+
+<div class="stat">
+
+<div
+class="stat-number"
+id="downloadCount"
+>
+—
+</div>
+
+<div class="stat-label">
+GitHub Downloads
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div
+class="stat-number"
+id="visitorCount"
+>
+—
+</div>
+
+<div class="stat-label">
+Website Visits
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-number">
+1
+</div>
+
+<div class="stat-label">
+Published Apps
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ABOUT -->
 
 <section id="about">
 
@@ -517,9 +1051,12 @@ About Wababe Digital
 </h2>
 
 <p>
-Wababe Digital provides Android applications and digital
-solutions. This website is the official download platform
-for applications published and shared through Wababe Digital.
+
+Wababe Digital provides Android applications
+and digital solutions. This website is the official
+download page for applications published by
+Wababe Digital.
+
 </p>
 
 </div>
@@ -528,6 +1065,8 @@ for applications published and shared through Wababe Digital.
 
 </section>
 
+
+<!-- CONTACT -->
 
 <section id="contact">
 
@@ -540,24 +1079,14 @@ Contact Us
 </h2>
 
 <p>
-Have an application you want us to publish? Contact Wababe Digital.
+Get in touch with Wababe Digital.
 </p>
 
 </div>
 
 
-<div class="contact-box">
-
-<h3>
-Get in touch with us
-</h3>
-
-<p>
-You can contact Wababe Digital through WhatsApp or Email.
-</p>
-
-
 <div class="contact-buttons">
+
 
 <a
 class="btn whatsapp"
@@ -572,10 +1101,9 @@ target="_blank"
 class="btn btn-primary"
 href="mailto:wababedigitalcentre@gmail.com"
 >
-✉️ Email Us
+📧 Email Us
 </a>
 
-</div>
 
 </div>
 
@@ -583,8 +1111,11 @@ href="mailto:wababedigitalcentre@gmail.com"
 
 </section>
 
+
 </main>
 
+
+<!-- FOOTER -->
 
 <footer>
 
@@ -603,356 +1134,398 @@ Android Apps & Digital Solutions
 </footer>
 
 
+<!-- TOAST -->
+
+<div
+class="toast"
+id="toast"
+>
+Done!
+</div>
+
+
 <script>
 
-/*
-====================================================
-WABABE DIGITAL APPS
-AUTOMATIC GITHUB RELEASE LOADER
-====================================================
-
-IMPORTANT:
-
-When you publish a new GitHub Release containing
-an APK, this website will automatically find it.
-
-You do NOT need to edit index.html for every new app.
-
-Repository:
-wababe-digital/wababe-digital-apps
-====================================================
-*/
-
-
-const OWNER = "wababe-digital";
-
-const REPOSITORY = "wababe-digital-apps";
-
-const API_URL =
-`https://api.github.com/repos/${OWNER}/${REPOSITORY}/releases?per_page=100`;
-
-
-const appsGrid =
-document.getElementById("appsGrid");
+/* ========================= */
+/* SEARCH */
+/* ========================= */
 
 const search =
 document.getElementById("search");
 
+const cards =
+[...document.querySelectorAll(".app-card")];
+
 const empty =
 document.getElementById("empty");
 
-
-let allApps = [];
-
-
-/* LOAD GITHUB RELEASES */
-
-async function loadApps(){
-
-try{
-
-const response =
-await fetch(API_URL);
-
-if(!response.ok){
-
-throw new Error("GitHub API error");
-
-}
-
-
-const releases =
-await response.json();
-
-
-const apps = [];
-
-
-/*
-Each GitHub Release can contain one or
-more APK files.
-*/
-
-releases.forEach(release => {
-
-if(release.draft){
-return;
-}
-
-
-release.assets.forEach(asset => {
-
-if(
-asset.name &&
-asset.name.toLowerCase().endsWith(".apk")
-){
-
-apps.push({
-
-name: cleanName(asset.name),
-
-fileName: asset.name,
-
-version: release.tag_name || "Latest",
-
-description:
-release.body ||
-"Android application available from Wababe Digital.",
-
-downloadURL:
-asset.browser_download_url,
-
-size:
-formatSize(asset.size),
-
-date:
-formatDate(release.published_at)
-
-});
-
-}
-
-});
-
-});
-
-
-allApps = apps;
-
-displayApps(allApps);
-
-
-}catch(error){
-
-appsGrid.innerHTML = `
-<div class="status">
-Unable to load applications right now.
-Please try again later.
-</div>
-`;
-
-}
-
-}
-
-
-/* DISPLAY APPLICATIONS */
-
-function displayApps(apps){
-
-appsGrid.innerHTML = "";
-
-
-if(apps.length === 0){
-
-empty.style.display = "block";
-
-return;
-
-}
-
-
-empty.style.display = "none";
-
-
-apps.forEach(app => {
-
-
-const card =
-document.createElement("article");
-
-card.className = "app-card";
-
-card.dataset.name =
-app.name.toLowerCase();
-
-
-card.innerHTML = `
-
-<div class="app-top">
-
-<div class="app-icon">
-📱
-</div>
-
-<div>
-
-<span class="tag">
-ANDROID APP
-</span>
-
-<h3>
-${escapeHTML(app.name)}
-</h3>
-
-</div>
-
-</div>
-
-
-<p>
-${escapeHTML(shortDescription(app.description))}
-</p>
-
-
-<div class="meta">
-
-<span>
-Version: ${escapeHTML(app.version)}
-</span>
-
-<span>
-Size: ${escapeHTML(app.size)}
-</span>
-
-<span>
-${escapeHTML(app.date)}
-</span>
-
-</div>
-
-
-<a
-class="btn btn-primary download"
-href="${app.downloadURL}"
-download
->
-⬇️ DOWNLOAD APK
-</a>
-
-`;
-
-
-appsGrid.appendChild(card);
-
-});
-
-}
-
-
-/* CLEAN APK NAME */
-
-function cleanName(filename){
-
-return filename
-.replace(/\.apk$/i,"")
-.replace(/[-_]+/g," ")
-.replace(/\bv\d+(\.\d+)*\b/gi,"")
-.replace(/\s+/g," ")
-.trim();
-
-}
-
-
-/* DESCRIPTION */
-
-function shortDescription(text){
-
-text =
-text.replace(/\*\*/g,"")
-.replace(/\n/g," ")
-.trim();
-
-
-if(!text){
-
-return "Android application available from Wababe Digital.";
-
-}
-
-
-if(text.length > 150){
-
-return text.substring(0,147) + "...";
-
-}
-
-
-return text;
-
-}
-
-
-/* FILE SIZE */
-
-function formatSize(bytes){
-
-if(!bytes || bytes <= 0){
-
-return "APK";
-
-}
-
-
-const mb =
-bytes / (1024 * 1024);
-
-
-return mb >= 1
-? mb.toFixed(1) + " MB"
-: Math.round(bytes / 1024) + " KB";
-
-}
-
-
-/* RELEASE DATE */
-
-function formatDate(date){
-
-if(!date){
-
-return "Recently updated";
-
-}
-
-
-const d =
-new Date(date);
-
-
-return "Updated: " +
-d.getFullYear();
-
-}
-
-
-/* SEARCH */
 
 search.addEventListener("input",()=>{
 
 const term =
 search.value.toLowerCase().trim();
 
+let shown=0;
 
-const filtered =
-allApps.filter(app =>
-app.name.toLowerCase().includes(term)
-);
+cards.forEach(card=>{
 
+const match =
+card.dataset.name
+.toLowerCase()
+.includes(term);
 
-displayApps(filtered);
+card.style.display =
+match ? "" : "none";
+
+if(match) shown++;
+
+});
+
+empty.style.display =
+shown ? "none" : "block";
 
 });
 
 
-/* BASIC HTML ESCAPING */
+/* ========================= */
+/* DARK MODE */
+/* ========================= */
 
-function escapeHTML(text){
+function toggleDark(){
 
-const div =
-document.createElement("div");
+document.body.classList.toggle("dark");
 
-div.textContent =
-String(text);
+const dark =
+document.body.classList.contains("dark");
 
-return div.innerHTML;
+document.getElementById("darkBtn").textContent =
+dark ? "☀️" : "🌙";
+
+localStorage.setItem(
+"wababeDarkMode",
+dark ? "1" : "0"
+);
 
 }
 
 
-/* START */
+if(
+localStorage.getItem("wababeDarkMode")==="1"
+){
 
-loadApps();
+document.body.classList.add("dark");
+
+document.getElementById("darkBtn").textContent="☀️";
+
+}
+
+
+/* ========================= */
+/* TOAST */
+/* ========================= */
+
+function toast(message){
+
+const t =
+document.getElementById("toast");
+
+t.textContent=message;
+
+t.classList.add("show");
+
+setTimeout(()=>{
+
+t.classList.remove("show");
+
+},2500);
+
+}
+
+
+/* ========================= */
+/* COPY DOWNLOAD LINK */
+/* ========================= */
+
+const apkLink =
+"https://github.com/wababe-digital/wababe-digital-apps/releases/download/v1.0.0/Usulus_Salas_Audio.apk";
+
+
+function copyLink(){
+
+navigator.clipboard.writeText(apkLink)
+
+.then(()=>{
+
+toast("Download link copied!");
+
+})
+
+.catch(()=>{
+
+toast("Unable to copy link.");
+
+});
+
+}
+
+
+/* ========================= */
+/* SHARE */
+/* ========================= */
+
+function shareApp(){
+
+if(navigator.share){
+
+navigator.share({
+
+title:"Usulus Salas Audio",
+
+text:"Download Usulus Salas Audio from Wababe Digital.",
+
+url:apkLink
+
+});
+
+}else{
+
+copyLink();
+
+}
+
+}
+
+
+/* ========================= */
+/* DOWNLOAD WITH PROGRESS */
+/* ========================= */
+
+async function startDownload(event,button){
+
+event.preventDefault();
+
+const progressBox =
+document.getElementById("progress-usulus");
+
+const progressFill =
+document.getElementById("progress-fill-usulus");
+
+const progressPercent =
+document.getElementById("progress-percent-usulus");
+
+const progressText =
+document.getElementById("progress-text-usulus");
+
+
+progressBox.style.display="block";
+
+progressText.textContent="Starting download...";
+
+progressPercent.textContent="0%";
+
+progressFill.style.width="0%";
+
+
+try{
+
+const response =
+await fetch(apkLink);
+
+
+if(!response.ok){
+
+throw new Error("Download failed");
+
+}
+
+
+const contentLength =
+response.headers.get("Content-Length");
+
+
+if(!contentLength){
+
+throw new Error("No content length");
+
+}
+
+
+const total =
+parseInt(contentLength,10);
+
+let loaded=0;
+
+const reader =
+response.body.getReader();
+
+const chunks=[];
+
+
+while(true){
+
+const {done,value} =
+await reader.read();
+
+if(done) break;
+
+chunks.push(value);
+
+loaded += value.length;
+
+const percent =
+Math.round(
+(loaded / total) * 100
+);
+
+progressFill.style.width =
+percent + "%";
+
+progressPercent.textContent =
+percent + "%";
+
+progressText.textContent =
+"Downloading...";
+
+}
+
+
+const blob =
+new Blob(chunks);
+
+
+const url =
+URL.createObjectURL(blob);
+
+
+const a =
+document.createElement("a");
+
+a.href=url;
+
+a.download="Usulus_Salas_Audio.apk";
+
+document.body.appendChild(a);
+
+a.click();
+
+a.remove();
+
+URL.revokeObjectURL(url);
+
+
+progressText.textContent =
+"Download complete!";
+
+progressPercent.textContent =
+"100%";
+
+progressFill.style.width="100%";
+
+toast("Download completed!");
+
+}catch(error){
+
+/*
+Fallback:
+GitHub may block browser progress
+because of CORS/content-length.
+*/
+
+progressText.textContent =
+"Opening GitHub download...";
+
+progressPercent.textContent =
+"⬇️";
+
+setTimeout(()=>{
+
+window.location.href=apkLink;
+
+},700);
+
+}
+
+}
+
+
+/* ========================= */
+/* GITHUB DOWNLOAD COUNT */
+/* ========================= */
+
+async function loadDownloadCount(){
+
+try{
+
+const response =
+await fetch(
+"https://api.github.com/repos/wababe-digital/wababe-digital-apps/releases/latest"
+);
+
+const data =
+await response.json();
+
+let total=0;
+
+if(data.assets){
+
+data.assets.forEach(asset=>{
+
+total +=
+asset.download_count || 0;
+
+});
+
+}
+
+document.getElementById(
+"downloadCount"
+).textContent=total;
+
+}catch(error){
+
+document.getElementById(
+"downloadCount"
+).textContent="—";
+
+}
+
+}
+
+loadDownloadCount();
+
+
+/* ========================= */
+/* SIMPLE VISIT COUNTER */
+/* ========================= */
+
+let visits =
+parseInt(
+localStorage.getItem("wababeVisits") || "0"
+);
+
+visits++;
+
+localStorage.setItem(
+"wababeVisits",
+visits
+);
+
+document.getElementById(
+"visitorCount"
+).textContent=visits;
+
+
+/*
+NOTE:
+
+This visitor counter is local to each
+browser/device. It is NOT a global
+website visitor counter.
+
+For real global analytics we can later
+connect Google Analytics or another
+analytics service.
+*/
 
 </script>
 
