@@ -1,17 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <meta name="description"
 content="Wababe Digital Apps - Download useful Android applications and digital solutions.">
 
-<meta name="theme-color" content="#0f172a">
+<meta name="theme-color"
+content="#0f172a">
 
 <title>Wababe Digital Apps</title>
 
+
 <style>
+
+/* =========================
+   RESET
+========================= */
 
 *{
 box-sizing:border-box;
@@ -41,19 +51,34 @@ text-decoration:none;
 color:inherit;
 }
 
+button{
+font-family:inherit;
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
+
 .container{
 width:min(1100px,92%);
 margin:auto;
 }
 
-/* HEADER */
+
+/* =========================
+   HEADER
+========================= */
 
 header{
 position:sticky;
 top:0;
 z-index:1000;
+
 background:rgba(255,255,255,.96);
+
 border-bottom:1px solid #e2e8f0;
+
 backdrop-filter:blur(10px);
 }
 
@@ -64,9 +89,11 @@ border-color:#1e293b;
 
 .nav{
 min-height:70px;
+
 display:flex;
 align-items:center;
 justify-content:space-between;
+
 gap:20px;
 }
 
@@ -74,6 +101,7 @@ gap:20px;
 display:flex;
 align-items:center;
 gap:10px;
+
 font-size:20px;
 font-weight:800;
 }
@@ -81,17 +109,22 @@ font-weight:800;
 .brand-icon{
 width:42px;
 height:42px;
+
 border-radius:13px;
+
 display:grid;
 place-items:center;
+
 background:#0f172a;
 color:white;
+
 font-size:22px;
 }
 
 nav{
 display:flex;
 gap:22px;
+
 font-size:14px;
 font-weight:700;
 }
@@ -108,11 +141,16 @@ gap:8px;
 
 .icon-btn{
 border:1px solid #cbd5e1;
+
 background:white;
+
 width:42px;
 height:42px;
+
 border-radius:12px;
+
 font-size:18px;
+
 cursor:pointer;
 }
 
@@ -122,44 +160,74 @@ color:white;
 border-color:#334155;
 }
 
-/* HERO */
+
+/* =========================
+   HERO
+========================= */
 
 .hero{
 padding:75px 0 60px;
-background:linear-gradient(135deg,#e0f2fe,#f8fafc 55%,#dbeafe);
+
+background:
+linear-gradient(
+135deg,
+#e0f2fe,
+#f8fafc 55%,
+#dbeafe
+);
 }
 
 .dark .hero{
-background:linear-gradient(135deg,#0f172a,#020617,#172554);
+background:
+linear-gradient(
+135deg,
+#0f172a,
+#020617,
+#172554
+);
 }
 
 .hero-grid{
 display:grid;
+
 grid-template-columns:1.4fr .8fr;
+
 gap:40px;
+
 align-items:center;
 }
 
 .eyebrow{
 display:inline-block;
+
 padding:8px 14px;
+
 border-radius:999px;
+
 background:#dbeafe;
+
 color:#1d4ed8;
+
 font-size:12px;
+
 font-weight:800;
+
 margin-bottom:18px;
 }
 
 h1{
 font-size:clamp(40px,7vw,68px);
+
 line-height:1.05;
+
 margin-bottom:20px;
 }
 
 .hero p{
 color:#475569;
+
 font-size:18px;
+
 max-width:650px;
 }
 
@@ -169,27 +237,46 @@ color:#cbd5e1;
 
 .hero-buttons{
 display:flex;
+
 gap:12px;
+
 flex-wrap:wrap;
+
 margin-top:28px;
 }
 
 .btn{
 display:inline-flex;
+
 align-items:center;
 justify-content:center;
+
 min-height:48px;
+
 padding:0 20px;
+
 border-radius:13px;
+
 font-weight:800;
+
 border:1px solid #cbd5e1;
+
 background:white;
+
 cursor:pointer;
+
+transition:.2s;
+}
+
+.btn:hover{
+transform:translateY(-1px);
 }
 
 .btn-primary{
 background:#2563eb;
+
 color:white;
+
 border-color:#2563eb;
 }
 
@@ -199,29 +286,43 @@ background:#1d4ed8;
 
 .hero-card{
 background:white;
+
 border:1px solid #e2e8f0;
+
 border-radius:25px;
+
 padding:30px;
-box-shadow:0 18px 50px rgba(15,23,42,.10);
+
+box-shadow:
+0 18px 50px rgba(15,23,42,.10);
 }
 
 .dark .hero-card{
 background:#0f172a;
+
 border-color:#334155;
 }
 
 .hero-card-icon{
 width:85px;
 height:85px;
+
 border-radius:22px;
+
 display:grid;
 place-items:center;
+
 background:#eff6ff;
+
 font-size:42px;
+
 margin-bottom:18px;
 }
 
-/* SECTIONS */
+
+/* =========================
+   SECTIONS
+========================= */
 
 section{
 padding:60px 0;
@@ -233,6 +334,7 @@ margin-bottom:25px;
 
 .section-title h2{
 font-size:34px;
+
 margin-bottom:5px;
 }
 
@@ -244,81 +346,131 @@ color:#64748b;
 color:#94a3b8;
 }
 
-/* SEARCH */
+
+/* =========================
+   SEARCH
+========================= */
 
 .search{
 width:100%;
+
 min-height:54px;
+
 border:1px solid #cbd5e1;
+
 border-radius:15px;
+
 padding:0 17px;
+
 font-size:16px;
+
 outline:none;
+
 margin-bottom:28px;
+
 background:white;
+
 color:#0f172a;
 }
 
 .dark .search{
 background:#0f172a;
+
 color:white;
+
 border-color:#334155;
 }
 
 .search:focus{
 border-color:#2563eb;
-box-shadow:0 0 0 3px rgba(37,99,235,.12);
+
+box-shadow:
+0 0 0 3px rgba(37,99,235,.12);
 }
 
-/* APP CARD */
+
+/* =========================
+   APP GRID
+========================= */
 
 .apps-grid{
 display:grid;
+
 grid-template-columns:repeat(2,1fr);
+
 gap:22px;
 }
 
+
+/* =========================
+   APP CARD
+========================= */
+
 .app-card{
 background:white;
+
 border:1px solid #e2e8f0;
+
 border-radius:22px;
+
 padding:22px;
-box-shadow:0 8px 25px rgba(15,23,42,.06);
+
+box-shadow:
+0 8px 25px rgba(15,23,42,.06);
+
 transition:.25s;
 }
 
 .dark .app-card{
 background:#0f172a;
+
 border-color:#334155;
 }
 
 .app-card:hover{
 transform:translateY(-4px);
-box-shadow:0 15px 35px rgba(15,23,42,.12);
+
+box-shadow:
+0 15px 35px rgba(15,23,42,.12);
 }
 
 .app-top{
 display:flex;
+
 gap:15px;
+
 align-items:center;
+
 margin-bottom:15px;
 }
 
 .app-icon{
 width:76px;
 height:76px;
+
 flex:0 0 76px;
+
 border-radius:19px;
+
 overflow:hidden;
+
 display:grid;
 place-items:center;
-background:linear-gradient(135deg,#dbeafe,#eff6ff);
+
+background:
+linear-gradient(
+135deg,
+#dbeafe,
+#eff6ff
+);
+
 font-size:36px;
 }
 
 .app-icon img{
 width:100%;
 height:100%;
+
 object-fit:cover;
 }
 
@@ -328,13 +480,17 @@ font-size:23px;
 
 .app-card .tag{
 color:#2563eb;
+
 font-size:12px;
+
 font-weight:800;
 }
 
 .app-card p{
 color:#64748b;
+
 font-size:14px;
+
 margin:13px 0 16px;
 }
 
@@ -344,10 +500,15 @@ color:#94a3b8;
 
 .meta{
 display:flex;
+
 gap:12px;
+
 flex-wrap:wrap;
+
 color:#64748b;
+
 font-size:12px;
+
 margin-bottom:17px;
 }
 
@@ -355,223 +516,444 @@ margin-bottom:17px;
 color:#94a3b8;
 }
 
+
+/* =========================
+   DOWNLOAD AREA
+========================= */
+
+.download-area{
+margin-top:10px;
+}
+
 .download{
 width:100%;
 }
 
-/* DOWNLOAD PROGRESS */
+.download.downloading{
+background:#475569;
+
+border-color:#475569;
+}
+
+.download.cancel-mode{
+background:#dc2626;
+
+border-color:#dc2626;
+}
+
+
+/* =========================
+   DOWNLOAD PROGRESS
+========================= */
 
 .progress-box{
+
 display:none;
+
 margin-top:15px;
-padding:13px;
-border-radius:14px;
+
+padding:15px;
+
+border-radius:15px;
+
 background:#eff6ff;
+
+border:1px solid #dbeafe;
 }
 
 .dark .progress-box{
+
 background:#172554;
+
+border-color:#1e40af;
 }
 
 .progress-row{
+
 display:flex;
+
 justify-content:space-between;
+
+align-items:center;
+
+gap:10px;
+
 font-size:13px;
+
 font-weight:700;
-margin-bottom:8px;
+
+margin-bottom:10px;
+}
+
+.progress-text{
+overflow:hidden;
+
+white-space:nowrap;
+
+text-overflow:ellipsis;
+}
+
+.progress-percent{
+font-weight:800;
+
+color:#2563eb;
+
+min-width:48px;
+
+text-align:right;
+}
+
+.dark .progress-percent{
+color:#93c5fd;
 }
 
 .progress-bar{
+
 width:100%;
-height:9px;
+
+height:10px;
+
 background:#dbeafe;
+
 border-radius:20px;
+
 overflow:hidden;
+}
+
+.dark .progress-bar{
+background:#1e3a8a;
 }
 
 .progress-fill{
+
 width:0%;
+
 height:100%;
+
 background:#2563eb;
+
 border-radius:20px;
-transition:width .2s;
+
+transition:width .15s linear;
 }
 
-/* SCREENSHOTS */
+.progress-status{
 
-.screenshots{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:16px;
-margin-top:25px;
-}
+font-size:12px;
 
-.screenshot{
-border-radius:18px;
-overflow:hidden;
-background:#e2e8f0;
-aspect-ratio:9/16;
-box-shadow:0 8px 25px rgba(15,23,42,.08);
-}
-
-.screenshot img{
-width:100%;
-height:100%;
-object-fit:cover;
-display:block;
-}
-
-.screenshot-placeholder{
-height:100%;
-display:grid;
-place-items:center;
-text-align:center;
-padding:20px;
 color:#64748b;
-font-size:14px;
+
+margin-top:8px;
 }
 
-/* ACTIONS */
+.dark .progress-status{
+color:#94a3b8;
+}
+
+
+/* =========================
+   APP ACTIONS
+========================= */
 
 .app-actions{
 display:flex;
+
 gap:10px;
+
 margin-top:12px;
 }
 
 .small-btn{
+
 flex:1;
+
 min-height:42px;
+
 border:1px solid #cbd5e1;
+
 border-radius:11px;
+
 background:white;
+
 font-weight:700;
+
 cursor:pointer;
 }
 
 .dark .small-btn{
+
 background:#0f172a;
+
 color:white;
+
 border-color:#334155;
 }
 
 .small-btn:hover{
+
 border-color:#2563eb;
 }
 
-/* ABOUT */
 
-.about-box{
-background:#0f172a;
-color:white;
-border-radius:25px;
-padding:35px;
+/* =========================
+   SCREENSHOTS
+========================= */
+
+.screenshots{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:16px;
+
+margin-top:25px;
 }
 
-.about-box p{
-color:#cbd5e1;
-max-width:800px;
-margin-top:10px;
+.screenshot{
+
+border-radius:18px;
+
+overflow:hidden;
+
+background:#e2e8f0;
+
+aspect-ratio:9/16;
+
+box-shadow:
+0 8px 25px rgba(15,23,42,.08);
+
+position:relative;
 }
 
-/* STATS */
+.screenshot img{
+
+width:100%;
+
+height:100%;
+
+object-fit:cover;
+
+display:block;
+}
+
+.screenshot-placeholder{
+
+height:100%;
+
+display:grid;
+
+place-items:center;
+
+text-align:center;
+
+padding:20px;
+
+color:#64748b;
+
+font-size:14px;
+}
+
+
+/* =========================
+   STATS
+========================= */
 
 .stats{
+
 display:grid;
+
 grid-template-columns:repeat(3,1fr);
+
 gap:18px;
+
 margin-top:25px;
 }
 
 .stat{
+
 background:white;
+
 border:1px solid #e2e8f0;
+
 border-radius:18px;
+
 padding:25px;
+
 text-align:center;
 }
 
 .dark .stat{
+
 background:#0f172a;
+
 border-color:#334155;
 }
 
 .stat-number{
+
 font-size:30px;
+
 font-weight:800;
+
 color:#2563eb;
 }
 
 .stat-label{
+
 font-size:13px;
+
 color:#64748b;
 }
 
-/* CONTACT */
+
+/* =========================
+   ABOUT
+========================= */
+
+.about-box{
+
+background:#0f172a;
+
+color:white;
+
+border-radius:25px;
+
+padding:35px;
+}
+
+.about-box p{
+
+color:#cbd5e1;
+
+max-width:800px;
+
+margin-top:10px;
+}
+
+
+/* =========================
+   CONTACT
+========================= */
 
 .contact-buttons{
+
 display:flex;
+
 gap:12px;
+
 flex-wrap:wrap;
+
 margin-top:20px;
 }
 
 .whatsapp{
+
 background:#16a34a;
+
 color:white;
+
 border-color:#16a34a;
 }
 
-/* EMPTY */
+
+/* =========================
+   EMPTY
+========================= */
 
 .empty{
+
 display:none;
+
 padding:30px;
+
 text-align:center;
+
 color:#64748b;
 }
 
-/* FOOTER */
+
+/* =========================
+   FOOTER
+========================= */
 
 footer{
+
 background:#0f172a;
+
 color:#cbd5e1;
+
 padding:35px 0;
+
 margin-top:20px;
 }
 
 .footer-row{
+
 display:flex;
+
 justify-content:space-between;
+
 gap:20px;
+
 flex-wrap:wrap;
+
 font-size:13px;
 }
 
-/* TOAST */
+
+/* =========================
+   TOAST
+========================= */
 
 .toast{
+
 position:fixed;
+
 left:50%;
+
 bottom:25px;
-transform:translateX(-50%) translateY(100px);
+
+transform:
+translateX(-50%)
+translateY(100px);
+
 background:#0f172a;
+
 color:white;
+
 padding:13px 20px;
+
 border-radius:12px;
+
 font-size:14px;
+
 font-weight:700;
+
 opacity:0;
+
 transition:.3s;
+
 z-index:9999;
+
+max-width:90%;
+
+text-align:center;
 }
 
 .toast.show{
-transform:translateX(-50%) translateY(0);
+
+transform:
+translateX(-50%)
+translateY(0);
+
 opacity:1;
 }
 
-/* MOBILE */
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:800px){
 
@@ -601,6 +983,7 @@ grid-template-columns:repeat(3,1fr);
 
 }
 
+
 @media(max-width:520px){
 
 h1{
@@ -625,12 +1008,48 @@ flex-direction:column;
 
 }
 
+
+/* =========================
+   INSTALL NOTE
+========================= */
+
+.install-note{
+
+display:none;
+
+margin-top:12px;
+
+padding:12px;
+
+border-radius:12px;
+
+background:#fef3c7;
+
+color:#92400e;
+
+font-size:12px;
+
+line-height:1.5;
+}
+
+.dark .install-note{
+
+background:#451a03;
+
+color:#fde68a;
+}
+
 </style>
+
 </head>
+
 
 <body>
 
-<!-- HEADER -->
+
+<!-- =========================
+     HEADER
+========================= -->
 
 <header>
 
@@ -638,24 +1057,46 @@ flex-direction:column;
 
 <a class="brand" href="#home">
 
-<span class="brand-icon">W</span>
+<span class="brand-icon">
+W
+</span>
 
-<span>Wababe Digital</span>
+<span>
+Wababe Digital
+</span>
 
 </a>
 
+
 <nav>
 
-<a href="#home">Home</a>
-<a href="#apps">Apps</a>
-<a href="#about">About</a>
-<a href="#contact">Contact</a>
+<a href="#home">
+Home
+</a>
+
+<a href="#apps">
+Apps
+</a>
+
+<a href="#about">
+About
+</a>
+
+<a href="#contact">
+Contact
+</a>
 
 </nav>
 
+
 <div class="header-actions">
 
-<button class="icon-btn" onclick="toggleDark()" id="darkBtn">
+<button
+class="icon-btn"
+onclick="toggleDark()"
+id="darkBtn"
+aria-label="Toggle dark mode"
+>
 🌙
 </button>
 
@@ -666,13 +1107,21 @@ flex-direction:column;
 </header>
 
 
+
 <main>
 
-<!-- HERO -->
 
-<section class="hero" id="home">
+<!-- =========================
+     HERO
+========================= -->
+
+<section
+class="hero"
+id="home"
+>
 
 <div class="container hero-grid">
+
 
 <div>
 
@@ -680,23 +1129,36 @@ flex-direction:column;
 ANDROID APPS & DIGITAL SOLUTIONS
 </span>
 
+
 <h1>
 Wababe Digital Apps
 </h1>
 
+
 <p>
-Discover useful Android applications, learn about each app,
-view screenshots and download APK files directly from
+
+Discover useful Android applications,
+learn about each app, view screenshots
+and download APK files directly from
 Wababe Digital.
+
 </p>
+
 
 <div class="hero-buttons">
 
-<a class="btn btn-primary" href="#apps">
+<a
+class="btn btn-primary"
+href="#apps"
+>
 Explore Apps
 </a>
 
-<a class="btn" href="#about">
+
+<a
+class="btn"
+href="#about"
+>
 About Us
 </a>
 
@@ -705,33 +1167,44 @@ About Us
 </div>
 
 
+
 <div class="hero-card">
 
 <div class="hero-card-icon">
 📱
 </div>
 
+
 <h2>
 Simple. Fast. Useful.
 </h2>
 
+
 <p>
-A lightweight Android app download website designed
-for mobile devices and slower internet connections.
+
+A lightweight Android app download
+website designed for mobile devices
+and slower internet connections.
+
 </p>
 
 </div>
+
 
 </div>
 
 </section>
 
 
-<!-- APPS -->
+
+<!-- =========================
+     APPS
+========================= -->
 
 <section id="apps">
 
 <div class="container">
+
 
 <div class="section-title">
 
@@ -746,6 +1219,7 @@ Search and choose an application to download.
 </div>
 
 
+
 <input
 class="search"
 id="search"
@@ -755,28 +1229,32 @@ aria-label="Search apps"
 >
 
 
-<div class="apps-grid" id="appsGrid">
+
+<div
+class="apps-grid"
+id="appsGrid"
+>
 
 
-<!-- ========================= -->
-<!-- USULUS SALAS AUDIO -->
-<!-- ========================= -->
+<!-- =========================
+     USULUS SALAS AUDIO
+========================= -->
 
 <article
 class="app-card"
 data-name="Usulus Salas Audio"
 >
 
+
 <div class="app-top">
+
 
 <div class="app-icon">
 
-<!-- APP ICON -->
-<!-- Za mu iya maye gurbin wannan da real icon daga baya -->
-
-<div>🎧</div>
+🎧
 
 </div>
+
 
 <div>
 
@@ -790,7 +1268,9 @@ Usulus Salas Audio
 
 </div>
 
+
 </div>
+
 
 
 <p>
@@ -799,6 +1279,7 @@ Audio application for listening to
 Usulus Salas lessons.
 
 </p>
+
 
 
 <div class="meta">
@@ -818,54 +1299,98 @@ Updated: 2026
 </div>
 
 
-<!-- DOWNLOAD -->
 
-<a
+<!-- =========================
+     DOWNLOAD
+========================= -->
+
+<div class="download-area">
+
+
+<button
 class="btn btn-primary download"
-href="https://github.com/wababe-digital/wababe-digital-apps/releases/download/v1.0.0/Usulus_Salas_Audio.apk"
-onclick="startDownload(event,this)"
+id="downloadBtn"
+onclick="startDownload()"
 >
 
 ⬇️ DOWNLOAD APK
 
-</a>
+</button>
 
-
-<!-- PROGRESS -->
 
 <div
 class="progress-box"
-id="progress-usulus"
+id="progressBox"
 >
+
 
 <div class="progress-row">
 
-<span id="progress-text-usulus">
+<span
+class="progress-text"
+id="progressText"
+>
 Preparing download...
 </span>
 
-<span id="progress-percent-usulus">
+
+<span
+class="progress-percent"
+id="progressPercent"
+>
 0%
 </span>
 
 </div>
 
+
+
 <div class="progress-bar">
 
 <div
 class="progress-fill"
-id="progress-fill-usulus"
+id="progressFill"
 >
 </div>
 
 </div>
 
+
+
+<div
+class="progress-status"
+id="progressStatus"
+>
+Waiting...
 </div>
 
 
-<!-- ACTION BUTTONS -->
+</div>
+
+
+<div
+class="install-note"
+id="installNote"
+>
+
+Download complete. Android may ask
+you to confirm the APK installation.
+This confirmation is controlled by
+your Android device for security.
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================
+     SHARE / COPY
+========================= -->
 
 <div class="app-actions">
+
 
 <button
 class="small-btn"
@@ -874,6 +1399,7 @@ onclick="shareApp()"
 📤 Share
 </button>
 
+
 <button
 class="small-btn"
 onclick="copyLink()"
@@ -881,10 +1407,14 @@ onclick="copyLink()"
 🔗 Copy Link
 </button>
 
+
 </div>
 
 
-<!-- SCREENSHOTS -->
+
+<!-- =========================
+     SCREENSHOTS
+========================= -->
 
 <div class="screenshots">
 
@@ -893,8 +1423,8 @@ onclick="copyLink()"
 
 <img
 src="assets/usulus-salas-1.jpg"
-alt="Usulus Salas Audio Screenshot"
-onerror="this.style.display='none';this.nextElementSibling.style.display='grid';"
+alt="Usulus Salas Audio Screenshot 1"
+onerror="showPlaceholder(this)"
 >
 
 <div
@@ -907,12 +1437,13 @@ style="display:none"
 </div>
 
 
+
 <div class="screenshot">
 
 <img
 src="assets/usulus-salas-2.jpg"
-alt="Usulus Salas Audio Screenshot"
-onerror="this.style.display='none';this.nextElementSibling.style.display='grid';"
+alt="Usulus Salas Audio Screenshot 2"
+onerror="showPlaceholder(this)"
 >
 
 <div
@@ -925,12 +1456,13 @@ style="display:none"
 </div>
 
 
+
 <div class="screenshot">
 
 <img
 src="assets/usulus-salas-3.jpg"
-alt="Usulus Salas Audio Screenshot"
-onerror="this.style.display='none';this.nextElementSibling.style.display='grid';"
+alt="Usulus Salas Audio Screenshot 3"
+onerror="showPlaceholder(this)"
 >
 
 <div
@@ -952,6 +1484,7 @@ style="display:none"
 </div>
 
 
+
 <div
 class="empty"
 id="empty"
@@ -959,16 +1492,21 @@ id="empty"
 No app found.
 </div>
 
+
 </div>
 
 </section>
 
 
-<!-- STATISTICS -->
+
+<!-- =========================
+     STATISTICS
+========================= -->
 
 <section>
 
 <div class="container">
+
 
 <div class="section-title">
 
@@ -981,6 +1519,7 @@ Public download information from GitHub.
 </p>
 
 </div>
+
 
 
 <div class="stats">
@@ -1002,6 +1541,7 @@ GitHub Downloads
 </div>
 
 
+
 <div class="stat">
 
 <div
@@ -1016,6 +1556,7 @@ Website Visits
 </div>
 
 </div>
+
 
 
 <div class="stat">
@@ -1038,11 +1579,15 @@ Published Apps
 </section>
 
 
-<!-- ABOUT -->
+
+<!-- =========================
+     ABOUT
+========================= -->
 
 <section id="about">
 
 <div class="container">
+
 
 <div class="about-box">
 
@@ -1050,11 +1595,13 @@ Published Apps
 About Wababe Digital
 </h2>
 
+
 <p>
 
-Wababe Digital provides Android applications
-and digital solutions. This website is the official
-download page for applications published by
+Wababe Digital provides Android
+applications and digital solutions.
+This website is the official download
+page for applications published by
 Wababe Digital.
 
 </p>
@@ -1066,11 +1613,15 @@ Wababe Digital.
 </section>
 
 
-<!-- CONTACT -->
+
+<!-- =========================
+     CONTACT
+========================= -->
 
 <section id="contact">
 
 <div class="container">
+
 
 <div class="section-title">
 
@@ -1085,6 +1636,7 @@ Get in touch with Wababe Digital.
 </div>
 
 
+
 <div class="contact-buttons">
 
 
@@ -1092,6 +1644,7 @@ Get in touch with Wababe Digital.
 class="btn whatsapp"
 href="https://wa.me/2348106414154"
 target="_blank"
+rel="noopener"
 >
 💬 WhatsApp
 </a>
@@ -1115,7 +1668,10 @@ href="mailto:wababedigitalcentre@gmail.com"
 </main>
 
 
-<!-- FOOTER -->
+
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer>
 
@@ -1134,7 +1690,10 @@ Android Apps & Digital Solutions
 </footer>
 
 
-<!-- TOAST -->
+
+<!-- =========================
+     TOAST
+========================= -->
 
 <div
 class="toast"
@@ -1144,17 +1703,40 @@ Done!
 </div>
 
 
+
 <script>
 
-/* ========================= */
-/* SEARCH */
-/* ========================= */
+
+/* =========================
+   APK LINK
+========================= */
+
+const apkLink =
+"https://github.com/wababe-digital/wababe-digital-apps/releases/download/v1.0.0/Usulus_Salas_Audio.apk";
+
+
+/* =========================
+   DOWNLOAD STATE
+========================= */
+
+let downloadRequest = null;
+
+let downloadedBlobUrl = null;
+
+let downloadFinished = false;
+
+
+/* =========================
+   SEARCH
+========================= */
 
 const search =
 document.getElementById("search");
 
 const cards =
-[...document.querySelectorAll(".app-card")];
+[
+...document.querySelectorAll(".app-card")
+];
 
 const empty =
 document.getElementById("empty");
@@ -1163,9 +1745,12 @@ document.getElementById("empty");
 search.addEventListener("input",()=>{
 
 const term =
-search.value.toLowerCase().trim();
+search.value
+.toLowerCase()
+.trim();
 
-let shown=0;
+let shown = 0;
+
 
 cards.forEach(card=>{
 
@@ -1174,12 +1759,17 @@ card.dataset.name
 .toLowerCase()
 .includes(term);
 
+
 card.style.display =
 match ? "" : "none";
 
-if(match) shown++;
+
+if(match){
+shown++;
+}
 
 });
+
 
 empty.style.display =
 shown ? "none" : "block";
@@ -1187,19 +1777,28 @@ shown ? "none" : "block";
 });
 
 
-/* ========================= */
-/* DARK MODE */
-/* ========================= */
+/* =========================
+   DARK MODE
+========================= */
 
 function toggleDark(){
 
-document.body.classList.toggle("dark");
+document.body
+.classList
+.toggle("dark");
+
 
 const dark =
-document.body.classList.contains("dark");
+document.body
+.classList
+.contains("dark");
 
-document.getElementById("darkBtn").textContent =
+
+document.getElementById(
+"darkBtn"
+).textContent =
 dark ? "☀️" : "🌙";
+
 
 localStorage.setItem(
 "wababeDarkMode",
@@ -1210,28 +1809,40 @@ dark ? "1" : "0"
 
 
 if(
-localStorage.getItem("wababeDarkMode")==="1"
+localStorage.getItem(
+"wababeDarkMode"
+)==="1"
 ){
 
-document.body.classList.add("dark");
+document.body
+.classList
+.add("dark");
 
-document.getElementById("darkBtn").textContent="☀️";
+
+document.getElementById(
+"darkBtn"
+).textContent =
+"☀️";
 
 }
 
 
-/* ========================= */
-/* TOAST */
-/* ========================= */
+/* =========================
+   TOAST
+========================= */
 
 function toast(message){
 
 const t =
 document.getElementById("toast");
 
-t.textContent=message;
+
+t.textContent =
+message;
+
 
 t.classList.add("show");
+
 
 setTimeout(()=>{
 
@@ -1242,36 +1853,37 @@ t.classList.remove("show");
 }
 
 
-/* ========================= */
-/* COPY DOWNLOAD LINK */
-/* ========================= */
-
-const apkLink =
-"https://github.com/wababe-digital/wababe-digital-apps/releases/download/v1.0.0/Usulus_Salas_Audio.apk";
-
+/* =========================
+   COPY LINK
+========================= */
 
 function copyLink(){
 
-navigator.clipboard.writeText(apkLink)
+navigator.clipboard
+.writeText(apkLink)
 
 .then(()=>{
 
-toast("Download link copied!");
+toast(
+"Download link copied!"
+);
 
 })
 
 .catch(()=>{
 
-toast("Unable to copy link.");
+toast(
+"Unable to copy link."
+);
 
 });
 
 }
 
 
-/* ========================= */
-/* SHARE */
-/* ========================= */
+/* =========================
+   SHARE
+========================= */
 
 function shareApp(){
 
@@ -1279,13 +1891,16 @@ if(navigator.share){
 
 navigator.share({
 
-title:"Usulus Salas Audio",
+title:
+"Usulus Salas Audio",
 
-text:"Download Usulus Salas Audio from Wababe Digital.",
+text:
+"Download Usulus Salas Audio from Wababe Digital.",
 
-url:apkLink
+url:
+apkLink
 
-});
+}).catch(()=>{});
 
 }else{
 
@@ -1296,161 +1911,591 @@ copyLink();
 }
 
 
-/* ========================= */
-/* DOWNLOAD WITH PROGRESS */
-/* ========================= */
+/* =========================
+   FORMAT BYTES
+========================= */
 
-async function startDownload(event,button){
+function formatBytes(bytes){
 
-event.preventDefault();
+if(!bytes){
+return "0 MB";
+}
 
-const progressBox =
-document.getElementById("progress-usulus");
+const mb =
+bytes / (1024 * 1024);
 
-const progressFill =
-document.getElementById("progress-fill-usulus");
+if(mb >= 1){
 
-const progressPercent =
-document.getElementById("progress-percent-usulus");
+return mb.toFixed(1) + " MB";
 
-const progressText =
-document.getElementById("progress-text-usulus");
+}
 
-
-progressBox.style.display="block";
-
-progressText.textContent="Starting download...";
-
-progressPercent.textContent="0%";
-
-progressFill.style.width="0%";
-
-
-try{
-
-const response =
-await fetch(apkLink);
-
-
-if(!response.ok){
-
-throw new Error("Download failed");
+return (
+bytes / 1024
+).toFixed(0) + " KB";
 
 }
 
 
-const contentLength =
-response.headers.get("Content-Length");
+/* =========================
+   RESET PROGRESS
+========================= */
+
+function resetProgress(){
+
+document.getElementById(
+"progressFill"
+).style.width =
+"0%";
 
 
-if(!contentLength){
+document.getElementById(
+"progressPercent"
+).textContent =
+"0%";
 
-throw new Error("No content length");
+
+document.getElementById(
+"progressText"
+).textContent =
+"Preparing download...";
+
+
+document.getElementById(
+"progressStatus"
+).textContent =
+"Connecting to GitHub...";
 
 }
 
 
-const total =
-parseInt(contentLength,10);
+/* =========================
+   DOWNLOAD COMPLETE
+========================= */
 
-let loaded=0;
+function downloadComplete(blob){
 
-const reader =
-response.body.getReader();
-
-const chunks=[];
-
-
-while(true){
-
-const {done,value} =
-await reader.read();
-
-if(done) break;
-
-chunks.push(value);
-
-loaded += value.length;
-
-const percent =
-Math.round(
-(loaded / total) * 100
+const button =
+document.getElementById(
+"downloadBtn"
 );
 
+const progressFill =
+document.getElementById(
+"progressFill"
+);
+
+const progressPercent =
+document.getElementById(
+"progressPercent"
+);
+
+const progressText =
+document.getElementById(
+"progressText"
+);
+
+const progressStatus =
+document.getElementById(
+"progressStatus"
+);
+
+const installNote =
+document.getElementById(
+"installNote"
+);
+
+
 progressFill.style.width =
-percent + "%";
-
-progressPercent.textContent =
-percent + "%";
-
-progressText.textContent =
-"Downloading...";
-
-}
-
-
-const blob =
-new Blob(chunks);
-
-
-const url =
-URL.createObjectURL(blob);
-
-
-const a =
-document.createElement("a");
-
-a.href=url;
-
-a.download="Usulus_Salas_Audio.apk";
-
-document.body.appendChild(a);
-
-a.click();
-
-a.remove();
-
-URL.revokeObjectURL(url);
-
-
-progressText.textContent =
-"Download complete!";
+"100%";
 
 progressPercent.textContent =
 "100%";
 
-progressFill.style.width="100%";
+progressText.textContent =
+"Download complete!";
 
-toast("Download completed!");
+progressStatus.textContent =
+formatBytes(blob.size) +
+" downloaded";
+
+
+button.textContent =
+"⬆️ OPEN APK";
+
+
+button.classList.remove(
+"downloading",
+"cancel-mode"
+);
+
+
+button.classList.add(
+"btn-primary"
+);
+
+
+button.onclick =
+openDownloadedAPK;
+
+
+installNote.style.display =
+"block";
+
+
+downloadFinished =
+true;
+
+
+toast(
+"Download completed!"
+);
+
+}
+
+
+/* =========================
+   START DOWNLOAD
+========================= */
+
+function startDownload(){
+
+/*
+If download already finished,
+button becomes OPEN.
+*/
+
+if(downloadFinished){
+
+openDownloadedAPK();
+
+return;
+
+}
+
+
+/*
+If currently downloading,
+cancel it.
+*/
+
+if(downloadRequest){
+
+cancelDownload();
+
+return;
+
+}
+
+
+const button =
+document.getElementById(
+"downloadBtn"
+);
+
+const progressBox =
+document.getElementById(
+"progressBox"
+);
+
+
+progressBox.style.display =
+"block";
+
+
+resetProgress();
+
+
+button.textContent =
+"✕ CANCEL";
+
+
+button.classList.add(
+"downloading",
+"cancel-mode"
+);
+
+
+/*
+Use XMLHttpRequest because it
+supports real-time download progress.
+*/
+
+const xhr =
+new XMLHttpRequest();
+
+
+downloadRequest =
+xhr;
+
+
+xhr.open(
+"GET",
+apkLink,
+true
+);
+
+
+/*
+We need the APK as binary data.
+*/
+
+xhr.responseType =
+"blob";
+
+
+/*
+DOWNLOAD PROGRESS
+*/
+
+xhr.onprogress =
+function(event){
+
+if(!event.lengthComputable){
+
+document.getElementById(
+"progressText"
+).textContent =
+"Downloading...";
+
+
+document.getElementById(
+"progressStatus"
+).textContent =
+"Download size is being calculated...";
+
+
+return;
+
+}
+
+
+const percent =
+Math.round(
+(event.loaded / event.total) * 100
+);
+
+
+document.getElementById(
+"progressFill"
+).style.width =
+percent + "%";
+
+
+document.getElementById(
+"progressPercent"
+).textContent =
+percent + "%";
+
+
+document.getElementById(
+"progressText"
+).textContent =
+"Downloading...";
+
+
+document.getElementById(
+"progressStatus"
+).textContent =
+
+formatBytes(event.loaded)
++
+" / "
++
+formatBytes(event.total);
+
+};
+
+
+/*
+DOWNLOAD SUCCESS
+*/
+
+xhr.onload =
+function(){
+
+downloadRequest =
+null;
+
+
+if(
+xhr.status >= 200 &&
+xhr.status < 400
+){
+
+const blob =
+xhr.response;
+
+
+if(blob && blob.size > 0){
+
+downloadedBlobUrl =
+URL.createObjectURL(blob);
+
+
+downloadComplete(blob);
+
+return;
+
+}
+
+}
+
+
+/*
+Fallback if GitHub doesn't
+allow browser progress.
+*/
+
+fallbackDownload();
+
+};
+
+
+/*
+DOWNLOAD ERROR
+*/
+
+xhr.onerror =
+function(){
+
+downloadRequest =
+null;
+
+fallbackDownload();
+
+};
+
+
+/*
+DOWNLOAD ABORTED
+*/
+
+xhr.onabort =
+function(){
+
+downloadRequest =
+null;
+
+const button =
+document.getElementById(
+"downloadBtn"
+);
+
+
+button.textContent =
+"⬇️ DOWNLOAD APK";
+
+
+button.classList.remove(
+"downloading",
+"cancel-mode"
+);
+
+
+button.onclick =
+startDownload;
+
+
+document.getElementById(
+"progressText"
+).textContent =
+"Download cancelled";
+
+
+document.getElementById(
+"progressStatus"
+).textContent =
+"Ready to download again";
+
+
+toast(
+"Download cancelled."
+);
+
+};
+
+
+/*
+START
+*/
+
+try{
+
+xhr.send();
 
 }catch(error){
 
-/*
-Fallback:
-GitHub may block browser progress
-because of CORS/content-length.
-*/
+downloadRequest =
+null;
 
-progressText.textContent =
+fallbackDownload();
+
+}
+
+}
+
+
+/* =========================
+   CANCEL DOWNLOAD
+========================= */
+
+function cancelDownload(){
+
+if(downloadRequest){
+
+downloadRequest.abort();
+
+downloadRequest =
+null;
+
+}
+
+}
+
+
+/* =========================
+   FALLBACK DOWNLOAD
+========================= */
+
+function fallbackDownload(){
+
+const button =
+document.getElementById(
+"downloadBtn"
+);
+
+document.getElementById(
+"progressText"
+).textContent =
 "Opening GitHub download...";
 
-progressPercent.textContent =
+document.getElementById(
+"progressPercent"
+).textContent =
 "⬇️";
 
-setTimeout(()=>{
+document.getElementById(
+"progressFill"
+).style.width =
+"100%";
 
-window.location.href=apkLink;
+document.getElementById(
+"progressStatus"
+).textContent =
+"GitHub is handling the download";
 
-},700);
+
+button.textContent =
+"⬇️ OPEN GITHUB DOWNLOAD";
+
+button.classList.remove(
+"downloading",
+"cancel-mode"
+);
+
+
+button.onclick =
+function(){
+
+window.location.href =
+apkLink;
+
+};
+
+
+toast(
+"Opening GitHub download..."
+);
+
+}
+
+
+/* =========================
+   OPEN APK
+========================= */
+
+function openDownloadedAPK(){
+
+/*
+If we have a downloaded blob,
+open it in a new tab.
+
+Some Android browsers will
+send the APK to the system
+download/package handler.
+*/
+
+if(downloadedBlobUrl){
+
+const link =
+document.createElement("a");
+
+
+link.href =
+downloadedBlobUrl;
+
+
+link.download =
+"Usulus_Salas_Audio.apk";
+
+
+document.body.appendChild(link);
+
+
+link.click();
+
+
+link.remove();
+
+
+toast(
+"Opening APK..."
+);
+
+
+return;
+
+}
+
+
+/*
+Otherwise open GitHub APK.
+*/
+
+window.location.href =
+apkLink;
+
+}
+
+
+/* =========================
+   SCREENSHOT FALLBACK
+========================= */
+
+function showPlaceholder(image){
+
+image.style.display =
+"none";
+
+
+const placeholder =
+image.nextElementSibling;
+
+
+if(placeholder){
+
+placeholder.style.display =
+"grid";
 
 }
 
 }
 
 
-/* ========================= */
-/* GITHUB DOWNLOAD COUNT */
-/* ========================= */
+/* =========================
+   GITHUB DOWNLOAD COUNT
+========================= */
 
 async function loadDownloadCount(){
 
@@ -1461,14 +2506,27 @@ await fetch(
 "https://api.github.com/repos/wababe-digital/wababe-digital-apps/releases/latest"
 );
 
+
+if(!response.ok){
+
+throw new Error(
+"GitHub API error"
+);
+
+}
+
+
 const data =
 await response.json();
 
-let total=0;
+
+let total = 0;
+
 
 if(data.assets){
 
-data.assets.forEach(asset=>{
+data.assets.forEach(
+asset=>{
 
 total +=
 asset.download_count || 0;
@@ -1477,57 +2535,68 @@ asset.download_count || 0;
 
 }
 
+
 document.getElementById(
 "downloadCount"
-).textContent=total;
+).textContent =
+total;
+
 
 }catch(error){
 
 document.getElementById(
 "downloadCount"
-).textContent="—";
+).textContent =
+"—";
 
 }
 
 }
+
 
 loadDownloadCount();
 
 
-/* ========================= */
-/* SIMPLE VISIT COUNTER */
-/* ========================= */
+/* =========================
+   LOCAL VISITOR COUNTER
+========================= */
 
 let visits =
 parseInt(
-localStorage.getItem("wababeVisits") || "0"
+localStorage.getItem(
+"wababeVisits"
+) || "0"
 );
 
+
 visits++;
+
 
 localStorage.setItem(
 "wababeVisits",
 visits
 );
 
+
 document.getElementById(
 "visitorCount"
-).textContent=visits;
+).textContent =
+visits;
 
 
 /*
 NOTE:
 
-This visitor counter is local to each
-browser/device. It is NOT a global
-website visitor counter.
+This visitor counter is local to
+each browser/device.
 
-For real global analytics we can later
-connect Google Analytics or another
-analytics service.
+It is NOT a global website visitor
+counter.
 */
 
 </script>
 
+
 </body>
+
 </html>
