@@ -1,127 +1,114 @@
-const APK_URL =
-"https://github.com/wababe-digital/wababe-digital-apps/releases/download/v1.0.0/Usulus_Salas_Audio.apk";
+const GITHUB_REPO =
+  "https://github.com/wababe-digital/wababe-digital-apps";
 
+const GITHUB_API =
+  "https://api.github.com/repos/wababe-digital/wababe-digital-apps/releases";
 
 export default {
-
   async fetch(request, env) {
-
     const url = new URL(request.url);
 
-
     /*
-    =========================
-    APK DOWNLOAD PROXY
-    =========================
-    */
-
+     * DOWNLOAD ROUTE
+     * /download?url=GITHUB_APK_URL
+     */
     if (url.pathname === "/download") {
 
-      if (request.method !== "GET") {
-
-        return new Response(
-          "Method Not Allowed",
-          {
-            status: 405,
-            headers: {
-              "Allow": "GET"
-            }
-          }
-        );
-
+      if (request.method === "OPTIONS") {
+        return new Response(null, {
+          status: 204,
+          headers: corsHeaders()
+        });
       }
 
+      if (request.method !== "GET") {
+        return new Response("Method Not Allowed", {
+          status: 405,
+          headers: {
+            "Allow": "GET, OPTIONS",
+            ...corsHeaders()
+          }
+        });
+      }
+
+      const apkUrl = url.searchParams.get("url");
+
+      if (!apkUrl) {
+        return new Response("APK URL is required.", {
+          status: 400,
+          headers: corsHeaders()
+        });
+      }
+
+      /*
+       * SECURITY:
+       * Only allow APK downloads from this GitHub repository.
+       */
+      if (
+        !apkUrl.startsWith(
+          GITHUB_REPO + "/releases/download/"
+        )
+      ) {
+        return new Response(
+          "Invalid download source.",
+          {
+            status: 403,
+            headers: corsHeaders()
+          }
+        );
+      }
 
       try {
 
-        /*
-        Fetch APK from GitHub.
-        */
-
-        const response =
-          await fetch(APK_URL, {
-            method: "GET",
-            redirect: "follow"
-          });
-
+        const response = await fetch(apkUrl, {
+          method: "GET",
+          redirect: "follow"
+        });
 
         if (!response.ok) {
-
           return new Response(
             "Unable to download APK.",
             {
-              status: response.status
+              status: response.status,
+              headers: corsHeaders()
             }
           );
-
         }
 
-
-        /*
-        Copy important headers.
-        */
-
-        const headers =
-          new Headers();
-
+        const headers = new Headers();
 
         headers.set(
           "Content-Type",
           "application/vnd.android.package-archive"
         );
 
-
         headers.set(
           "Content-Disposition",
-          'attachment; filename="Usulus_Salas_Audio.apk"'
+          'attachment; filename="app.apk"'
         );
-
 
         headers.set(
           "Cache-Control",
           "public, max-age=3600"
         );
 
-
-        headers.set(
-          "Access-Control-Allow-Origin",
-          "*"
-        );
-
-
-        headers.set(
-          "Access-Control-Allow-Methods",
-          "GET, OPTIONS"
-        );
-
-
-        /*
-        Preserve Content-Length when GitHub
-        provides it.
-
-        This is important for percentage.
-        */
-
         const contentLength =
-          response.headers.get(
-            "Content-Length"
-          );
+          response.headers.get("Content-Length");
 
-
-        if(contentLength){
-
+        if (contentLength) {
           headers.set(
             "Content-Length",
             contentLength
           );
-
         }
 
+        const cors = corsHeaders();
 
-        /*
-        Return GitHub's streaming body
-        directly to the browser.
-        */
+        Object.entries(cors).forEach(
+          ([key, value]) => {
+            headers.set(key, value);
+          }
+        );
 
         return new Response(
           response.body,
@@ -131,63 +118,53 @@ export default {
           }
         );
 
-
-      } catch(error) {
+      } catch (error) {
 
         return new Response(
           "Download service error.",
           {
             status: 500,
             headers: {
-              "Content-Type":
-                "text/plain",
-              "Access-Control-Allow-Origin":
-                "*"
+              "Content-Type": "text/plain",
+              ...corsHeaders()
             }
           }
         );
-
       }
+    }
+
+
+    /*
+     * CORS PREFLIGHT
+     */
+    if (request.method === "OPTIONS") {
+
+      return new Response(null, {
+        status: 204,
+        headers: corsHeaders()
+      });
 
     }
 
 
     /*
-    =========================
-    CORS PREFLIGHT
-    =========================
-    */
-
-    if (
-      request.method === "OPTIONS"
-    ) {
-
-      return new Response(
-        null,
-        {
-          status: 204,
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET, OPTIONS",
-            "Access-Control-Allow-Headers": "*"
-          }
-        }
-      );
-
-    }
-
-
-    /*
-    =========================
-    WEBSITE
-    =========================
-
-    Everything else is served
-    from Cloudflare Static Assets.
-    */
-
+     * SERVE WEBSITE FILES
+     */
     return env.ASSETS.fetch(request);
-
   }
-
 };
+
+
+/*
+ * CORS HEADERS
+ */
+function corsHeaders() {
+
+  return {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods":
+      "GET, OPTIONS",
+    "Access-Control-Allow-Headers": "*"
+  };
+
+}
