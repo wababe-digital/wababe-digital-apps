@@ -1,15 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>Wababe Digital Apps</title>
 
-<meta name="description" content="Download Android apps from Wababe Digital Apps.">
-<meta name="theme-color" content="#0d6efd">
+<meta name="description"
+      content="Download Android apps from Wababe Digital Apps.">
+
+<meta name="theme-color"
+      content="#0d6efd">
+
 
 <style>
+
+/* =========================
+   GLOBAL
+========================= */
+
 * {
     box-sizing: border-box;
 }
@@ -30,40 +42,58 @@ a {
     color: inherit;
 }
 
-/* HEADER */
+
+/* =========================
+   HEADER
+========================= */
+
 header {
     position: sticky;
     top: 0;
     z-index: 1000;
+
     background: rgba(255,255,255,.96);
+
     border-bottom: 1px solid #e5e7eb;
+
     backdrop-filter: blur(10px);
 }
 
 .nav {
     max-width: 1150px;
+
     margin: auto;
+
     padding: 14px 18px;
+
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
+
     gap: 15px;
 }
 
 .logo {
     font-size: 20px;
+
     font-weight: 800;
+
     color: #0d6efd;
 }
 
 nav {
     display: flex;
+
     align-items: center;
+
     gap: 18px;
 }
 
 nav a {
     font-size: 14px;
+
     font-weight: 600;
 }
 
@@ -73,24 +103,37 @@ nav a:hover {
 
 .theme-btn {
     border: 0;
+
     background: #eef2f7;
+
     width: 38px;
     height: 38px;
+
     border-radius: 50%;
+
     cursor: pointer;
+
     font-size: 18px;
 }
 
-/* HERO */
+
+/* =========================
+   HERO
+========================= */
+
 .hero {
     max-width: 1150px;
+
     margin: auto;
+
     padding: 55px 18px 30px;
 }
 
 .hero h1 {
     margin: 0 0 12px;
+
     font-size: clamp(32px, 6vw, 52px);
+
     line-height: 1.05;
 }
 
@@ -100,50 +143,81 @@ nav a:hover {
 
 .hero p {
     max-width: 650px;
+
     line-height: 1.7;
+
     color: #64748b;
 }
 
-/* SEARCH */
+
+/* =========================
+   SEARCH
+========================= */
+
 .search-box {
     max-width: 650px;
+
     margin-top: 25px;
+
     display: flex;
+
     background: white;
+
     border: 1px solid #e2e8f0;
+
     border-radius: 14px;
+
     overflow: hidden;
 }
 
 .search-box input {
     flex: 1;
+
     border: 0;
+
     outline: 0;
+
     padding: 15px;
+
     font-size: 15px;
+
     background: transparent;
 }
 
 .search-box button {
     border: 0;
+
     background: #0d6efd;
+
     color: white;
+
     padding: 0 20px;
+
     cursor: pointer;
 }
 
-/* SECTION */
+
+/* =========================
+   SECTIONS
+========================= */
+
 .section {
     max-width: 1150px;
+
     margin: auto;
+
     padding: 25px 18px 60px;
 }
 
 .section-title {
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
+
     gap: 15px;
+
     margin-bottom: 20px;
 }
 
@@ -151,77 +225,127 @@ nav a:hover {
     margin: 0;
 }
 
-/* APPS */
+
+/* =========================
+   APPS GRID
+========================= */
+
 .apps-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(280px, 1fr));
+
     gap: 20px;
 }
 
+
+/* =========================
+   APP CARD
+========================= */
+
 .app-card {
     background: white;
+
     border: 1px solid #e5e7eb;
+
     border-radius: 18px;
+
     padding: 18px;
-    box-shadow: 0 5px 20px rgba(15, 23, 42, .05);
+
+    box-shadow:
+        0 5px 20px rgba(15, 23, 42, .05);
+
     transition: .2s;
 }
 
 .app-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(15, 23, 42, .10);
+
+    box-shadow:
+        0 10px 30px rgba(15, 23, 42, .10);
 }
 
 .app-top {
     display: flex;
+
     gap: 14px;
+
     align-items: center;
 }
 
 .app-icon {
     width: 76px;
+
     height: 76px;
+
     border-radius: 17px;
+
     object-fit: cover;
+
     background: #e9eef5;
+
     flex-shrink: 0;
 }
 
 .app-name {
     margin: 0 0 6px;
+
     font-size: 18px;
 }
 
 .app-version {
     color: #64748b;
+
     font-size: 13px;
 }
 
 .app-description {
     color: #64748b;
+
     line-height: 1.6;
+
     font-size: 14px;
+
     margin: 16px 0;
 }
 
 .app-meta {
     display: flex;
+
     justify-content: space-between;
+
     gap: 10px;
+
     font-size: 12px;
+
     color: #64748b;
+
     margin-bottom: 14px;
 }
 
+
+/* =========================
+   DOWNLOAD BUTTON
+========================= */
+
 .download-btn {
     width: 100%;
+
     border: 0;
+
     border-radius: 11px;
+
     padding: 13px;
+
     background: #0d6efd;
+
     color: white;
+
     font-size: 15px;
+
     font-weight: 700;
+
     cursor: pointer;
 }
 
@@ -231,84 +355,129 @@ nav a:hover {
 
 .download-btn:disabled {
     opacity: .7;
+
     cursor: not-allowed;
 }
 
-/* DOWNLOAD AREA */
+
+/* =========================
+   DOWNLOAD AREA
+========================= */
+
 .download-area {
     display: none;
+
     margin-top: 13px;
 }
 
 .progress-row {
     display: flex;
+
     align-items: center;
+
     gap: 8px;
 }
 
 .progress-container {
     flex: 1;
+
     height: 9px;
+
     background: #e5e7eb;
+
     border-radius: 20px;
+
     overflow: hidden;
 }
 
 .progress-bar {
     width: 0%;
+
     height: 100%;
+
     background: #0d6efd;
+
     transition: width .15s linear;
 }
 
 .progress-percent {
     width: 42px;
+
     text-align: right;
+
     font-size: 12px;
+
     font-weight: bold;
 }
 
 .cancel-btn,
-.open-btn {
+.install-btn {
     border: 0;
+
     border-radius: 8px;
+
     padding: 7px 10px;
+
     cursor: pointer;
+
     font-size: 12px;
 }
 
 .cancel-btn {
     background: #fee2e2;
+
     color: #b91c1c;
 }
 
-.open-btn {
+.install-btn {
     display: none;
+
     background: #dcfce7;
+
     color: #15803d;
+
+    white-space: nowrap;
 }
 
 .status {
     margin-top: 8px;
+
     font-size: 12px;
+
     color: #64748b;
 }
 
-/* EMPTY / LOADING */
+
+/* =========================
+   EMPTY / LOADING
+========================= */
+
 .message {
     padding: 35px;
+
     text-align: center;
+
     background: white;
+
     border-radius: 15px;
+
     color: #64748b;
 }
 
-/* ABOUT / CONTACT */
+
+/* =========================
+   ABOUT / CONTACT
+========================= */
+
 .info-box {
     background: white;
+
     border: 1px solid #e5e7eb;
+
     border-radius: 18px;
+
     padding: 25px;
+
     margin-bottom: 20px;
 }
 
@@ -318,26 +487,42 @@ nav a:hover {
 
 .info-box p {
     line-height: 1.7;
+
     color: #64748b;
 }
 
 .contact-link {
     display: inline-block;
+
     margin: 5px 5px 5px 0;
+
     padding: 10px 14px;
+
     border-radius: 10px;
+
     background: #eef4ff;
+
     color: #0d6efd;
+
     font-weight: 600;
+
     font-size: 14px;
 }
 
-/* FOOTER */
+
+/* =========================
+   FOOTER
+========================= */
+
 footer {
     background: #111827;
+
     color: #d1d5db;
+
     text-align: center;
+
     padding: 30px 18px;
+
     font-size: 13px;
 }
 
@@ -345,19 +530,26 @@ footer p {
     margin: 6px 0;
 }
 
-/* DARK MODE */
+
+/* =========================
+   DARK MODE
+========================= */
+
 body.dark {
     background: #0f172a;
+
     color: #e5e7eb;
 }
 
 body.dark header {
     background: rgba(15,23,42,.96);
+
     border-color: #1e293b;
 }
 
 body.dark .theme-btn {
     background: #1e293b;
+
     color: white;
 }
 
@@ -382,6 +574,7 @@ body.dark .app-card,
 body.dark .info-box,
 body.dark .message {
     background: #111c2e;
+
     border-color: #263449;
 }
 
@@ -395,11 +588,17 @@ body.dark .progress-container {
 
 body.dark .contact-link {
     background: #172554;
+
     color: #60a5fa;
 }
 
-/* MOBILE */
+
+/* =========================
+   MOBILE
+========================= */
+
 @media (max-width: 650px) {
+
     nav a {
         display: none;
     }
@@ -411,48 +610,91 @@ body.dark .contact-link {
     .apps-grid {
         grid-template-columns: 1fr;
     }
+
 }
+
 </style>
+
 </head>
+
 
 <body>
 
+
+<!-- =========================
+     HEADER
+========================= -->
+
 <header>
+
     <div class="nav">
 
         <a href="#" class="logo">
             Wababe Digital Apps
         </a>
 
-        <nav>
-            <a href="#apps">Apps</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
 
-            <button class="theme-btn" id="themeBtn" onclick="toggleDarkMode()">
+        <nav>
+
+            <a href="#apps">
+                Apps
+            </a>
+
+            <a href="#about">
+                About
+            </a>
+
+            <a href="#contact">
+                Contact
+            </a>
+
+
+            <button
+                class="theme-btn"
+                id="themeBtn"
+                onclick="toggleDarkMode()"
+                aria-label="Toggle dark mode">
+
                 🌙
+
             </button>
+
         </nav>
 
     </div>
+
 </header>
+
 
 
 <main>
 
+
+<!-- =========================
+     HERO
+========================= -->
+
 <section class="hero">
 
     <h1>
+
         Discover & Download
         <span>Apps</span>
+
     </h1>
 
+
     <p>
+
         Welcome to Wababe Digital Apps.
-        Find useful Android applications and download them easily.
+        Find useful Android applications
+        and download them easily.
+
     </p>
 
+
     <div class="search-box">
+
         <input
             type="search"
             id="searchInput"
@@ -460,19 +702,34 @@ body.dark .contact-link {
             oninput="searchApps()"
         >
 
+
         <button onclick="searchApps()">
+
             Search
+
         </button>
+
     </div>
 
 </section>
 
 
-<section class="section" id="apps">
+
+<!-- =========================
+     APPS
+========================= -->
+
+<section
+    class="section"
+    id="apps">
+
 
     <div class="section-title">
 
-        <h2>All Apps</h2>
+        <h2>
+            All Apps
+        </h2>
+
 
         <span id="appCount">
             Loading...
@@ -480,28 +737,51 @@ body.dark .contact-link {
 
     </div>
 
-    <div id="appsGrid" class="apps-grid">
+
+    <div
+        id="appsGrid"
+        class="apps-grid">
+
 
         <div class="message">
+
             Loading apps...
+
         </div>
 
+
     </div>
 
 </section>
 
 
-<section class="section" id="about">
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section
+    class="section"
+    id="about">
+
 
     <div class="info-box">
 
-        <h2>About Wababe Digital Apps</h2>
+        <h2>
+            About Wababe Digital Apps
+        </h2>
+
 
         <p>
-            Wababe Digital Apps is a platform for discovering
-            and downloading Android applications.
-            Our goal is to make useful applications easy
-            to find and access.
+
+            Wababe Digital Apps is a platform
+            for discovering and downloading
+            Android applications.
+
+            Our goal is to make useful
+            applications easy to find
+            and access.
+
         </p>
 
     </div>
@@ -509,359 +789,702 @@ body.dark .contact-link {
 </section>
 
 
-<section class="section" id="contact">
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section
+    class="section"
+    id="contact">
+
 
     <div class="info-box">
 
-        <h2>Contact Us</h2>
+        <h2>
+            Contact Us
+        </h2>
+
 
         <p>
-            Do you have a question, suggestion or need support?
-            Contact us through WhatsApp or email.
+
+            Do you have a question,
+            suggestion or need support?
+
+            Contact us through WhatsApp
+            or email.
+
         </p>
+
 
         <a
             class="contact-link"
             href="https://wa.me/2348106414154"
             target="_blank"
-        >
+            rel="noopener">
+
             WhatsApp
+
         </a>
+
 
         <a
             class="contact-link"
-            href="mailto:wababedigitalcentre@gmail.com"
-        >
+            href="mailto:wababedigitalcentre@gmail.com">
+
             Email
+
         </a>
 
     </div>
 
 </section>
 
+
 </main>
 
+
+
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer>
 
     <p>
-        © <span id="year"></span> Wababe Digital Apps
+
+        © <span id="year"></span>
+        Wababe Digital Apps
+
     </p>
 
+
     <p>
+
         All rights reserved.
+
     </p>
 
 </footer>
 
 
+
 <script>
+
+
+/* =========================
+   GITHUB API
+========================= */
 
 const GITHUB_API =
 "https://api.github.com/repos/wababe-digital/wababe-digital-apps/releases?per_page=100";
 
-const appsGrid = document.getElementById("appsGrid");
-const appCount = document.getElementById("appCount");
+
+const appsGrid =
+document.getElementById("appsGrid");
+
+
+const appCount =
+document.getElementById("appCount");
+
 
 let allApps = [];
 
 
-/* LOAD GITHUB RELEASES */
+/* =========================
+   LOAD RELEASES
+========================= */
 
 async function loadApps() {
 
     try {
 
-        const response = await fetch(GITHUB_API);
+        const response =
+        await fetch(GITHUB_API);
+
 
         if (!response.ok) {
-            throw new Error("GitHub API error");
+
+            throw new Error(
+                "GitHub API error"
+            );
+
         }
 
-        const releases = await response.json();
 
-        allApps = releases.filter(release => !release.draft);
+        const releases =
+        await response.json();
+
+
+        allApps =
+        releases.filter(
+            release => !release.draft
+        );
+
 
         renderApps(allApps);
+
 
     } catch (error) {
 
         appsGrid.innerHTML = `
+
             <div class="message">
+
                 Unable to load apps right now.
                 Please try again later.
+
             </div>
+
         `;
 
-        appCount.textContent = "Error";
+
+        appCount.textContent =
+            "Error";
+
 
         console.error(error);
+
     }
+
 }
 
 
-/* FIND APK */
+/* =========================
+   FIND APK
+========================= */
 
 function getApkAsset(release) {
 
-    return release.assets.find(asset =>
-        asset.name.toLowerCase().endsWith(".apk")
+    return release.assets.find(
+        asset =>
+        asset.name
+        .toLowerCase()
+        .endsWith(".apk")
     );
 
 }
 
 
-/* FIND ICON */
+/* =========================
+   FIND ICON
+========================= */
 
 function getIconAsset(release) {
 
-    return release.assets.find(asset => {
+    return release.assets.find(
+        asset => {
 
-        const name = asset.name.toLowerCase();
+            const name =
+            asset.name.toLowerCase();
 
-        return (
-            name === "icon.png" ||
-            name === "icon.jpg" ||
-            name === "icon.jpeg" ||
-            name === "app-icon.png" ||
-            name === "app-icon.jpg"
-        );
 
-    });
+            return (
+
+                name === "icon.png" ||
+
+                name === "icon.jpg" ||
+
+                name === "icon.jpeg" ||
+
+                name === "app-icon.png" ||
+
+                name === "app-icon.jpg"
+
+            );
+
+        }
+    );
 
 }
 
 
-/* FORMAT SIZE */
+/* =========================
+   FORMAT SIZE
+========================= */
 
 function formatSize(bytes) {
 
-    if (!bytes) return "Unknown size";
+    if (!bytes) {
 
-    const mb = bytes / 1024 / 1024;
+        return "Unknown size";
 
-    return mb.toFixed(2) + " MB";
+    }
+
+
+    const mb =
+        bytes / 1024 / 1024;
+
+
+    return mb.toFixed(2) +
+        " MB";
 
 }
 
 
-/* RENDER APPS */
+/* =========================
+   CREATE DEFAULT ICON
+========================= */
+
+function createDefaultIcon(name) {
+
+    const letter =
+        escapeHtml(
+            name
+            .charAt(0)
+            .toUpperCase()
+        );
+
+
+    return "data:image/svg+xml;charset=UTF-8," +
+        encodeURIComponent(`
+
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="200"
+                height="200">
+
+                <rect
+                    width="100%"
+                    height="100%"
+                    rx="35"
+                    fill="#0d6efd"/>
+
+                <text
+                    x="50%"
+                    y="55%"
+                    text-anchor="middle"
+                    fill="white"
+                    font-size="80"
+                    font-family="Arial">
+
+                    ${letter}
+
+                </text>
+
+            </svg>
+
+        `);
+
+}
+
+
+/* =========================
+   RENDER APPS
+========================= */
 
 function renderApps(apps) {
 
     appsGrid.innerHTML = "";
 
+
+    const validApps =
+        apps.filter(
+            release =>
+            getApkAsset(release)
+        );
+
+
     appCount.textContent =
-        apps.length + (apps.length === 1 ? " App" : " Apps");
+        validApps.length +
+        (
+            validApps.length === 1
+            ? " App"
+            : " Apps"
+        );
 
 
-    if (apps.length === 0) {
+    if (validApps.length === 0) {
 
         appsGrid.innerHTML = `
+
             <div class="message">
+
                 No apps found.
+
             </div>
+
         `;
 
         return;
+
     }
 
 
-    apps.forEach((release, index) => {
-
-        const apk = getApkAsset(release);
-
-        if (!apk) return;
+    validApps.forEach(
+        release => {
 
 
-        const icon = getIconAsset(release);
-
-        const iconUrl = icon
-            ? icon.browser_download_url
-            : createDefaultIcon(release.name);
+            const apk =
+                getApkAsset(release);
 
 
-        const description =
-            release.body
-            ? release.body.split("\n")[0]
-            : "Android application available for download.";
+            const icon =
+                getIconAsset(release);
 
 
-        const card = document.createElement("div");
+            const iconUrl =
+                icon
+                ? icon.browser_download_url
+                : createDefaultIcon(
+                    release.name
+                );
 
-        card.className = "app-card";
+
+            const description =
+                release.body
+                ? release.body
+                    .split("\n")[0]
+                    .trim()
+                : "Android application available for download.";
 
 
-        card.innerHTML = `
+            const card =
+                document.createElement("div");
 
-            <div class="app-top">
 
-                <img
-                    class="app-icon"
-                    src="${escapeHtml(iconUrl)}"
-                    alt="${escapeHtml(release.name)}"
-                    onerror="this.src='data:image/svg+xml;charset=UTF-8,${createSvgIcon(release.name)}'"
-                >
+            card.className =
+                "app-card";
 
-                <div>
 
-                    <h3 class="app-name">
-                        ${escapeHtml(release.name)}
-                    </h3>
+            /*
+             * Store the exact release
+             * on the card.
+             */
+            card.dataset.releaseId =
+                release.id;
 
-                    <div class="app-version">
-                        ${escapeHtml(release.tag_name)}
+
+            card.innerHTML = `
+
+                <div class="app-top">
+
+
+                    <img
+                        class="app-icon"
+                        src="${escapeHtml(iconUrl)}"
+                        alt="${escapeHtml(release.name)}"
+                    >
+
+
+                    <div>
+
+                        <h3 class="app-name">
+
+                            ${escapeHtml(
+                                release.name
+                            )}
+
+                        </h3>
+
+
+                        <div class="app-version">
+
+                            ${escapeHtml(
+                                release.tag_name
+                            )}
+
+                        </div>
+
                     </div>
 
                 </div>
 
-            </div>
 
 
-            <div class="app-description">
-                ${escapeHtml(description)}
-            </div>
+                <div class="app-description">
 
-
-            <div class="app-meta">
-
-                <span>
-                    ${formatSize(apk.size)}
-                </span>
-
-                <span>
-                    ${apk.download_count || 0} downloads
-                </span>
-
-            </div>
-
-
-            <button
-                class="download-btn"
-                onclick="startDownload(${index}, this)"
-            >
-                Download APK
-            </button>
-
-
-            <div class="download-area">
-
-                <div class="progress-row">
-
-                    <div class="progress-container">
-
-                        <div class="progress-bar"></div>
-
-                    </div>
-
-                    <div class="progress-percent">
-                        0%
-                    </div>
-
-                    <button class="cancel-btn">
-                        Cancel
-                    </button>
-
-                    <button class="open-btn">
-                        Open
-                    </button>
+                    ${escapeHtml(
+                        description
+                    )}
 
                 </div>
 
-                <div class="status">
-                    Preparing download...
+
+
+                <div class="app-meta">
+
+                    <span>
+
+                        ${formatSize(
+                            apk.size
+                        )}
+
+                    </span>
+
+
+                    <span>
+
+                        ${apk.download_count || 0}
+                        downloads
+
+                    </span>
+
                 </div>
 
-            </div>
-
-        `;
 
 
-        appsGrid.appendChild(card);
+                <button
+                    class="download-btn"
+                    onclick="startDownload(this)">
 
-    });
+                    Download APK
+
+                </button>
+
+
+
+                <div
+                    class="download-area">
+
+
+                    <div class="progress-row">
+
+
+                        <div
+                            class="progress-container">
+
+                            <div
+                                class="progress-bar">
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="progress-percent">
+
+                            0%
+
+                        </div>
+
+
+                        <button
+                            class="cancel-btn">
+
+                            Cancel
+
+                        </button>
+
+
+                        <button
+                            class="install-btn">
+
+                            Install APK
+
+                        </button>
+
+
+                    </div>
+
+
+                    <div class="status">
+
+                        Preparing download...
+
+                    </div>
+
+
+                </div>
+
+            `;
+
+
+            appsGrid.appendChild(card);
+
+        }
+    );
 
 }
 
 
-/* DOWNLOAD */
+/* =========================
+   START DOWNLOAD
+========================= */
 
-function startDownload(index, button) {
-
-    const release = allApps[index];
-
-    if (!release) return;
+function startDownload(button) {
 
 
-    const apk = getApkAsset(release);
+    const card =
+        button.closest(".app-card");
 
-    if (!apk) {
 
-        alert("APK file not found for this app.");
+    if (!card) return;
+
+
+    /*
+     * Get exact release ID
+     * from this card.
+     */
+
+    const releaseId =
+        Number(
+            card.dataset.releaseId
+        );
+
+
+    const release =
+        allApps.find(
+            item =>
+            item.id === releaseId
+        );
+
+
+    if (!release) {
+
+        alert(
+            "Unable to find this app release."
+        );
 
         return;
+
     }
 
 
-    const card = button.closest(".app-card");
-
-    const area = card.querySelector(".download-area");
-
-    const progressBar = card.querySelector(".progress-bar");
-
-    const percentText = card.querySelector(".progress-percent");
-
-    const cancelBtn = card.querySelector(".cancel-btn");
-
-    const openBtn = card.querySelector(".open-btn");
-
-    const status = card.querySelector(".status");
+    const apk =
+        getApkAsset(release);
 
 
-    button.style.display = "none";
+    if (!apk) {
 
-    area.style.display = "block";
+        alert(
+            "APK file not found for this app."
+        );
 
-    openBtn.style.display = "none";
+        return;
 
-    cancelBtn.style.display = "inline-block";
-
-    progressBar.style.width = "0%";
-
-    percentText.textContent = "0%";
-
-    status.textContent = "Starting download...";
+    }
 
 
-    const xhr = new XMLHttpRequest();
+    const area =
+        card.querySelector(
+            ".download-area"
+        );
+
+
+    const progressBar =
+        card.querySelector(
+            ".progress-bar"
+        );
+
+
+    const percentText =
+        card.querySelector(
+            ".progress-percent"
+        );
+
+
+    const cancelBtn =
+        card.querySelector(
+            ".cancel-btn"
+        );
+
+
+    const installBtn =
+        card.querySelector(
+            ".install-btn"
+        );
+
+
+    const status =
+        card.querySelector(
+            ".status"
+        );
+
+
+    /*
+     * Reset UI
+     */
+
+    button.style.display =
+        "none";
+
+
+    area.style.display =
+        "block";
+
+
+    installBtn.style.display =
+        "none";
+
+
+    cancelBtn.style.display =
+        "inline-block";
+
+
+    progressBar.style.width =
+        "0%";
+
+
+    percentText.textContent =
+        "0%";
+
+
+    status.textContent =
+        "Starting download...";
+
+
+    /*
+     * Create XHR
+     */
+
+    const xhr =
+        new XMLHttpRequest();
+
+
+    /*
+     * Download through
+     * Cloudflare Worker.
+     */
 
     xhr.open(
         "GET",
-        "/download?url=" + encodeURIComponent(apk.browser_download_url),
+        "/download?url=" +
+        encodeURIComponent(
+            apk.browser_download_url
+        ),
         true
     );
 
-    xhr.responseType = "blob";
+
+    xhr.responseType =
+        "blob";
 
 
-    xhr.onprogress = function(event) {
+    /*
+     * Progress
+     */
+
+    xhr.onprogress =
+    function(event) {
+
 
         if (event.lengthComputable) {
 
+
             const percent =
                 Math.round(
-                    (event.loaded / event.total) * 100
+                    (
+                        event.loaded /
+                        event.total
+                    ) * 100
                 );
 
-            progressBar.style.width = percent + "%";
+
+            progressBar.style.width =
+                percent + "%";
+
 
             percentText.textContent =
                 percent + "%";
 
+
             status.textContent =
                 "Downloading...";
 
+
         } else {
+
 
             status.textContent =
                 "Downloading...";
@@ -871,127 +1494,263 @@ function startDownload(index, button) {
     };
 
 
-    xhr.onload = function() {
+    /*
+     * Completed
+     */
 
-        if (xhr.status >= 200 && xhr.status < 300) {
+    xhr.onload =
+    function() {
 
-            progressBar.style.width = "100%";
 
-            percentText.textContent = "100%";
+        if (
+            xhr.status >= 200 &&
+            xhr.status < 300
+        ) {
+
+
+            progressBar.style.width =
+                "100%";
+
+
+            percentText.textContent =
+                "100%";
+
 
             status.textContent =
-                "Download completed.";
+                "Download completed successfully.";
+
+
+            /*
+             * Create downloaded file.
+             */
 
             const blobUrl =
-                URL.createObjectURL(xhr.response);
+                URL.createObjectURL(
+                    xhr.response
+                );
 
 
-            openBtn.style.display = "inline-block";
+            /*
+             * Show Install button.
+             */
 
-            cancelBtn.style.display = "none";
+            installBtn.style.display =
+                "inline-block";
 
 
-            openBtn.onclick = function() {
+            cancelBtn.style.display =
+                "none";
 
-                const link =
-                    document.createElement("a");
 
-                link.href = blobUrl;
-
-                link.download = apk.name;
-
-                link.click();
-
-            };
-
+            /*
+             * Automatically save APK
+             * to Downloads.
+             */
 
             const link =
                 document.createElement("a");
 
-            link.href = blobUrl;
 
-            link.download = apk.name;
+            link.href =
+                blobUrl;
 
-            document.body.appendChild(link);
+
+            link.download =
+                apk.name;
+
+
+            document.body.appendChild(
+                link
+            );
+
 
             link.click();
 
+
             link.remove();
 
+
+            /*
+             * Install button.
+             *
+             * It does NOT download again.
+             */
+
+            installBtn.onclick =
+            function() {
+
+
+                status.textContent =
+                    "Open your Downloads folder and tap the APK file to install it.";
+
+
+                alert(
+
+                    "APK Download Completed!\n\n" +
+
+                    "To install the app:\n\n" +
+
+                    "1. Open your Downloads folder.\n" +
+
+                    "2. Find:\n" +
+
+                    apk.name +
+
+                    "\n\n" +
+
+                    "3. Tap the APK file.\n\n" +
+
+                    "4. Tap Install."
+
+                );
+
+            };
+
+
+            /*
+             * Release memory later.
+             */
+
+            setTimeout(
+                function() {
+
+                    URL.revokeObjectURL(
+                        blobUrl
+                    );
+
+                },
+                60000
+            );
+
+
         } else {
+
 
             status.textContent =
                 "Download failed.";
 
-            button.style.display = "block";
 
-            area.style.display = "none";
+            button.style.display =
+                "block";
+
+
+            area.style.display =
+                "none";
 
         }
 
     };
 
 
-    xhr.onerror = function() {
+    /*
+     * Network error
+     */
+
+    xhr.onerror =
+    function() {
+
 
         status.textContent =
             "Download error. Please try again.";
 
-        button.style.display = "block";
 
-        area.style.display = "none";
+        button.style.display =
+            "block";
+
+
+        area.style.display =
+            "none";
 
     };
 
 
-    xhr.onabort = function() {
+    /*
+     * Cancel
+     */
+
+    xhr.onabort =
+    function() {
+
 
         status.textContent =
             "Download cancelled.";
 
-        button.style.display = "block";
 
-        area.style.display = "none";
+        button.style.display =
+            "block";
+
+
+        area.style.display =
+            "none";
 
     };
 
 
-    cancelBtn.onclick = function() {
+    cancelBtn.onclick =
+    function() {
 
         xhr.abort();
 
     };
 
 
+    /*
+     * Start
+     */
+
     xhr.send();
 
 }
 
 
-/* SEARCH */
+/* =========================
+   SEARCH
+========================= */
 
 function searchApps() {
 
+
     const query =
         document
-        .getElementById("searchInput")
+        .getElementById(
+            "searchInput"
+        )
         .value
         .toLowerCase()
         .trim();
 
 
     const filtered =
-        allApps.filter(release => {
+        allApps.filter(
+            release => {
 
-            return (
-                release.name.toLowerCase().includes(query) ||
-                release.tag_name.toLowerCase().includes(query) ||
-                (release.body || "")
+
+                return (
+
+                    release.name
                     .toLowerCase()
                     .includes(query)
-            );
 
-        });
+
+                    ||
+
+                    release.tag_name
+                    .toLowerCase()
+                    .includes(query)
+
+
+                    ||
+
+                    (
+                        release.body || ""
+                    )
+                    .toLowerCase()
+                    .includes(query)
+
+                );
+
+            }
+        );
 
 
     renderApps(filtered);
@@ -999,14 +1758,22 @@ function searchApps() {
 }
 
 
-/* DARK MODE */
+/* =========================
+   DARK MODE
+========================= */
 
 function toggleDarkMode() {
 
-    document.body.classList.toggle("dark");
+
+    document.body
+        .classList
+        .toggle("dark");
+
 
     const dark =
-        document.body.classList.contains("dark");
+        document.body
+        .classList
+        .contains("dark");
 
 
     localStorage.setItem(
@@ -1015,103 +1782,91 @@ function toggleDarkMode() {
     );
 
 
-    document.getElementById("themeBtn")
-        .textContent = dark ? "☀️" : "🌙";
+    document
+        .getElementById(
+            "themeBtn"
+        )
+        .textContent =
+        dark ? "☀️" : "🌙";
 
 }
 
+
+/*
+ * Load saved theme.
+ */
 
 if (
-    localStorage.getItem("wababeDarkMode")
-    === "1"
+    localStorage.getItem(
+        "wababeDarkMode"
+    ) === "1"
 ) {
 
-    document.body.classList.add("dark");
 
-    document.getElementById("themeBtn")
-        .textContent = "☀️";
-
-}
+    document.body
+        .classList
+        .add("dark");
 
 
-/* DEFAULT ICON */
-
-function createDefaultIcon(name) {
-
-    return "data:image/svg+xml;charset=UTF-8," +
-        encodeURIComponent(`
-            <svg xmlns="http://www.w3.org/2000/svg"
-                 width="200"
-                 height="200">
-
-                <rect width="100%"
-                      height="100%"
-                      rx="35"
-                      fill="#0d6efd"/>
-
-                <text x="50%"
-                      y="55%"
-                      text-anchor="middle"
-                      fill="white"
-                      font-size="80"
-                      font-family="Arial">
-                    ${escapeHtml(name.charAt(0).toUpperCase())}
-                </text>
-
-            </svg>
-        `);
+    document
+        .getElementById(
+            "themeBtn"
+        )
+        .textContent =
+        "☀️";
 
 }
 
 
-function createSvgIcon(name) {
-
-    return encodeURIComponent(`
-        <svg xmlns="http://www.w3.org/2000/svg"
-             width="200"
-             height="200">
-
-            <rect width="100%"
-                  height="100%"
-                  rx="35"
-                  fill="#0d6efd"/>
-
-            <text x="50%"
-                  y="55%"
-                  text-anchor="middle"
-                  fill="white"
-                  font-size="80"
-                  font-family="Arial">
-                ${escapeHtml(name.charAt(0).toUpperCase())}
-            </text>
-
-        </svg>
-    `);
-
-}
-
-
-/* HTML ESCAPE */
+/* =========================
+   HTML ESCAPE
+========================= */
 
 function escapeHtml(value) {
 
     return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
 }
 
 
-/* YEAR */
+/* =========================
+   YEAR
+========================= */
 
-document.getElementById("year")
-    .textContent = new Date().getFullYear();
+document
+    .getElementById("year")
+    .textContent =
+    new Date().getFullYear();
 
 
-/* START */
+/* =========================
+   START
+========================= */
 
 loadApps();
 
