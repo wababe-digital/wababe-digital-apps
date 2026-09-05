@@ -1,100 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color" content="#0d6efd">
 
 <title>Wababe Digital Apps</title>
 
 <meta name="description"
       content="Download Android apps from Wababe Digital Apps.">
 
-<meta name="theme-color"
-      content="#0d6efd">
-
-
 <style>
-
-/* =========================
-   GLOBAL
-========================= */
 
 * {
     box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     background: #f5f7fb;
-    color: #1f2937;
+    color: #172033;
+    line-height: 1.5;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
+body.dark {
+    background: #101318;
+    color: #f1f3f5;
 }
 
-
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 
 header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
     position: sticky;
     top: 0;
     z-index: 1000;
-
-    background: rgba(255,255,255,.96);
-
-    border-bottom: 1px solid #e5e7eb;
-
-    backdrop-filter: blur(10px);
 }
 
-.nav {
+.dark header {
+    background: #171a20;
+    border-color: #292d35;
+}
+
+.header-inner {
     max-width: 1150px;
-
     margin: auto;
-
-    padding: 14px 18px;
-
+    padding: 15px 20px;
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
-
     gap: 15px;
 }
 
 .logo {
-    font-size: 20px;
-
-    font-weight: 800;
-
+    font-size: 21px;
+    font-weight: bold;
     color: #0d6efd;
+    text-decoration: none;
 }
 
 nav {
     display: flex;
-
     align-items: center;
-
     gap: 18px;
 }
 
 nav a {
-    font-size: 14px;
-
+    text-decoration: none;
+    color: inherit;
     font-weight: 600;
+    font-size: 14px;
 }
 
 nav a:hover {
@@ -103,38 +84,31 @@ nav a:hover {
 
 .theme-btn {
     border: 0;
-
     background: #eef2f7;
-
     width: 38px;
     height: 38px;
-
     border-radius: 50%;
-
     cursor: pointer;
-
     font-size: 18px;
 }
 
+.dark .theme-btn {
+    background: #282d36;
+    color: white;
+}
 
-/* =========================
-   HERO
-========================= */
+/* HERO */
 
 .hero {
     max-width: 1150px;
-
     margin: auto;
-
-    padding: 55px 18px 30px;
+    padding: 55px 20px 35px;
+    text-align: center;
 }
 
 .hero h1 {
-    margin: 0 0 12px;
-
-    font-size: clamp(32px, 6vw, 52px);
-
-    line-height: 1.05;
+    font-size: 38px;
+    margin-bottom: 12px;
 }
 
 .hero h1 span {
@@ -142,521 +116,411 @@ nav a:hover {
 }
 
 .hero p {
-    max-width: 650px;
-
-    line-height: 1.7;
-
-    color: #64748b;
+    max-width: 700px;
+    margin: auto;
+    color: #687386;
 }
 
+.dark .hero p {
+    color: #aeb5c0;
+}
 
-/* =========================
-   SEARCH
-========================= */
+/* SEARCH */
 
 .search-box {
     max-width: 650px;
-
-    margin-top: 25px;
-
-    display: flex;
-
-    background: white;
-
-    border: 1px solid #e2e8f0;
-
-    border-radius: 14px;
-
-    overflow: hidden;
+    margin: 28px auto 0;
+    position: relative;
 }
 
 .search-box input {
-    flex: 1;
-
-    border: 0;
-
-    outline: 0;
-
-    padding: 15px;
-
+    width: 100%;
+    padding: 15px 18px;
+    border-radius: 12px;
+    border: 1px solid #d9dee7;
+    outline: none;
     font-size: 15px;
-
-    background: transparent;
+    background: white;
+    color: #172033;
 }
 
-.search-box button {
-    border: 0;
+.search-box input:focus {
+    border-color: #0d6efd;
+}
 
-    background: #0d6efd;
-
+.dark .search-box input {
+    background: #1a1e25;
     color: white;
-
-    padding: 0 20px;
-
-    cursor: pointer;
+    border-color: #343944;
 }
 
-
-/* =========================
-   SECTIONS
-========================= */
+/* SECTION */
 
 .section {
     max-width: 1150px;
-
     margin: auto;
-
-    padding: 25px 18px 60px;
+    padding: 25px 20px 55px;
 }
 
 .section-title {
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    gap: 15px;
-
-    margin-bottom: 20px;
+    font-size: 25px;
+    margin-bottom: 22px;
 }
 
-.section-title h2 {
-    margin: 0;
-}
-
-
-/* =========================
-   APPS GRID
-========================= */
+/* APPS */
 
 .apps-grid {
     display: grid;
-
-    grid-template-columns:
-        repeat(auto-fill, minmax(280px, 1fr));
-
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
 }
 
-
-/* =========================
-   APP CARD
-========================= */
+/* APP CARD */
 
 .app-card {
     background: white;
-
-    border: 1px solid #e5e7eb;
-
-    border-radius: 18px;
-
-    padding: 18px;
-
-    box-shadow:
-        0 5px 20px rgba(15, 23, 42, .05);
-
-    transition: .2s;
+    border: 1px solid #e4e8ef;
+    border-radius: 17px;
+    padding: 20px;
+    transition: 0.2s;
+    overflow: hidden;
 }
 
 .app-card:hover {
     transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+}
 
-    box-shadow:
-        0 10px 30px rgba(15, 23, 42, .10);
+.dark .app-card {
+    background: #181c22;
+    border-color: #2b3039;
 }
 
 .app-top {
     display: flex;
-
-    gap: 14px;
-
-    align-items: center;
+    align-items: flex-start;
+    gap: 15px;
 }
 
 .app-icon {
-    width: 76px;
-
-    height: 76px;
-
+    width: 75px;
+    height: 75px;
     border-radius: 17px;
-
     object-fit: cover;
-
-    background: #e9eef5;
-
+    background: #e9edf3;
     flex-shrink: 0;
 }
 
-.app-name {
-    margin: 0 0 6px;
+.app-info {
+    min-width: 0;
+    flex: 1;
+}
 
-    font-size: 18px;
+.app-name {
+    font-size: 19px;
+    font-weight: bold;
+    margin-bottom: 4px;
 }
 
 .app-version {
-    color: #64748b;
+    font-size: 12px;
+    color: #6b7280;
+}
 
-    font-size: 13px;
+.dark .app-version {
+    color: #aeb5c0;
 }
 
 .app-description {
-    color: #64748b;
-
-    line-height: 1.6;
-
+    margin-top: 15px;
+    color: #667085;
     font-size: 14px;
-
-    margin: 16px 0;
+    white-space: pre-line;
 }
 
-.app-meta {
+.dark .app-description {
+    color: #b3bac5;
+}
+
+/* DETAILS */
+
+.app-details {
     display: flex;
-
-    justify-content: space-between;
-
-    gap: 10px;
-
-    font-size: 12px;
-
-    color: #64748b;
-
-    margin-bottom: 14px;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 15px;
 }
 
+.detail {
+    background: #f0f3f8;
+    border-radius: 7px;
+    padding: 5px 9px;
+    font-size: 11px;
+    color: #596273;
+}
 
-/* =========================
-   DOWNLOAD BUTTON
-========================= */
+.dark .detail {
+    background: #272c35;
+    color: #bfc5ce;
+}
+
+/* SCREENSHOTS */
+
+.screenshots {
+    display: flex;
+    gap: 9px;
+    overflow-x: auto;
+    margin-top: 17px;
+    padding-bottom: 5px;
+}
+
+.screenshot {
+    width: 90px;
+    height: 155px;
+    object-fit: cover;
+    border-radius: 9px;
+    background: #e8ebef;
+    flex-shrink: 0;
+}
+
+/* DOWNLOAD */
+
+.download-area {
+    margin-top: 18px;
+}
 
 .download-btn {
     width: 100%;
-
     border: 0;
-
-    border-radius: 11px;
-
-    padding: 13px;
-
     background: #0d6efd;
-
     color: white;
-
-    font-size: 15px;
-
-    font-weight: 700;
-
+    padding: 13px;
+    border-radius: 10px;
     cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 .download-btn:hover {
-    background: #0959c7;
+    background: #095dcc;
 }
 
 .download-btn:disabled {
-    opacity: .7;
-
+    opacity: 0.65;
     cursor: not-allowed;
 }
 
+/* PROGRESS */
 
-/* =========================
-   DOWNLOAD AREA
-========================= */
-
-.download-area {
+.progress-wrapper {
     display: none;
-
-    margin-top: 13px;
+    margin-top: 12px;
 }
 
 .progress-row {
     display: flex;
-
     align-items: center;
-
-    gap: 8px;
+    gap: 9px;
 }
 
-.progress-container {
+.progress-track {
     flex: 1;
-
     height: 9px;
-
-    background: #e5e7eb;
-
+    background: #e4e7ec;
     border-radius: 20px;
-
     overflow: hidden;
 }
 
+.dark .progress-track {
+    background: #30353e;
+}
+
 .progress-bar {
-    width: 0%;
-
     height: 100%;
-
+    width: 0%;
     background: #0d6efd;
-
-    transition: width .15s linear;
+    transition: width 0.1s linear;
 }
 
 .progress-percent {
-    width: 42px;
-
+    min-width: 42px;
     text-align: right;
-
     font-size: 12px;
-
     font-weight: bold;
 }
 
-.cancel-btn,
-.install-btn {
-    border: 0;
-
-    border-radius: 8px;
-
-    padding: 7px 10px;
-
-    cursor: pointer;
-
-    font-size: 12px;
-}
-
 .cancel-btn {
-    background: #fee2e2;
-
-    color: #b91c1c;
-}
-
-.install-btn {
-    display: none;
-
-    background: #dcfce7;
-
-    color: #15803d;
-
-    white-space: nowrap;
-}
-
-.status {
-    margin-top: 8px;
-
+    border: 0;
+    background: #dc3545;
+    color: white;
+    padding: 8px 11px;
+    border-radius: 7px;
+    cursor: pointer;
     font-size: 12px;
-
-    color: #64748b;
 }
 
+/* SUCCESS */
 
-/* =========================
-   EMPTY / LOADING
-========================= */
-
-.message {
-    padding: 35px;
-
-    text-align: center;
-
-    background: white;
-
-    border-radius: 15px;
-
-    color: #64748b;
+.download-status {
+    margin-top: 9px;
+    font-size: 12px;
+    color: #667085;
 }
 
-
-/* =========================
-   ABOUT / CONTACT
-========================= */
-
-.info-box {
-    background: white;
-
-    border: 1px solid #e5e7eb;
-
-    border-radius: 18px;
-
-    padding: 25px;
-
-    margin-bottom: 20px;
+.dark .download-status {
+    color: #b5bdc9;
 }
 
-.info-box h2 {
-    margin-top: 0;
-}
-
-.info-box p {
-    line-height: 1.7;
-
-    color: #64748b;
-}
-
-.contact-link {
-    display: inline-block;
-
-    margin: 5px 5px 5px 0;
-
-    padding: 10px 14px;
-
-    border-radius: 10px;
-
-    background: #eef4ff;
-
-    color: #0d6efd;
-
-    font-weight: 600;
-
-    font-size: 14px;
-}
-
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-    background: #111827;
-
-    color: #d1d5db;
-
-    text-align: center;
-
-    padding: 30px 18px;
-
+.success-message {
+    display: none;
+    margin-top: 12px;
+    padding: 11px;
+    border-radius: 9px;
+    background: #e9f8ef;
+    color: #19733a;
     font-size: 13px;
 }
 
-footer p {
-    margin: 6px 0;
+.dark .success-message {
+    background: #153321;
+    color: #8ce0a9;
 }
 
+/* EMPTY */
 
-/* =========================
-   DARK MODE
-========================= */
-
-body.dark {
-    background: #0f172a;
-
-    color: #e5e7eb;
+.empty {
+    text-align: center;
+    padding: 40px 15px;
+    color: #667085;
 }
 
-body.dark header {
-    background: rgba(15,23,42,.96);
-
-    border-color: #1e293b;
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: #667085;
 }
 
-body.dark .theme-btn {
-    background: #1e293b;
+/* ABOUT / CONTACT */
 
+.info-box {
+    background: white;
+    border: 1px solid #e4e8ef;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+.dark .info-box {
+    background: #181c22;
+    border-color: #2b3039;
+}
+
+.info-box h3 {
+    margin-bottom: 10px;
+}
+
+.info-box p {
+    color: #667085;
+}
+
+.dark .info-box p {
+    color: #b3bac5;
+}
+
+.contact-link {
+    display: block;
+    text-decoration: none;
+    color: #0d6efd;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+/* FOOTER */
+
+footer {
+    background: #111827;
+    color: #c7ced8;
+    text-align: center;
+    padding: 25px 20px;
+    font-size: 13px;
+}
+
+footer strong {
     color: white;
 }
 
-body.dark nav a {
-    color: #e5e7eb;
-}
-
-body.dark nav a:hover {
-    color: #60a5fa;
-}
-
-body.dark .hero p,
-body.dark .app-description,
-body.dark .app-version,
-body.dark .app-meta,
-body.dark .status {
-    color: #94a3b8;
-}
-
-body.dark .search-box,
-body.dark .app-card,
-body.dark .info-box,
-body.dark .message {
-    background: #111c2e;
-
-    border-color: #263449;
-}
-
-body.dark .search-box input {
-    color: white;
-}
-
-body.dark .progress-container {
-    background: #334155;
-}
-
-body.dark .contact-link {
-    background: #172554;
-
-    color: #60a5fa;
-}
-
-
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 
 @media (max-width: 650px) {
 
+    .header-inner {
+        padding: 12px 15px;
+    }
+
+    .logo {
+        font-size: 17px;
+    }
+
+    nav {
+        gap: 10px;
+    }
+
     nav a {
-        display: none;
+        font-size: 12px;
+    }
+
+    .theme-btn {
+        width: 34px;
+        height: 34px;
     }
 
     .hero {
         padding-top: 40px;
     }
 
-    .apps-grid {
-        grid-template-columns: 1fr;
+    .hero h1 {
+        font-size: 30px;
     }
 
+    .section {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .app-card {
+        padding: 17px;
+    }
 }
 
 </style>
-
 </head>
-
 
 <body>
 
-
-<!-- =========================
-     HEADER
-========================= -->
+<!-- HEADER -->
 
 <header>
 
-    <div class="nav">
+    <div class="header-inner">
 
         <a href="#" class="logo">
             Wababe Digital Apps
         </a>
 
-
         <nav>
 
-            <a href="#apps">
-                Apps
-            </a>
+            <a href="#apps">Apps</a>
 
-            <a href="#about">
-                About
-            </a>
+            <a href="#about">About</a>
 
-            <a href="#contact">
-                Contact
-            </a>
-
+            <a href="#contact">Contact</a>
 
             <button
                 class="theme-btn"
                 id="themeBtn"
-                onclick="toggleDarkMode()"
-                aria-label="Toggle dark mode">
-
+                type="button"
+                onclick="toggleTheme()">
                 🌙
-
             </button>
 
         </nav>
@@ -666,32 +530,18 @@ body.dark .contact-link {
 </header>
 
 
-
-<main>
-
-
-<!-- =========================
-     HERO
-========================= -->
+<!-- HERO -->
 
 <section class="hero">
 
     <h1>
-
-        Discover & Download
-        <span>Apps</span>
-
+        Download <span>Android Apps</span>
     </h1>
 
-
     <p>
-
-        Welcome to Wababe Digital Apps.
-        Find useful Android applications
-        and download them easily.
-
+        Discover and download Android applications
+        from Wababe Digital Apps.
     </p>
-
 
     <div class="search-box">
 
@@ -699,89 +549,51 @@ body.dark .contact-link {
             type="search"
             id="searchInput"
             placeholder="Search apps..."
-            oninput="searchApps()"
-        >
-
-
-        <button onclick="searchApps()">
-
-            Search
-
-        </button>
+            autocomplete="off">
 
     </div>
 
 </section>
 
 
+<!-- APPS -->
 
-<!-- =========================
-     APPS
-========================= -->
+<section class="section" id="apps">
 
-<section
-    class="section"
-    id="apps">
+    <h2 class="section-title">
+        Available Apps
+    </h2>
 
+    <div id="appsContainer">
 
-    <div class="section-title">
-
-        <h2>
-            All Apps
-        </h2>
-
-
-        <span id="appCount">
-            Loading...
-        </span>
-
-    </div>
-
-
-    <div
-        id="appsGrid"
-        class="apps-grid">
-
-
-        <div class="message">
-
+        <div class="loading">
             Loading apps...
-
         </div>
 
-
     </div>
 
 </section>
 
 
+<!-- ABOUT -->
 
-<!-- =========================
-     ABOUT
-========================= -->
+<section class="section" id="about">
 
-<section
-    class="section"
-    id="about">
-
+    <h2 class="section-title">
+        About Wababe Digital Apps
+    </h2>
 
     <div class="info-box">
 
-        <h2>
-            About Wababe Digital Apps
-        </h2>
-
+        <h3>
+            Wababe Digital Apps
+        </h3>
 
         <p>
-
-            Wababe Digital Apps is a platform
-            for discovering and downloading
-            Android applications.
-
-            Our goal is to make useful
-            applications easy to find
-            and access.
-
+            Wababe Digital Apps is a platform for discovering
+            and downloading Android applications.
+            Our goal is to provide users with a simple,
+            fast and convenient way to access useful apps.
         </p>
 
     </div>
@@ -789,51 +601,37 @@ body.dark .contact-link {
 </section>
 
 
+<!-- CONTACT -->
 
-<!-- =========================
-     CONTACT
-========================= -->
+<section class="section" id="contact">
 
-<section
-    class="section"
-    id="contact">
-
+    <h2 class="section-title">
+        Contact Us
+    </h2>
 
     <div class="info-box">
 
-        <h2>
-            Contact Us
-        </h2>
-
+        <h3>
+            WababeDigitalCentre
+        </h3>
 
         <p>
-
-            Do you have a question,
-            suggestion or need support?
-
-            Contact us through WhatsApp
-            or email.
-
+            For questions, support, suggestions or business
+            enquiries, contact us through WhatsApp or email.
         </p>
-
 
         <a
             class="contact-link"
             href="https://wa.me/2348106414154"
             target="_blank"
             rel="noopener">
-
-            WhatsApp
-
+            WhatsApp: +234 810 641 4154
         </a>
-
 
         <a
             class="contact-link"
             href="mailto:wababedigitalcentre@gmail.com">
-
-            Email
-
+            Email: wababedigitalcentre@gmail.com
         </a>
 
     </div>
@@ -841,408 +639,432 @@ body.dark .contact-link {
 </section>
 
 
-</main>
-
-
-
-<!-- =========================
-     FOOTER
-========================= -->
+<!-- FOOTER -->
 
 <footer>
 
-    <p>
-
+    <div>
         © <span id="year"></span>
-        Wababe Digital Apps
+        <strong> Wababe Digital Apps</strong>
+    </div>
 
-    </p>
-
-
-    <p>
-
+    <div style="margin-top:6px;">
         All rights reserved.
-
-    </p>
+    </div>
 
 </footer>
 
 
-
 <script>
 
-
-/* =========================
-   GITHUB API
-========================= */
+/* =========================================================
+   SETTINGS
+========================================================= */
 
 const GITHUB_API =
-"https://api.github.com/repos/wababe-digital/wababe-digital-apps/releases?per_page=100";
-
-
-const appsGrid =
-document.getElementById("appsGrid");
-
-
-const appCount =
-document.getElementById("appCount");
+    "https://api.github.com/repos/wababe-digital/wababe-digital-apps/releases?per_page=100";
 
 
 let allApps = [];
 
+let activeDownloads = new Map();
 
-/* =========================
-   LOAD RELEASES
-========================= */
+
+/* =========================================================
+   THEME
+========================================================= */
+
+function loadTheme() {
+
+    const savedTheme =
+        localStorage.getItem("wababe-theme");
+
+    if (savedTheme === "dark") {
+
+        document.body.classList.add("dark");
+
+        document.getElementById("themeBtn").textContent = "☀️";
+
+    }
+
+}
+
+
+function toggleTheme() {
+
+    document.body.classList.toggle("dark");
+
+    const dark =
+        document.body.classList.contains("dark");
+
+    localStorage.setItem(
+        "wababe-theme",
+        dark ? "dark" : "light"
+    );
+
+    document.getElementById("themeBtn").textContent =
+        dark ? "☀️" : "🌙";
+
+}
+
+
+/* =========================================================
+   LOAD APPS
+========================================================= */
 
 async function loadApps() {
+
+    const container =
+        document.getElementById("appsContainer");
 
     try {
 
         const response =
-        await fetch(GITHUB_API);
-
+            await fetch(GITHUB_API, {
+                headers: {
+                    "Accept":
+                    "application/vnd.github+json"
+                },
+                cache: "no-store"
+            });
 
         if (!response.ok) {
 
             throw new Error(
-                "GitHub API error"
+                "GitHub API error: " +
+                response.status
             );
 
         }
 
-
         const releases =
-        await response.json();
-
+            await response.json();
 
         allApps =
-        releases.filter(
-            release => !release.draft
-        );
+            releases.filter(function(release) {
 
+                return !release.draft &&
+                       !release.prerelease &&
+                       release.assets &&
+                       release.assets.some(function(asset) {
+
+                           return asset.name
+                               .toLowerCase()
+                               .endsWith(".apk");
+
+                       });
+
+            });
 
         renderApps(allApps);
 
+    }
 
-    } catch (error) {
-
-        appsGrid.innerHTML = `
-
-            <div class="message">
-
-                Unable to load apps right now.
-                Please try again later.
-
-            </div>
-
-        `;
-
-
-        appCount.textContent =
-            "Error";
-
+    catch (error) {
 
         console.error(error);
+
+        container.innerHTML = `
+            <div class="empty">
+                <h3>Unable to load apps</h3>
+                <p>Please try again later.</p>
+            </div>
+        `;
 
     }
 
 }
 
 
-/* =========================
+/* =========================================================
    FIND APK
-========================= */
+========================================================= */
 
 function getApkAsset(release) {
 
-    return release.assets.find(
-        asset =>
-        asset.name
-        .toLowerCase()
-        .endsWith(".apk")
-    );
+    return release.assets.find(function(asset) {
+
+        return asset.name
+            .toLowerCase()
+            .endsWith(".apk");
+
+    });
 
 }
 
 
-/* =========================
+/* =========================================================
    FIND ICON
-========================= */
+========================================================= */
 
 function getIconAsset(release) {
 
-    return release.assets.find(
-        asset => {
+    const names = [
+        "icon.png",
+        "icon.jpg",
+        "icon.jpeg",
+        "app-icon.png",
+        "app-icon.jpg",
+        "app-icon.jpeg"
+    ];
 
-            const name =
-            asset.name.toLowerCase();
+    return release.assets.find(function(asset) {
 
+        return names.includes(
+            asset.name.toLowerCase()
+        );
 
-            return (
-
-                name === "icon.png" ||
-
-                name === "icon.jpg" ||
-
-                name === "icon.jpeg" ||
-
-                name === "app-icon.png" ||
-
-                name === "app-icon.jpg"
-
-            );
-
-        }
-    );
+    });
 
 }
 
 
-/* =========================
+/* =========================================================
+   FIND SCREENSHOTS
+========================================================= */
+
+function getScreenshotAssets(release) {
+
+    return release.assets.filter(function(asset) {
+
+        const name =
+            asset.name.toLowerCase();
+
+        return (
+            name.startsWith("screenshot-") ||
+            name.startsWith("screenshot_")
+        ) &&
+        (
+            name.endsWith(".png") ||
+            name.endsWith(".jpg") ||
+            name.endsWith(".jpeg") ||
+            name.endsWith(".webp")
+        );
+
+    });
+
+}
+
+
+/* =========================================================
    FORMAT SIZE
-========================= */
+========================================================= */
 
 function formatSize(bytes) {
 
     if (!bytes) {
-
         return "Unknown size";
+    }
+
+    const mb =
+        bytes / (1024 * 1024);
+
+    if (mb < 1024) {
+
+        return mb.toFixed(2) + " MB";
 
     }
 
-
-    const mb =
-        bytes / 1024 / 1024;
-
-
-    return mb.toFixed(2) +
-        " MB";
+    return (
+        mb / 1024
+    ).toFixed(2) + " GB";
 
 }
 
 
-/* =========================
-   CREATE DEFAULT ICON
-========================= */
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
 
-function createDefaultIcon(name) {
+function escapeHTML(value) {
 
-    const letter =
-        escapeHtml(
-            name
-            .charAt(0)
-            .toUpperCase()
-        );
+    if (value === null ||
+        value === undefined) {
 
+        return "";
 
-    return "data:image/svg+xml;charset=UTF-8," +
-        encodeURIComponent(`
+    }
 
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="200"
-                height="200">
-
-                <rect
-                    width="100%"
-                    height="100%"
-                    rx="35"
-                    fill="#0d6efd"/>
-
-                <text
-                    x="50%"
-                    y="55%"
-                    text-anchor="middle"
-                    fill="white"
-                    font-size="80"
-                    font-family="Arial">
-
-                    ${letter}
-
-                </text>
-
-            </svg>
-
-        `);
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 
 }
 
 
-/* =========================
+/* =========================================================
    RENDER APPS
-========================= */
+========================================================= */
 
 function renderApps(apps) {
 
-    appsGrid.innerHTML = "";
+    const container =
+        document.getElementById("appsContainer");
 
+    if (!apps.length) {
 
-    const validApps =
-        apps.filter(
-            release =>
-            getApkAsset(release)
-        );
-
-
-    appCount.textContent =
-        validApps.length +
-        (
-            validApps.length === 1
-            ? " App"
-            : " Apps"
-        );
-
-
-    if (validApps.length === 0) {
-
-        appsGrid.innerHTML = `
-
-            <div class="message">
-
-                No apps found.
-
+        container.innerHTML = `
+            <div class="empty">
+                <h3>No apps found</h3>
+                <p>Try another search.</p>
             </div>
-
         `;
 
         return;
 
     }
 
+    const grid =
+        document.createElement("div");
 
-    validApps.forEach(
-        release => {
-
-
-            const apk =
-                getApkAsset(release);
+    grid.className = "apps-grid";
 
 
-            const icon =
-                getIconAsset(release);
+    apps.forEach(function(release) {
+
+        const apk =
+            getApkAsset(release);
+
+        if (!apk) {
+            return;
+        }
 
 
-            const iconUrl =
-                icon
+        const icon =
+            getIconAsset(release);
+
+        const screenshots =
+            getScreenshotAssets(release);
+
+
+        const iconUrl =
+            icon
                 ? icon.browser_download_url
-                : createDefaultIcon(
-                    release.name
-                );
+                : "";
 
 
-            const description =
-                release.body
-                ? release.body
-                    .split("\n")[0]
-                    .trim()
-                : "Android application available for download.";
+        let description =
+            release.body ||
+            "Download this Android application from Wababe Digital Apps.";
 
 
-            const card =
-                document.createElement("div");
+        const card =
+            document.createElement("article");
+
+        card.className = "app-card";
 
 
-            card.className =
-                "app-card";
+        let screenshotsHTML = "";
+
+        if (screenshots.length) {
+
+            screenshotsHTML = `
+                <div class="screenshots">
+
+                    ${screenshots.map(function(image) {
+
+                        return `
+                            <img
+                                class="screenshot"
+                                src="${escapeHTML(image.browser_download_url)}"
+                                alt="Screenshot"
+                                loading="lazy"
+                                onerror="this.style.display='none'">
+                        `;
+
+                    }).join("")}
+
+                </div>
+            `;
+
+        }
 
 
-            /*
-             * Store the exact release
-             * on the card.
-             */
-            card.dataset.releaseId =
-                release.id;
+        card.innerHTML = `
 
+            <div class="app-top">
 
-            card.innerHTML = `
-
-                <div class="app-top">
-
-
+                ${
+                    iconUrl
+                    ?
+                    `
                     <img
                         class="app-icon"
-                        src="${escapeHtml(iconUrl)}"
-                        alt="${escapeHtml(release.name)}"
-                    >
+                        src="${escapeHTML(iconUrl)}"
+                        alt="${escapeHTML(release.name)}"
+                        loading="lazy"
+                        onerror="this.style.display='none'">
+                    `
+                    :
+                    `
+                    <div
+                        class="app-icon"
+                        style="
+                            display:flex;
+                            align-items:center;
+                            justify-content:center;
+                            font-size:28px;
+                        ">
+                        📱
+                    </div>
+                    `
+                }
 
 
-                    <div>
+                <div class="app-info">
 
-                        <h3 class="app-name">
+                    <div class="app-name">
+                        ${escapeHTML(release.name)}
+                    </div>
 
-                            ${escapeHtml(
-                                release.name
-                            )}
-
-                        </h3>
-
-
-                        <div class="app-version">
-
-                            ${escapeHtml(
-                                release.tag_name
-                            )}
-
-                        </div>
-
+                    <div class="app-version">
+                        ${escapeHTML(release.tag_name)}
                     </div>
 
                 </div>
 
+            </div>
 
 
-                <div class="app-description">
-
-                    ${escapeHtml(
-                        description
-                    )}
-
-                </div>
+            <div class="app-description">
+                ${escapeHTML(description)}
+            </div>
 
 
+            <div class="app-details">
 
-                <div class="app-meta">
+                <span class="detail">
+                    APK: ${formatSize(apk.size)}
+                </span>
 
-                    <span>
+                <span class="detail">
+                    Downloads: ${apk.download_count || 0}
+                </span>
 
-                        ${formatSize(
-                            apk.size
-                        )}
-
-                    </span>
-
-
-                    <span>
-
-                        ${apk.download_count || 0}
-                        downloads
-
-                    </span>
-
-                </div>
+            </div>
 
 
+            ${screenshotsHTML}
+
+
+            <div class="download-area">
 
                 <button
                     class="download-btn"
-                    onclick="startDownload(this)">
-
+                    type="button"
+                    onclick="startDownload(${release.id}, this)">
                     Download APK
-
                 </button>
 
 
-
-                <div
-                    class="download-area">
-
+                <div class="progress-wrapper">
 
                     <div class="progress-row">
 
-
-                        <div
-                            class="progress-container">
+                        <div class="progress-track">
 
                             <div
                                 class="progress-bar">
@@ -1250,91 +1072,85 @@ function renderApps(apps) {
 
                         </div>
 
-
-                        <div
-                            class="progress-percent">
-
+                        <div class="progress-percent">
                             0%
-
                         </div>
 
-
                         <button
-                            class="cancel-btn">
-
+                            class="cancel-btn"
+                            type="button">
                             Cancel
-
                         </button>
-
-
-                        <button
-                            class="install-btn">
-
-                            Install APK
-
-                        </button>
-
 
                     </div>
 
-
-                    <div class="status">
-
+                    <div class="download-status">
                         Preparing download...
-
                     </div>
-
 
                 </div>
 
-            `;
+
+                <div class="success-message">
+                    ✓ Download completed successfully.
+                    Open your Downloads folder and tap
+                    the APK file to install the app.
+                </div>
+
+            </div>
+
+        `;
 
 
-            appsGrid.appendChild(card);
+        grid.appendChild(card);
 
-        }
-    );
+
+        const cancelBtn =
+            card.querySelector(".cancel-btn");
+
+
+        cancelBtn.onclick =
+            function() {
+
+                const download =
+                    activeDownloads.get(release.id);
+
+                if (download) {
+
+                    download.abort();
+
+                }
+
+            };
+
+
+    });
+
+
+    container.innerHTML = "";
+
+    container.appendChild(grid);
 
 }
 
 
-/* =========================
+/* =========================================================
    START DOWNLOAD
-========================= */
+========================================================= */
 
-function startDownload(button) {
-
-
-    const card =
-        button.closest(".app-card");
-
-
-    if (!card) return;
-
-
-    /*
-     * Get exact release ID
-     * from this card.
-     */
-
-    const releaseId =
-        Number(
-            card.dataset.releaseId
-        );
-
+function startDownload(releaseId, button) {
 
     const release =
-        allApps.find(
-            item =>
-            item.id === releaseId
-        );
+        allApps.find(function(item) {
+
+            return item.id === releaseId;
+
+        });
 
 
     if (!release) {
 
-        alert(
-            "Unable to find this app release."
-        );
+        alert("App information not found.");
 
         return;
 
@@ -1347,102 +1163,98 @@ function startDownload(button) {
 
     if (!apk) {
 
-        alert(
-            "APK file not found for this app."
-        );
+        alert("APK file not found.");
 
         return;
 
     }
 
 
-    const area =
-        card.querySelector(
-            ".download-area"
-        );
+    const card =
+        button.closest(".app-card");
+
+
+    const progressWrapper =
+        card.querySelector(".progress-wrapper");
 
 
     const progressBar =
-        card.querySelector(
-            ".progress-bar"
-        );
+        card.querySelector(".progress-bar");
 
 
     const percentText =
-        card.querySelector(
-            ".progress-percent"
-        );
+        card.querySelector(".progress-percent");
 
 
     const cancelBtn =
-        card.querySelector(
-            ".cancel-btn"
-        );
-
-
-    const installBtn =
-        card.querySelector(
-            ".install-btn"
-        );
+        card.querySelector(".cancel-btn");
 
 
     const status =
-        card.querySelector(
-            ".status"
-        );
+        card.querySelector(".download-status");
 
 
-    /*
-     * Reset UI
-     */
-
-    button.style.display =
-        "none";
+    const successMessage =
+        card.querySelector(".success-message");
 
 
-    area.style.display =
+    /* prevent duplicate download */
+
+    if (activeDownloads.has(releaseId)) {
+
+        return;
+
+    }
+
+
+    /* reset UI */
+
+    button.disabled = true;
+
+    button.textContent =
+        "Downloading...";
+
+    progressWrapper.style.display =
         "block";
 
-
-    installBtn.style.display =
+    successMessage.style.display =
         "none";
-
-
-    cancelBtn.style.display =
-        "inline-block";
-
 
     progressBar.style.width =
         "0%";
 
-
     percentText.textContent =
         "0%";
-
 
     status.textContent =
         "Starting download...";
 
 
     /*
-     * Create XHR
-     */
+       IMPORTANT:
+       Download goes through our Cloudflare Worker.
+    */
+
+    const downloadUrl =
+        "/download?url=" +
+        encodeURIComponent(
+            apk.browser_download_url
+        );
+
 
     const xhr =
         new XMLHttpRequest();
 
 
-    /*
-     * Download through
-     * Cloudflare Worker.
-     */
+    activeDownloads.set(
+        releaseId,
+        xhr
+    );
+
 
     xhr.open(
         "GET",
-        "/download?url=" +
-        encodeURIComponent(
-            apk.browser_download_url
-        ),
+        downloadUrl,
         true
     );
 
@@ -1451,422 +1263,397 @@ function startDownload(button) {
         "blob";
 
 
-    /*
-     * Progress
-     */
+    /* PROGRESS */
 
     xhr.onprogress =
-    function(event) {
+        function(event) {
+
+            if (event.lengthComputable) {
+
+                const percent =
+                    Math.round(
+                        (event.loaded /
+                         event.total) * 100
+                    );
+
+                progressBar.style.width =
+                    percent + "%";
+
+                percentText.textContent =
+                    percent + "%";
+
+                status.textContent =
+                    "Downloading... " +
+                    formatBytes(event.loaded) +
+                    " / " +
+                    formatBytes(event.total);
+
+            }
+
+            else {
+
+                status.textContent =
+                    "Downloading... " +
+                    formatBytes(event.loaded);
+
+            }
+
+        };
 
 
-        if (event.lengthComputable) {
-
-
-            const percent =
-                Math.round(
-                    (
-                        event.loaded /
-                        event.total
-                    ) * 100
-                );
-
-
-            progressBar.style.width =
-                percent + "%";
-
-
-            percentText.textContent =
-                percent + "%";
-
-
-            status.textContent =
-                "Downloading...";
-
-
-        } else {
-
-
-            status.textContent =
-                "Downloading...";
-
-        }
-
-    };
-
-
-    /*
-     * Completed
-     */
+    /* SUCCESS */
 
     xhr.onload =
-    function() {
+        function() {
 
-
-        if (
-            xhr.status >= 200 &&
-            xhr.status < 300
-        ) {
-
-
-            progressBar.style.width =
-                "100%";
-
-
-            percentText.textContent =
-                "100%";
-
-
-            status.textContent =
-                "Download completed successfully.";
-
-
-            /*
-             * Create downloaded file.
-             */
-
-            const blobUrl =
-                URL.createObjectURL(
-                    xhr.response
-                );
-
-
-            /*
-             * Show Install button.
-             */
-
-            installBtn.style.display =
-                "inline-block";
-
-
-            cancelBtn.style.display =
-                "none";
-
-
-            /*
-             * Automatically save APK
-             * to Downloads.
-             */
-
-            const link =
-                document.createElement("a");
-
-
-            link.href =
-                blobUrl;
-
-
-            link.download =
-                apk.name;
-
-
-            document.body.appendChild(
-                link
+            activeDownloads.delete(
+                releaseId
             );
 
 
-            link.click();
+            if (
+                xhr.status >= 200 &&
+                xhr.status < 300
+            ) {
 
+                progressBar.style.width =
+                    "100%";
 
-            link.remove();
-
-
-            /*
-             * Install button.
-             *
-             * It does NOT download again.
-             */
-
-            installBtn.onclick =
-            function() {
-
+                percentText.textContent =
+                    "100%";
 
                 status.textContent =
-                    "Open your Downloads folder and tap the APK file to install it.";
+                    "Download completed successfully.";
+
+                button.textContent =
+                    "Downloaded ✓";
 
 
-                alert(
+                /*
+                   IMPORTANT:
+                   There is NO Open button here.
 
-                    "APK Download Completed!\n\n" +
+                   We deliberately do not try to
+                   download the APK again.
+                */
 
-                    "To install the app:\n\n" +
+                button.disabled =
+                    true;
 
-                    "1. Open your Downloads folder.\n" +
+                cancelBtn.style.display =
+                    "none";
 
-                    "2. Find:\n" +
-
-                    apk.name +
-
-                    "\n\n" +
-
-                    "3. Tap the APK file.\n\n" +
-
-                    "4. Tap Install."
-
-                );
-
-            };
+                successMessage.style.display =
+                    "block";
 
 
-            /*
-             * Release memory later.
-             */
+                /*
+                   Save the APK to the browser's
+                   normal download system.
+                */
 
-            setTimeout(
-                function() {
+                const blob =
+                    xhr.response;
+
+
+                const blobUrl =
+                    URL.createObjectURL(blob);
+
+
+                const link =
+                    document.createElement("a");
+
+
+                link.href =
+                    blobUrl;
+
+                link.download =
+                    apk.name;
+
+                link.style.display =
+                    "none";
+
+
+                document.body.appendChild(link);
+
+                link.click();
+
+                link.remove();
+
+
+                setTimeout(function() {
 
                     URL.revokeObjectURL(
                         blobUrl
                     );
 
-                },
-                60000
-            );
+                }, 60000);
 
+            }
 
-        } else {
+            else {
 
-
-            status.textContent =
-                "Download failed.";
-
-
-            button.style.display =
-                "block";
-
-
-            area.style.display =
-                "none";
-
-        }
-
-    };
-
-
-    /*
-     * Network error
-     */
-
-    xhr.onerror =
-    function() {
-
-
-        status.textContent =
-            "Download error. Please try again.";
-
-
-        button.style.display =
-            "block";
-
-
-        area.style.display =
-            "none";
-
-    };
-
-
-    /*
-     * Cancel
-     */
-
-    xhr.onabort =
-    function() {
-
-
-        status.textContent =
-            "Download cancelled.";
-
-
-        button.style.display =
-            "block";
-
-
-        area.style.display =
-            "none";
-
-    };
-
-
-    cancelBtn.onclick =
-    function() {
-
-        xhr.abort();
-
-    };
-
-
-    /*
-     * Start
-     */
-
-    xhr.send();
-
-}
-
-
-/* =========================
-   SEARCH
-========================= */
-
-function searchApps() {
-
-
-    const query =
-        document
-        .getElementById(
-            "searchInput"
-        )
-        .value
-        .toLowerCase()
-        .trim();
-
-
-    const filtered =
-        allApps.filter(
-            release => {
-
-
-                return (
-
-                    release.name
-                    .toLowerCase()
-                    .includes(query)
-
-
-                    ||
-
-                    release.tag_name
-                    .toLowerCase()
-                    .includes(query)
-
-
-                    ||
-
-                    (
-                        release.body || ""
-                    )
-                    .toLowerCase()
-                    .includes(query)
-
+                handleDownloadError(
+                    releaseId,
+                    button,
+                    progressWrapper,
+                    status,
+                    "Download failed. HTTP " +
+                    xhr.status
                 );
 
             }
+
+        };
+
+
+    /* ERROR */
+
+    xhr.onerror =
+        function() {
+
+            activeDownloads.delete(
+                releaseId
+            );
+
+
+            handleDownloadError(
+                releaseId,
+                button,
+                progressWrapper,
+                status,
+                "Network error. Please try again."
+            );
+
+        };
+
+
+    /* ABORT / CANCEL */
+
+    xhr.onabort =
+        function() {
+
+            activeDownloads.delete(
+                releaseId
+            );
+
+
+            progressWrapper.style.display =
+                "none";
+
+
+            progressBar.style.width =
+                "0%";
+
+
+            percentText.textContent =
+                "0%";
+
+
+            status.textContent =
+                "Download cancelled.";
+
+
+            button.disabled =
+                false;
+
+
+            button.textContent =
+                "Download APK";
+
+
+            cancelBtn.style.display =
+                "inline-block";
+
+        };
+
+
+    /* SEND */
+
+    try {
+
+        xhr.send();
+
+    }
+
+    catch (error) {
+
+        activeDownloads.delete(
+            releaseId
         );
 
+        handleDownloadError(
+            releaseId,
+            button,
+            progressWrapper,
+            status,
+            "Unable to start download."
+        );
 
-    renderApps(filtered);
+    }
 
 }
 
 
-/* =========================
-   DARK MODE
-========================= */
+/* =========================================================
+   DOWNLOAD ERROR
+========================================================= */
 
-function toggleDarkMode() {
+function handleDownloadError(
+    releaseId,
+    button,
+    progressWrapper,
+    status,
+    message
+) {
 
-
-    document.body
-        .classList
-        .toggle("dark");
-
-
-    const dark =
-        document.body
-        .classList
-        .contains("dark");
-
-
-    localStorage.setItem(
-        "wababeDarkMode",
-        dark ? "1" : "0"
+    activeDownloads.delete(
+        releaseId
     );
 
 
-    document
-        .getElementById(
-            "themeBtn"
-        )
-        .textContent =
-        dark ? "☀️" : "🌙";
+    progressWrapper.style.display =
+        "none";
+
+
+    button.disabled =
+        false;
+
+
+    button.textContent =
+        "Download APK";
+
+
+    status.textContent =
+        message;
+
+
+    alert(message);
 
 }
 
 
-/*
- * Load saved theme.
- */
+/* =========================================================
+   FORMAT BYTES
+========================================================= */
 
-if (
-    localStorage.getItem(
-        "wababeDarkMode"
-    ) === "1"
-) {
+function formatBytes(bytes) {
 
-
-    document.body
-        .classList
-        .add("dark");
+    if (!bytes) {
+        return "0 B";
+    }
 
 
-    document
-        .getElementById(
-            "themeBtn"
-        )
-        .textContent =
-        "☀️";
-
-}
+    const units = [
+        "B",
+        "KB",
+        "MB",
+        "GB"
+    ];
 
 
-/* =========================
-   HTML ESCAPE
-========================= */
+    let i = 0;
 
-function escapeHtml(value) {
+    let size = bytes;
 
-    return String(value)
 
-        .replace(
-            /&/g,
-            "&amp;"
-        )
+    while (
+        size >= 1024 &&
+        i < units.length - 1
+    ) {
 
-        .replace(
-            /</g,
-            "&lt;"
-        )
+        size /= 1024;
 
-        .replace(
-            />/g,
-            "&gt;"
-        )
+        i++;
 
-        .replace(
-            /"/g,
-            "&quot;"
-        )
+    }
 
-        .replace(
-            /'/g,
-            "&#039;"
-        );
+
+    return size.toFixed(
+        i === 0 ? 0 : 2
+    ) + " " + units[i];
 
 }
 
 
-/* =========================
+/* =========================================================
+   SEARCH
+========================================================= */
+
+document.getElementById(
+    "searchInput"
+).addEventListener(
+    "input",
+    function() {
+
+        const query =
+            this.value
+                .trim()
+                .toLowerCase();
+
+
+        if (!query) {
+
+            renderApps(allApps);
+
+            return;
+
+        }
+
+
+        const filtered =
+            allApps.filter(
+                function(release) {
+
+                    const name =
+                        (
+                            release.name || ""
+                        ).toLowerCase();
+
+
+                    const body =
+                        (
+                            release.body || ""
+                        ).toLowerCase();
+
+
+                    const tag =
+                        (
+                            release.tag_name || ""
+                        ).toLowerCase();
+
+
+                    return (
+                        name.includes(query) ||
+                        body.includes(query) ||
+                        tag.includes(query)
+                    );
+
+                }
+            );
+
+
+        renderApps(filtered);
+
+    }
+);
+
+
+/* =========================================================
    YEAR
-========================= */
+========================================================= */
 
-document
-    .getElementById("year")
-    .textContent =
+document.getElementById(
+    "year"
+).textContent =
     new Date().getFullYear();
 
 
-/* =========================
+/* =========================================================
    START
-========================= */
+========================================================= */
+
+loadTheme();
 
 loadApps();
 
