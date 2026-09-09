@@ -799,19 +799,22 @@ function getApkAsset(release) {
 
 function getIconAsset(release) {
 
-    const names = [
-        "icon.png",
-        "icon.jpg",
-        "icon.jpeg",
-        "app-icon.png",
-        "app-icon.jpg",
-        "app-icon.jpeg"
-    ];
+    const appName = release.name
+        .toLowerCase()
+        .replace(/\s+/g, "_")
+        .replace(/-/g, "_");
+
 
     return release.assets.find(function(asset) {
 
-        return names.includes(
-            asset.name.toLowerCase()
+        const fileName =
+            asset.name.toLowerCase();
+
+
+        return (
+            fileName === "app-icon.png" ||
+            fileName.includes(appName + "_icon") ||
+            fileName.includes(appName + "_logo")
         );
 
     });
@@ -831,9 +834,10 @@ function getScreenshotAssets(release) {
             asset.name.toLowerCase();
 
         return (
-            name.startsWith("screenshot-") ||
-            name.startsWith("screenshot_")
-        ) &&
+    name.includes("screenshot") ||
+    name.includes("screen") ||
+    name.includes("photo")
+) &&
         (
             name.endsWith(".png") ||
             name.endsWith(".jpg") ||
