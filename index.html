@@ -971,13 +971,14 @@ function renderApps(apps) {
                     ${screenshots.map(function(image) {
 
                         return `
-                            <img
-                                class="screenshot"
-                                src="${escapeHTML(image.browser_download_url)}"
-                                alt="Screenshot"
-                                loading="lazy"
-                                onerror="this.style.display='none'">
-                        `;
+    <img
+        class="screenshot"
+        src="${escapeHTML(image.browser_download_url)}"
+        alt="Screenshot"
+        loading="lazy"
+        onclick="window.open(this.src, '_blank')"
+        onerror="this.style.display='none'">
+`;
 
                     }).join("")}
 
