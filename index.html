@@ -969,17 +969,16 @@ function renderApps(apps) {
                 <div class="screenshots">
 
                     ${screenshots.map(function(image) {
-
-                        return `
+return `
     <img
         class="screenshot"
         src="${escapeHTML(image.browser_download_url)}"
         alt="Screenshot"
         loading="lazy"
-        onclick="window.open(this.src, '_blank')"
+        onclick="openImage(this.src)"
         onerror="this.style.display='none'">
 `;
-
+                        
                     }).join("")}
 
                 </div>
@@ -1659,6 +1658,36 @@ document.getElementById(
 ========================================================= */
 
 loadTheme();
+      function openImage(src) {
+
+    const imgWindow = window.open("");
+
+    imgWindow.document.write(`
+        <html>
+        <head>
+        <title>Screenshot</title>
+        <style>
+        body{
+            margin:0;
+            background:#000;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+        }
+        img{
+            max-width:100%;
+            max-height:100%;
+        }
+        </style>
+        </head>
+        <body>
+        <img src="${src}">
+        </body>
+        </html>
+    `);
+
+}
 
 loadApps();
 
