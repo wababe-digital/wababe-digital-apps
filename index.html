@@ -487,14 +487,26 @@ footer strong {
         padding-right: 15px;
     }
 
-    .app-card {
+          .app-card {
         padding: 17px;
     }
 }
 
+
+/* SAKA WANNAN */
+
+.app-card .app-hidden {
+    display: none;
+}
+
+.app-card.expanded .app-hidden {
+    display: block;
+}
+
+
 </style>
 </head>
-
+      
 <body>
 
 <!-- HEADER -->
@@ -902,7 +914,6 @@ function escapeHTML(value) {
 /* =========================================================
    RENDER APPS
 ========================================================= */
-
 function renderApps(apps) {
 
     const container =
@@ -918,14 +929,12 @@ function renderApps(apps) {
         `;
 
         return;
-
     }
 
     const grid =
         document.createElement("div");
 
     grid.className = "apps-grid";
-
 
     apps.forEach(function(release) {
 
@@ -936,30 +945,30 @@ function renderApps(apps) {
             return;
         }
 
-
         const icon =
             getIconAsset(release);
 
         const screenshots =
             getScreenshotAssets(release);
 
-
         const iconUrl =
             icon
                 ? icon.browser_download_url
                 : "";
 
-
         let description =
             release.body ||
             "Download this Android application from Wababe Digital Apps.";
-
 
         const card =
             document.createElement("article");
 
         card.className = "app-card";
 
+
+        /* =========================
+           SCREENSHOTS
+        ========================= */
 
         let screenshotsHTML = "";
 
@@ -969,27 +978,33 @@ function renderApps(apps) {
                 <div class="screenshots">
 
                     ${screenshots.map(function(image) {
-return `
-    <img
-        class="screenshot"
-        src="${escapeHTML(image.browser_download_url)}"
-        alt="Screenshot"
-        loading="lazy"
-        onclick="openImage(this.src)"
-        onerror="this.style.display='none'">
-`;
-                        
+
+                        return `
+                            <img
+                                class="screenshot"
+                                src="${escapeHTML(image.browser_download_url)}"
+                                alt="Screenshot"
+                                loading="lazy"
+                                onclick="openImage(this.src)"
+                                onerror="this.style.display='none'">
+                        `;
+
                     }).join("")}
 
                 </div>
             `;
-
         }
 
 
+        /* =========================
+           CARD HTML
+        ========================= */
+
         card.innerHTML = `
 
-            <div class="app-top">
+            <!-- APP HEADER -->
+
+            <div class="app-top app-toggle">
 
                 ${
                     iconUrl
@@ -1017,7 +1032,6 @@ return `
                     `
                 }
 
-
                 <div class="app-info">
 
                     <div class="app-name">
@@ -1030,75 +1044,92 @@ return `
 
                 </div>
 
-            </div>
-
-
-            <div class="app-description">
-                ${escapeHTML(description)}
-            </div>
-
-
-            <div class="app-details">
-
-                <span class="detail">
-                    APK: ${formatSize(apk.size)}
-                </span>
-
-                <span class="detail">
-                    Downloads: ${apk.download_count || 0}
-                </span>
+                <div class="expand-icon">
+                    ›
+                </div>
 
             </div>
 
 
-            ${screenshotsHTML}
+            <!-- HIDDEN APP DETAILS -->
+
+            <div class="app-hidden">
+
+                <div class="app-description">
+                    ${escapeHTML(description)}
+                </div>
 
 
-            <div class="download-area">
+                <div class="app-details">
 
-                <button
-                    class="download-btn"
-                    type="button"
-                    onclick="startDownload(${release.id}, this)">
-                    Download APK
-                </button>
+                    <span class="detail">
+                        APK: ${formatSize(apk.size)}
+                    </span>
 
-
-                <div class="progress-wrapper">
-
-                    <div class="progress-row">
-
-                        <div class="progress-track">
-
-                            <div
-                                class="progress-bar">
-                            </div>
-
-                        </div>
-
-                        <div class="progress-percent">
-                            0%
-                        </div>
-
-                        <button
-                            class="cancel-btn"
-                            type="button">
-                            Cancel
-                        </button>
-
-                    </div>
-
-                    <div class="download-status">
-                        Preparing download...
-                    </div>
+                    <span class="detail">
+                        Downloads: ${apk.download_count || 0}
+                    </span>
 
                 </div>
 
 
-                <div class="success-message">
-                    ✓ Download completed successfully.
-                    Open your Downloads folder and tap
-                    the APK file to install the app.
+                ${screenshotsHTML}
+
+
+                <!-- DOWNLOAD AREA -->
+
+                <div class="download-area">
+
+                    <button
+                        class="download-btn"
+                        type="button"
+                        onclick="startDownload(${release.id}, this)">
+                        Download APK
+                    </button>
+
+
+                    <div class="progress-wrapper">
+
+                        <div class="progress-row">
+
+                            <div class="progress-track">
+
+                                <div class="progress-bar">
+                                </div>
+
+                            </div>
+
+
+                            <div class="progress-percent">
+                                0%
+                            </div>
+
+
+                            <button
+                                class="cancel-btn"
+                                type="button">
+                                Cancel
+                            </button>
+
+                        </div>
+
+
+                        <div class="download-status">
+                            Preparing download...
+                        </div>
+
+                    </div>
+
+
+                    <div class="success-message">
+
+                        ✓ Download completed successfully.
+
+                        Open your Downloads folder and tap
+                        the APK file to install the app.
+
+                    </div>
+
                 </div>
 
             </div>
@@ -1106,15 +1137,67 @@ return `
         `;
 
 
-        grid.appendChild(card);
+        /* =========================
+           OPEN / CLOSE APP
+        ========================= */
 
+        const appToggle =
+            card.querySelector(".app-toggle");
+
+        appToggle.onclick =
+            function() {
+
+                const alreadyExpanded =
+                    card.classList.contains("expanded");
+
+
+                /* Close all other apps */
+
+                document
+                    .querySelectorAll(".app-card.expanded")
+                    .forEach(function(otherCard) {
+
+                        if (otherCard !== card) {
+
+                            otherCard.classList.remove(
+                                "expanded"
+                            );
+
+                        }
+
+                    });
+
+
+                /* Toggle current app */
+
+                if (alreadyExpanded) {
+
+                    card.classList.remove(
+                        "expanded"
+                    );
+
+                } else {
+
+                    card.classList.add(
+                        "expanded"
+                    );
+
+                }
+
+            };
+
+
+        /* =========================
+           CANCEL DOWNLOAD
+        ========================= */
 
         const cancelBtn =
             card.querySelector(".cancel-btn");
 
-
         cancelBtn.onclick =
-            function() {
+            function(event) {
+
+                event.stopPropagation();
 
                 const download =
                     activeDownloads.get(release.id);
@@ -1127,6 +1210,22 @@ return `
 
             };
 
+
+        /* Prevent clicks inside details
+           from opening/closing the card */
+
+        const hiddenArea =
+            card.querySelector(".app-hidden");
+
+        hiddenArea.onclick =
+            function(event) {
+
+                event.stopPropagation();
+
+            };
+
+
+        grid.appendChild(card);
 
     });
 
