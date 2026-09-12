@@ -28,28 +28,11 @@ content="index, follow">
 <meta name="googlebot"
 content="index, follow">
 
-<meta name="language"
-content="English">
-
-<meta name="country"
-content="Nigeria">
-
-<meta name="geo.region"
-content="NG">
-
-<meta name="distribution"
-content="global">
-
-<meta name="rating"
-content="general">
-
 <meta name="theme-color"
 content="#0d6efd">
 
 <link rel="canonical"
 href="https://wababeapps.wababedigitalcentre.workers.dev/">
-
-<!-- Open Graph -->
 
 <meta property="og:type"
 content="website">
@@ -69,8 +52,6 @@ content="Wababe">
 <meta property="og:locale"
 content="en_NG">
 
-<!-- Twitter -->
-
 <meta name="twitter:card"
 content="summary">
 
@@ -80,52 +61,55 @@ content="Wababe | Wababe Digital Apps">
 <meta name="twitter:description"
 content="Download useful Android apps from Wababe Digital Apps by Wababe Digital Centre, Nigeria.">
 
-<!-- Structured Data -->
+
+<!-- =========================
+     STRUCTURED DATA
+========================= -->
 
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@graph": [
+  "@context":"https://schema.org",
+  "@graph":[
 
     {
-      "@type": "WebSite",
-      "@id": "https://wababeapps.wababedigitalcentre.workers.dev/#website",
-      "url": "https://wababeapps.wababedigitalcentre.workers.dev/",
-      "name": "Wababe",
-      "alternateName": [
+      "@type":"WebSite",
+      "@id":"https://wababeapps.wababedigitalcentre.workers.dev/#website",
+      "url":"https://wababeapps.wababedigitalcentre.workers.dev/",
+      "name":"Wababe",
+      "alternateName":[
         "Wababe Digital Apps",
         "Wababe Apps"
       ],
-      "description": "Wababe Digital Apps is an Android app download platform by Wababe Digital Centre, Nigeria.",
-      "inLanguage": "en-NG",
-      "publisher": {
-        "@id": "https://wababeapps.wababedigitalcentre.workers.dev/#organization"
+      "description":"Wababe Digital Apps is an Android app download platform by Wababe Digital Centre, Nigeria.",
+      "inLanguage":"en-NG",
+      "publisher":{
+        "@id":"https://wababeapps.wababedigitalcentre.workers.dev/#organization"
       }
     },
 
     {
-      "@type": "Organization",
-      "@id": "https://wababeapps.wababedigitalcentre.workers.dev/#organization",
-      "name": "Wababe Digital Centre",
-      "alternateName": [
+      "@type":"Organization",
+      "@id":"https://wababeapps.wababedigitalcentre.workers.dev/#organization",
+      "name":"Wababe Digital Centre",
+      "alternateName":[
         "Wababe",
         "Wababe Digital Apps",
         "Wababe Apps"
       ],
-      "url": "https://wababeapps.wababedigitalcentre.workers.dev/",
-      "description": "Wababe Digital Centre is a Nigerian digital service brand providing Android applications, digital services and Wababe Digital Apps.",
-      "telephone": "+2348106414154",
-      "email": "wababedigitalcentre@gmail.com",
-      "areaServed": {
-        "@type": "Country",
-        "name": "Nigeria"
+      "url":"https://wababeapps.wababedigitalcentre.workers.dev/",
+      "description":"Wababe Digital Centre is a Nigerian digital service brand providing Android applications and digital services.",
+      "telephone":"+2348106414154",
+      "email":"wababedigitalcentre@gmail.com",
+      "areaServed":{
+        "@type":"Country",
+        "name":"Nigeria"
       },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+2348106414154",
-        "contactType": "customer support",
-        "areaServed": "NG",
-        "availableLanguage": [
+      "contactPoint":{
+        "@type":"ContactPoint",
+        "telephone":"+2348106414154",
+        "contactType":"customer support",
+        "areaServed":"NG",
+        "availableLanguage":[
           "English",
           "Hausa"
         ]
@@ -136,7 +120,12 @@ content="Download useful Android apps from Wababe Digital Apps by Wababe Digital
 }
 </script>
 
+
 <style>
+
+/* =========================
+   RESET
+========================= */
 
 *{
     box-sizing:border-box;
@@ -178,6 +167,7 @@ a{
     text-decoration:none;
 }
 
+
 /* =========================
    HEADER
 ========================= */
@@ -188,7 +178,7 @@ header{
     z-index:1000;
 
     background:#0d6efd;
-    color:white;
+    color:#fff;
 
     box-shadow:
         0 3px 15px rgba(0,0,0,.15);
@@ -201,8 +191,7 @@ header{
     min-height:68px;
 
     padding:
-        10px
-        18px;
+        10px 18px;
 
     display:flex;
     align-items:center;
@@ -214,10 +203,11 @@ header{
 .brand{
     display:flex;
     align-items:center;
+
     gap:10px;
 
-    font-weight:800;
     font-size:22px;
+    font-weight:900;
 
     white-space:nowrap;
 }
@@ -228,7 +218,7 @@ header{
 
     border-radius:12px;
 
-    background:white;
+    background:#fff;
     color:#0d6efd;
 
     display:flex;
@@ -245,18 +235,20 @@ header{
 .nav-actions{
     display:flex;
     align-items:center;
+
     gap:8px;
 }
 
 .nav-btn{
     border:0;
 
-    background:rgba(255,255,255,.15);
-    color:white;
+    background:
+        rgba(255,255,255,.15);
+
+    color:#fff;
 
     padding:
-        9px
-        12px;
+        9px 12px;
 
     border-radius:10px;
 
@@ -266,8 +258,10 @@ header{
 }
 
 .nav-btn:hover{
-    background:rgba(255,255,255,.25);
+    background:
+        rgba(255,255,255,.28);
 }
+
 
 /* =========================
    HERO
@@ -278,16 +272,14 @@ header{
     margin:auto;
 
     padding:
-        45px
-        18px
-        25px;
+        45px 18px 25px;
 
     text-align:center;
 }
 
 .hero h1{
     font-size:
-        clamp(30px,6vw,52px);
+        clamp(32px,6vw,54px);
 
     line-height:1.1;
 
@@ -301,12 +293,10 @@ header{
 }
 
 .hero p{
-    max-width:720px;
+    max-width:750px;
 
     margin:
-        0
-        auto
-        22px;
+        0 auto 22px;
 
     color:#64748b;
 
@@ -319,7 +309,7 @@ header{
 
     display:flex;
 
-    background:white;
+    background:#fff;
 
     border-radius:15px;
 
@@ -336,8 +326,7 @@ header{
     outline:0;
 
     padding:
-        15px
-        17px;
+        15px 17px;
 
     font-size:16px;
 
@@ -348,14 +337,14 @@ header{
     border:0;
 
     background:#0d6efd;
-    color:white;
+    color:#fff;
 
     padding:
-        0
-        20px;
+        0 20px;
 
-    font-weight:700;
+    font-weight:800;
 }
+
 
 /* =========================
    MAIN
@@ -366,9 +355,7 @@ main{
     margin:auto;
 
     padding:
-        10px
-        18px
-        50px;
+        10px 18px 50px;
 }
 
 .section-title{
@@ -380,9 +367,7 @@ main{
     gap:15px;
 
     margin:
-        15px
-        0
-        18px;
+        15px 0 18px;
 }
 
 .section-title h2{
@@ -394,6 +379,58 @@ main{
     font-size:14px;
 }
 
+
+/* =========================
+   STATS
+========================= */
+
+.stats{
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(180px,1fr)
+        );
+
+    gap:12px;
+
+    margin-bottom:22px;
+}
+
+.stat-card{
+    background:#fff;
+
+    border-radius:15px;
+
+    padding:17px;
+
+    text-align:center;
+
+    box-shadow:
+        0 4px 18px rgba(0,0,0,.06);
+}
+
+.stat-icon{
+    font-size:25px;
+
+    margin-bottom:5px;
+}
+
+.stat-number{
+    font-size:25px;
+    font-weight:900;
+
+    color:#0d6efd;
+}
+
+.stat-label{
+    color:#64748b;
+
+    font-size:13px;
+}
+
+
 /* =========================
    APP GRID
 ========================= */
@@ -404,23 +441,29 @@ main{
     grid-template-columns:
         repeat(
             auto-fit,
-            minmax(280px,1fr)
+            minmax(290px,1fr)
         );
 
     gap:15px;
 }
 
-.app-card{
-    background:white;
 
-    border-radius:16px;
+/* =========================
+   APP CARD
+========================= */
+
+.app-card{
+    background:#fff;
+
+    border-radius:17px;
 
     padding:15px;
 
     box-shadow:
         0 4px 18px rgba(0,0,0,.07);
 
-    border:1px solid #e8edf4;
+    border:
+        1px solid #e8edf4;
 
     transition:
         transform .2s ease,
@@ -436,6 +479,11 @@ main{
         0 8px 25px rgba(0,0,0,.11);
 }
 
+
+/* =========================
+   APP SUMMARY
+========================= */
+
 .app-summary{
     display:flex;
 
@@ -447,16 +495,19 @@ main{
 }
 
 .app-icon{
-    width:64px;
-    height:64px;
+    width:68px;
+    height:68px;
 
-    border-radius:15px;
+    border-radius:16px;
 
     object-fit:cover;
 
     background:#e9eef5;
 
     flex-shrink:0;
+
+    box-shadow:
+        0 3px 10px rgba(0,0,0,.12);
 }
 
 .app-info{
@@ -466,10 +517,11 @@ main{
 
 .app-name{
     font-size:17px;
-    font-weight:800;
+    font-weight:900;
 
     white-space:nowrap;
     overflow:hidden;
+
     text-overflow:ellipsis;
 }
 
@@ -479,6 +531,16 @@ main{
     font-size:13px;
 
     margin-top:3px;
+}
+
+.app-download-small{
+    color:#0d6efd;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    margin-top:4px;
 }
 
 .expand-arrow{
@@ -492,6 +554,7 @@ main{
 .expand-arrow{
     transform:rotate(180deg);
 }
+
 
 /* =========================
    APP DETAILS
@@ -519,34 +582,8 @@ main{
     font-size:14px;
 
     margin-bottom:13px;
-}
 
-.download-btn{
-    width:100%;
-
-    border:0;
-
-    background:#0d6efd;
-    color:white;
-
-    padding:
-        12px
-        15px;
-
-    border-radius:11px;
-
-    font-weight:800;
-
-    transition:.2s;
-}
-
-.download-btn:hover{
-    background:#095dcc;
-}
-
-.download-btn:disabled{
-    opacity:.6;
-    cursor:not-allowed;
+    white-space:pre-line;
 }
 
 .meta-row{
@@ -557,40 +594,49 @@ main{
     gap:8px;
 
     margin:
-        10px
-        0
-        14px;
+        10px 0 15px;
 }
 
 .meta{
     background:#edf4ff;
+
     color:#0d6efd;
 
     padding:
-        5px
-        9px;
+        5px 9px;
 
     border-radius:8px;
 
     font-size:12px;
-    font-weight:700;
+
+    font-weight:800;
 }
+
 
 /* =========================
    SCREENSHOTS
 ========================= */
 
+.screenshot-title{
+    font-size:14px;
+
+    font-weight:900;
+
+    margin:
+        15px 0 8px;
+}
+
 .screenshots{
     display:flex;
 
-    gap:8px;
+    gap:9px;
 
     overflow-x:auto;
 
     padding:
-        4px
-        0
-        12px;
+        4px 0 12px;
+
+    scrollbar-width:thin;
 }
 
 .screenshot{
@@ -607,11 +653,51 @@ main{
 
     border:
         1px solid #dfe5ed;
+
+    flex-shrink:0;
+
+    transition:.2s;
 }
 
 .screenshot:hover{
-    opacity:.85;
+    transform:scale(1.03);
+
+    opacity:.9;
 }
+
+
+/* =========================
+   DOWNLOAD BUTTON
+========================= */
+
+.download-btn{
+    width:100%;
+
+    border:0;
+
+    background:#0d6efd;
+    color:#fff;
+
+    padding:
+        12px 15px;
+
+    border-radius:11px;
+
+    font-weight:900;
+
+    transition:.2s;
+}
+
+.download-btn:hover{
+    background:#095dcc;
+}
+
+.download-btn:disabled{
+    opacity:.6;
+
+    cursor:not-allowed;
+}
+
 
 /* =========================
    LOADING
@@ -620,19 +706,17 @@ main{
 .loading{
     text-align:center;
 
-    padding:40px 15px;
+    padding:45px 15px;
 
     color:#64748b;
 }
 
 .spinner{
-    width:35px;
-    height:35px;
+    width:38px;
+    height:38px;
 
     margin:
-        0
-        auto
-        12px;
+        0 auto 12px;
 
     border:
         4px solid #dbe7f8;
@@ -646,10 +730,13 @@ main{
 }
 
 @keyframes spin{
+
     to{
         transform:rotate(360deg);
     }
+
 }
+
 
 /* =========================
    EMPTY
@@ -673,6 +760,7 @@ main{
     margin-bottom:5px;
 }
 
+
 /* =========================
    ABOUT
 ========================= */
@@ -680,7 +768,7 @@ main{
 .about{
     margin-top:45px;
 
-    background:white;
+    background:#fff;
 
     border-radius:18px;
 
@@ -699,6 +787,7 @@ main{
 
     margin-bottom:10px;
 }
+
 
 /* =========================
    CONTACT
@@ -719,7 +808,7 @@ main{
 }
 
 .contact-card{
-    background:white;
+    background:#fff;
 
     border-radius:15px;
 
@@ -734,6 +823,7 @@ main{
 
     margin-bottom:4px;
 }
+
 
 /* =========================
    FOOTER
@@ -752,8 +842,9 @@ footer{
 }
 
 footer strong{
-    color:white;
+    color:#fff;
 }
+
 
 /* =========================
    DOWNLOAD MODAL
@@ -774,7 +865,7 @@ footer strong{
     padding:20px;
 
     background:
-        rgba(0,0,0,.65);
+        rgba(0,0,0,.68);
 }
 
 .modal.show{
@@ -783,9 +874,10 @@ footer strong{
 
 .modal-box{
     width:100%;
+
     max-width:430px;
 
-    background:white;
+    background:#fff;
 
     border-radius:18px;
 
@@ -797,9 +889,21 @@ footer strong{
         0 15px 50px rgba(0,0,0,.3);
 }
 
+.download-app-icon{
+    width:70px;
+    height:70px;
+
+    object-fit:cover;
+
+    border-radius:15px;
+
+    margin-bottom:10px;
+}
+
 .progress-track{
     width:100%;
-    height:10px;
+
+    height:11px;
 
     background:#e8edf4;
 
@@ -808,13 +912,12 @@ footer strong{
     overflow:hidden;
 
     margin:
-        18px
-        0
-        10px;
+        18px 0 10px;
 }
 
 .progress-bar{
     width:0%;
+
     height:100%;
 
     background:#0d6efd;
@@ -824,9 +927,17 @@ footer strong{
 }
 
 .progress-text{
-    font-weight:800;
+    font-weight:900;
 
-    font-size:18px;
+    font-size:19px;
+}
+
+.download-size{
+    color:#64748b;
+
+    font-size:13px;
+
+    margin-top:4px;
 }
 
 .cancel-btn{
@@ -835,16 +946,17 @@ footer strong{
     border:0;
 
     background:#e9edf2;
+
     color:#263244;
 
     padding:
-        10px
-        18px;
+        10px 18px;
 
     border-radius:10px;
 
-    font-weight:700;
+    font-weight:800;
 }
+
 
 /* =========================
    IMAGE VIEWER
@@ -863,7 +975,7 @@ footer strong{
     justify-content:center;
 
     background:
-        rgba(0,0,0,.92);
+        rgba(0,0,0,.94);
 
     padding:20px;
 }
@@ -894,11 +1006,13 @@ footer strong{
 
     border-radius:50%;
 
-    background:white;
+    background:#fff;
+
     color:#111;
 
     font-size:25px;
 }
+
 
 /* =========================
    DARK MODE
@@ -906,6 +1020,7 @@ footer strong{
 
 body.dark{
     background:#0c1220;
+
     color:#f1f5f9;
 }
 
@@ -913,12 +1028,14 @@ body.dark .hero p,
 body.dark .app-version,
 body.dark .app-description,
 body.dark .app-count,
-body.dark .about p{
+body.dark .about p,
+body.dark .stat-label{
     color:#aab7c8;
 }
 
 body.dark .search-box,
 body.dark .app-card,
+body.dark .stat-card,
 body.dark .about,
 body.dark .contact-card,
 body.dark .modal-box{
@@ -934,7 +1051,8 @@ body.dark .app-details{
 }
 
 body.dark .app-name,
-body.dark .about h2{
+body.dark .about h2,
+body.dark .section-title h2{
     color:#f8fafc;
 }
 
@@ -943,7 +1061,7 @@ body.dark .empty strong{
 }
 
 body.dark .search-box input{
-    color:white;
+    color:#fff;
 }
 
 body.dark .search-box input::placeholder{
@@ -952,13 +1070,16 @@ body.dark .search-box input::placeholder{
 
 body.dark .meta{
     background:#172d4d;
+
     color:#71a9ff;
 }
 
 body.dark .cancel-btn{
     background:#263247;
-    color:white;
+
+    color:#fff;
 }
+
 
 /* =========================
    MOBILE
@@ -968,7 +1089,9 @@ body.dark .cancel-btn{
 
     .navbar{
         min-height:60px;
-        padding:8px 12px;
+
+        padding:
+            8px 12px;
     }
 
     .brand{
@@ -978,22 +1101,20 @@ body.dark .cancel-btn{
     .brand-logo{
         width:36px;
         height:36px;
+
         font-size:18px;
     }
 
     .nav-btn{
         padding:
-            8px
-            10px;
+            8px 10px;
 
         font-size:13px;
     }
 
     .hero{
         padding:
-            35px
-            14px
-            20px;
+            35px 14px 20px;
     }
 
     .hero h1{
@@ -1006,9 +1127,7 @@ body.dark .cancel-btn{
 
     main{
         padding:
-            5px
-            12px
-            40px;
+            5px 12px 40px;
     }
 
     #apps{
@@ -1019,6 +1138,15 @@ body.dark .cancel-btn{
         padding:13px;
     }
 
+    .app-icon{
+        width:60px;
+        height:60px;
+    }
+
+    .section-title h2{
+        font-size:21px;
+    }
+
 }
 
 </style>
@@ -1027,6 +1155,7 @@ body.dark .cancel-btn{
 
 
 <body>
+
 
 <!-- =========================
      HEADER
@@ -1058,7 +1187,7 @@ body.dark .cancel-btn{
                 class="nav-btn"
                 onclick="scrollToApps()">
 
-                Apps
+                📱 Apps
 
             </button>
 
@@ -1090,10 +1219,13 @@ body.dark .cancel-btn{
         <span>Wababe</span>
     </h1>
 
+
     <p>
-        Wababe Digital Apps is a Nigerian Android
-        app download platform by Wababe Digital Centre.
-        Discover useful apps and download them easily.
+        <strong>Wababe Digital Apps</strong>
+        is a Nigerian Android app download platform
+        powered by Wababe Digital Centre.
+        Discover useful apps, view screenshots and
+        download Android applications easily.
     </p>
 
 
@@ -1102,7 +1234,7 @@ body.dark .cancel-btn{
         <input
             type="search"
             id="searchInput"
-            placeholder="Search apps..."
+            placeholder="Search Wababe apps..."
             aria-label="Search apps"
             oninput="searchApps()">
 
@@ -1125,6 +1257,77 @@ body.dark .cancel-btn{
 <main id="apps-section">
 
 
+    <!-- =========================
+         STATS
+    ========================= -->
+
+    <div class="stats">
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📱
+            </div>
+
+            <div
+                class="stat-number"
+                id="totalApps">
+
+                0
+
+            </div>
+
+            <div class="stat-label">
+                Available Apps
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ⬇️
+            </div>
+
+            <div
+                class="stat-number"
+                id="totalDownloads">
+
+                0
+
+            </div>
+
+            <div class="stat-label">
+                Total Downloads
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🇳🇬
+            </div>
+
+            <div class="stat-number">
+                Nigeria
+            </div>
+
+            <div class="stat-label">
+                Wababe Digital Apps
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         APP TITLE
+    ========================= -->
+
     <div class="section-title">
 
         <h2>
@@ -1142,6 +1345,10 @@ body.dark .cancel-btn{
     </div>
 
 
+    <!-- =========================
+         LOADING
+    ========================= -->
+
     <div
         id="loading"
         class="loading">
@@ -1153,10 +1360,17 @@ body.dark .cancel-btn{
     </div>
 
 
-    <div
-        id="apps">
+    <!-- =========================
+         APPS
+    ========================= -->
+
+    <div id="apps">
     </div>
 
+
+    <!-- =========================
+         EMPTY
+    ========================= -->
 
     <div
         id="empty"
@@ -1182,6 +1396,7 @@ body.dark .cancel-btn{
             About Wababe
         </h2>
 
+
         <p>
             <strong>Wababe</strong> is the home of
             Wababe Digital Apps, a Nigerian platform
@@ -1189,16 +1404,19 @@ body.dark .cancel-btn{
             easy to discover and download.
         </p>
 
+
         <p>
             Wababe Digital Apps is powered by
             <strong>Wababe Digital Centre</strong>
             and serves users in Nigeria and beyond.
         </p>
 
+
         <p>
-            Explore available Android applications,
-            search for an app and download directly
-            from the available release.
+            Users can search for applications,
+            view app icons and screenshots,
+            check versions and download counts,
+            then download available APK files.
         </p>
 
     </section>
@@ -1267,10 +1485,16 @@ body.dark .cancel-btn{
 <footer>
 
     <p>
-        © <span id="year"></span>
-        <strong>Wababe</strong>
+        ©
+        <span id="year"></span>
+
+        <strong>
+            Wababe
+        </strong>
+
         · Wababe Digital Apps
     </p>
+
 
     <p>
         Android Apps Download Platform · Nigeria
@@ -1289,13 +1513,29 @@ body.dark .cancel-btn{
 
     <div class="modal-box">
 
+        <img
+            id="downloadIcon"
+            class="download-app-icon"
+            src=""
+            alt="App icon">
+
+
         <h3>
             Downloading App
         </h3>
 
+
         <p id="downloadName">
             Preparing download...
         </p>
+
+
+        <div
+            class="download-size"
+            id="downloadSize">
+
+        </div>
+
 
         <div class="progress-track">
 
@@ -1306,6 +1546,7 @@ body.dark .cancel-btn{
 
         </div>
 
+
         <div
             class="progress-text"
             id="progressText">
@@ -1313,6 +1554,7 @@ body.dark .cancel-btn{
             0%
 
         </div>
+
 
         <button
             class="cancel-btn"
@@ -1344,6 +1586,7 @@ body.dark .cancel-btn{
 
     </button>
 
+
     <img
         id="viewerImage"
         src=""
@@ -1372,15 +1615,17 @@ const DOWNLOAD_WORKER =
 
 let allApps = [];
 
-let currentDownloadController = null;
+let currentDownloadController =
+    null;
 
 
 /* =========================
    YEAR
 ========================= */
 
-document.getElementById("year").textContent =
-new Date().getFullYear();
+document.getElementById("year")
+    .textContent =
+    new Date().getFullYear();
 
 
 /* =========================
@@ -1392,15 +1637,23 @@ function toggleDarkMode(){
     document.body.classList.toggle("dark");
 
     const dark =
-        document.body.classList.contains("dark");
+        document.body.classList.contains(
+            "dark"
+        );
+
 
     localStorage.setItem(
         "wababe_dark_mode",
         dark ? "1" : "0"
     );
 
-    document.getElementById("darkButton").textContent =
-        dark ? "☀️ Light" : "🌙 Dark";
+
+    document.getElementById(
+        "darkButton"
+    ).textContent =
+        dark
+        ? "☀️ Light"
+        : "🌙 Dark";
 }
 
 
@@ -1411,11 +1664,17 @@ function loadDarkMode(){
             "wababe_dark_mode"
         ) === "1";
 
+
     if(dark){
 
-        document.body.classList.add("dark");
+        document.body.classList.add(
+            "dark"
+        );
 
-        document.getElementById("darkButton").textContent =
+
+        document.getElementById(
+            "darkButton"
+        ).textContent =
             "☀️ Light";
     }
 }
@@ -1445,20 +1704,24 @@ function scrollToApps(){
 async function loadApps(){
 
     const loading =
-        document.getElementById("loading");
+        document.getElementById(
+            "loading"
+        );
 
-    const apps =
-        document.getElementById("apps");
 
     try{
 
         const response =
-            await fetch(GITHUB_API, {
-                headers:{
-                    "Accept":
-                    "application/vnd.github+json"
+            await fetch(
+                GITHUB_API,
+                {
+                    headers:{
+                        "Accept":
+                        "application/vnd.github+json"
+                    }
                 }
-            });
+            );
+
 
         if(!response.ok){
 
@@ -1466,6 +1729,7 @@ async function loadApps(){
                 "GitHub API error"
             );
         }
+
 
         const releases =
             await response.json();
@@ -1480,7 +1744,8 @@ async function loadApps(){
             .map(release => {
 
                 const apk =
-                    release.assets.find(asset =>
+                    release.assets.find(
+                        asset =>
                         asset.name
                         .toLowerCase()
                         .endsWith(".apk")
@@ -1491,6 +1756,18 @@ async function loadApps(){
 
                     return null;
                 }
+
+
+                const icon =
+                    findIcon(
+                        release.assets
+                    );
+
+
+                const screenshots =
+                    findScreenshots(
+                        release.assets
+                    );
 
 
                 return {
@@ -1515,11 +1792,24 @@ async function loadApps(){
                     size:
                         apk.size,
 
+                    downloads:
+                        Number(
+                            apk.download_count ||
+                            0
+                        ),
+
                     published:
                         release.published_at,
 
+                    iconUrl:
+                        icon,
+
                     screenshots:
-                        []
+                        screenshots,
+
+                    releaseUrl:
+                        release.html_url
+
                 };
 
             })
@@ -1530,6 +1820,8 @@ async function loadApps(){
             "none";
 
 
+        updateStats();
+
         renderApps(allApps);
 
 
@@ -1537,7 +1829,9 @@ async function loadApps(){
 
         console.error(error);
 
+
         loading.innerHTML = `
+
             <div style="
                 font-size:40px;
                 margin-bottom:10px;
@@ -1546,32 +1840,177 @@ async function loadApps(){
             </div>
 
             <strong>
-                Unable to load apps
+                Unable to load Wababe apps
             </strong>
 
             <p style="
                 margin-top:8px;
             ">
-                Please check your internet connection
-                and try again.
+                Please check your internet
+                connection and try again.
             </p>
+
         `;
+
     }
+
 }
 
 
 /* =========================
-   FORMAT SIZE
+   FIND ICON
+========================= */
+
+function findIcon(assets){
+
+    if(!assets){
+        return "";
+    }
+
+
+    const exact =
+        assets.find(
+            asset =>
+            asset.name.toLowerCase()
+            === "app-icon.png"
+        );
+
+
+    if(exact){
+        return exact.browser_download_url;
+    }
+
+
+    const icon =
+        assets.find(
+            asset =>
+            asset.name
+            .toLowerCase()
+            .includes("icon")
+            &&
+            asset.name
+            .toLowerCase()
+            .match(
+                /\.(png|jpg|jpeg|webp)$/i
+            )
+        );
+
+
+    return icon
+        ? icon.browser_download_url
+        : "";
+}
+
+
+/* =========================
+   FIND SCREENSHOTS
+========================= */
+
+function findScreenshots(assets){
+
+    if(!assets){
+        return [];
+    }
+
+
+    return assets
+        .filter(asset => {
+
+            const name =
+                asset.name.toLowerCase();
+
+
+            return (
+                name.includes("screenshot")
+                &&
+                /\.(png|jpg|jpeg|webp)$/i
+                    .test(name)
+            );
+
+        })
+        .sort((a,b) =>
+            a.name.localeCompare(
+                b.name,
+                undefined,
+                {
+                    numeric:true,
+                    sensitivity:"base"
+                }
+            )
+        )
+        .map(
+            asset =>
+                asset.browser_download_url
+        );
+
+}
+
+
+/* =========================
+   UPDATE STATS
+========================= */
+
+function updateStats(){
+
+    const totalApps =
+        allApps.length;
+
+
+    const totalDownloads =
+        allApps.reduce(
+            (total, app) =>
+                total +
+                Number(
+                    app.downloads || 0
+                ),
+            0
+        );
+
+
+    document.getElementById(
+        "totalApps"
+    ).textContent =
+        formatNumber(totalApps);
+
+
+    document.getElementById(
+        "totalDownloads"
+    ).textContent =
+        formatNumber(totalDownloads);
+
+}
+
+
+/* =========================
+   NUMBER FORMAT
+========================= */
+
+function formatNumber(number){
+
+    return Number(
+        number || 0
+    ).toLocaleString(
+        "en-NG"
+    );
+}
+
+
+/* =========================
+   SIZE
 ========================= */
 
 function formatSize(bytes){
 
     if(!bytes){
-        return "";
+        return "Unknown size";
     }
 
+
     const mb =
-        bytes / 1024 / 1024;
+        bytes /
+        1024 /
+        1024;
+
 
     if(mb >= 1024){
 
@@ -1581,20 +2020,22 @@ function formatSize(bytes){
         + " GB";
     }
 
+
     return mb.toFixed(2)
         + " MB";
 }
 
 
 /* =========================
-   FORMAT DATE
+   DATE
 ========================= */
 
 function formatDate(date){
 
     if(!date){
-        return "";
+        return "Unknown date";
     }
+
 
     return new Date(date)
         .toLocaleDateString(
@@ -1609,19 +2050,43 @@ function formatDate(date){
 
 
 /* =========================
+   CLEAN DESCRIPTION
+========================= */
+
+function cleanDescription(text){
+
+    return String(text)
+        .replace(
+            /[#*_`]/g,
+            ""
+        )
+        .trim()
+        .slice(0,800);
+}
+
+
+/* =========================
    RENDER APPS
 ========================= */
 
 function renderApps(apps){
 
     const container =
-        document.getElementById("apps");
+        document.getElementById(
+            "apps"
+        );
+
 
     const empty =
-        document.getElementById("empty");
+        document.getElementById(
+            "empty"
+        );
+
 
     const count =
-        document.getElementById("appCount");
+        document.getElementById(
+            "appCount"
+        );
 
 
     container.innerHTML = "";
@@ -1652,10 +2117,98 @@ function renderApps(apps){
     apps.forEach(app => {
 
         const card =
-            document.createElement("article");
+            document.createElement(
+                "article"
+            );
+
 
         card.className =
             "app-card";
+
+
+        const iconHtml =
+            app.iconUrl
+
+            ?
+
+            `
+            <img
+                class="app-icon"
+                src="${escapeHtml(
+                    app.iconUrl
+                )}"
+                alt="${escapeHtml(
+                    app.name
+                )} icon"
+                loading="lazy">
+            `
+
+            :
+
+            `
+            <div
+                class="app-icon"
+                style="
+                    display:flex;
+                    align-items:center;
+                    justify-content:center;
+                    color:#0d6efd;
+                    font-size:27px;
+                    font-weight:900;
+                ">
+
+                W
+
+            </div>
+            `;
+
+
+        let screenshotsHtml =
+            "";
+
+
+        if(
+            app.screenshots &&
+            app.screenshots.length
+        ){
+
+            screenshotsHtml = `
+
+                <div class="screenshot-title">
+                    Screenshots
+                </div>
+
+                <div class="screenshots">
+
+                    ${app.screenshots
+                        .map(
+                            (src,index) => `
+
+                                <img
+                                    class="screenshot"
+                                    src="${escapeHtml(
+                                        src
+                                    )}"
+                                    alt="${escapeHtml(
+                                        app.name
+                                    )} screenshot ${index + 1}"
+                                    loading="lazy"
+                                    onclick="openImage(
+                                        '${escapeJs(
+                                            src
+                                        )}'
+                                    )">
+
+                            `
+                        )
+                        .join("")
+                    }
+
+                </div>
+
+            `;
+
+        }
 
 
         card.innerHTML = `
@@ -1664,34 +2217,38 @@ function renderApps(apps){
                 class="app-summary"
                 tabindex="0"
                 role="button"
-                aria-label="Open ${escapeHtml(app.name)}">
+                aria-label="Open ${escapeHtml(
+                    app.name
+                )}">
 
-                <div class="app-icon">
-
-                    <div style="
-                        width:100%;
-                        height:100%;
-                        display:flex;
-                        align-items:center;
-                        justify-content:center;
-                        font-size:27px;
-                        font-weight:900;
-                        color:#0d6efd;
-                    ">
-                        W
-                    </div>
-
-                </div>
+                ${iconHtml}
 
 
                 <div class="app-info">
 
                     <div class="app-name">
-                        ${escapeHtml(app.name)}
+                        ${escapeHtml(
+                            app.name
+                        )}
                     </div>
 
+
                     <div class="app-version">
-                        ${escapeHtml(app.version)}
+                        ${escapeHtml(
+                            app.version
+                        )}
+                    </div>
+
+
+                    <div
+                        class="app-download-small">
+
+                        ⬇️
+                        ${formatNumber(
+                            app.downloads
+                        )}
+                        downloads
+
                     </div>
 
                 </div>
@@ -1718,25 +2275,63 @@ function renderApps(apps){
                 <div class="meta-row">
 
                     <span class="meta">
-                        Android
+                        📱 Android
                     </span>
 
-                    <span class="meta">
-                        ${formatSize(app.size)}
-                    </span>
 
                     <span class="meta">
-                        ${formatDate(app.published)}
+                        📦
+                        ${formatSize(
+                            app.size
+                        )}
+                    </span>
+
+
+                    <span class="meta">
+                        🔖
+                        ${escapeHtml(
+                            app.version
+                        )}
+                    </span>
+
+
+                    <span class="meta">
+                        ⬇️
+                        ${formatNumber(
+                            app.downloads
+                        )}
+                        downloads
+                    </span>
+
+
+                    <span class="meta">
+                        📅
+                        ${formatDate(
+                            app.published
+                        )}
                     </span>
 
                 </div>
 
 
+                ${screenshotsHtml}
+
+
                 <button
                     class="download-btn"
                     onclick="startDownload(
-                        '${encodeURIComponent(app.apkUrl)}',
-                        '${escapeJs(app.name)}'
+                        '${encodeURIComponent(
+                            app.apkUrl
+                        )}',
+                        '${escapeJs(
+                            app.name
+                        )}',
+                        '${escapeJs(
+                            app.iconUrl
+                        )}',
+                        '${formatSize(
+                            app.size
+                        )}'
                     )">
 
                     ⬇️ Download APK
@@ -1756,7 +2351,8 @@ function renderApps(apps){
 
         summary.addEventListener(
             "click",
-            () => toggleCard(card)
+            () =>
+                toggleCard(card)
         );
 
 
@@ -1778,9 +2374,12 @@ function renderApps(apps){
         );
 
 
-        container.appendChild(card);
+        container.appendChild(
+            card
+        );
 
     });
+
 }
 
 
@@ -1791,20 +2390,30 @@ function renderApps(apps){
 function toggleCard(card){
 
     document
-        .querySelectorAll(".app-card.open")
-        .forEach(openCard => {
+        .querySelectorAll(
+            ".app-card.open"
+        )
+        .forEach(
+            openCard => {
 
-            if(openCard !== card){
+                if(
+                    openCard !== card
+                ){
 
-                openCard.classList.remove(
-                    "open"
-                );
+                    openCard.classList.remove(
+                        "open"
+                    );
+
+                }
+
             }
+        );
 
-        });
 
+    card.classList.toggle(
+        "open"
+    );
 
-    card.classList.toggle("open");
 }
 
 
@@ -1816,7 +2425,9 @@ function searchApps(){
 
     const query =
         document
-        .getElementById("searchInput")
+        .getElementById(
+            "searchInput"
+        )
         .value
         .trim()
         .toLowerCase();
@@ -1824,49 +2435,41 @@ function searchApps(){
 
     if(!query){
 
-        renderApps(allApps);
+        renderApps(
+            allApps
+        );
 
         return;
     }
 
 
     const filtered =
-        allApps.filter(app => {
+        allApps.filter(
+            app => {
 
-            const text =
-                (
-                    app.name +
-                    " " +
-                    app.version +
-                    " " +
-                    app.description
-                ).toLowerCase();
-
-            return text.includes(query);
-        });
-
-
-    renderApps(filtered);
-}
+                const text =
+                    (
+                        app.name +
+                        " " +
+                        app.version +
+                        " " +
+                        app.description
+                    )
+                    .toLowerCase();
 
 
-/* =========================
-   CLEAN DESCRIPTION
-========================= */
+                return text.includes(
+                    query
+                );
 
-function cleanDescription(text){
+            }
+        );
 
-    return String(text)
-        .replace(
-            /[#*_`]/g,
-            ""
-        )
-        .replace(
-            /\r?\n/g,
-            " "
-        )
-        .trim()
-        .slice(0,500);
+
+    renderApps(
+        filtered
+    );
+
 }
 
 
@@ -1876,22 +2479,55 @@ function cleanDescription(text){
 
 function escapeHtml(text){
 
-    return String(text)
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+    return String(
+        text || ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
 }
 
 
+/* =========================
+   JS ESCAPE
+========================= */
+
 function escapeJs(text){
 
-    return String(text)
-        .replace(/\\/g,"\\\\")
-        .replace(/'/g,"\\'")
-        .replace(/"/g,"&quot;")
-        .replace(/\n/g," ");
+    return String(
+        text || ""
+    )
+    .replace(
+        /\\/g,
+        "\\\\"
+    )
+    .replace(
+        /'/g,
+        "\\'"
+    )
+    .replace(
+        /\n/g,
+        " "
+    );
+
 }
 
 
@@ -1901,7 +2537,9 @@ function escapeJs(text){
 
 async function startDownload(
     encodedUrl,
-    appName
+    appName,
+    iconUrl,
+    sizeText
 ){
 
     const originalUrl =
@@ -1915,15 +2553,18 @@ async function startDownload(
             "downloadModal"
         );
 
+
     const progressBar =
         document.getElementById(
             "progressBar"
         );
 
+
     const progressText =
         document.getElementById(
             "progressText"
         );
+
 
     const downloadName =
         document.getElementById(
@@ -1931,8 +2572,39 @@ async function startDownload(
         );
 
 
+    const downloadSize =
+        document.getElementById(
+            "downloadSize"
+        );
+
+
+    const downloadIcon =
+        document.getElementById(
+            "downloadIcon"
+        );
+
+
     downloadName.textContent =
         appName;
+
+
+    downloadSize.textContent =
+        sizeText;
+
+
+    if(iconUrl){
+
+        downloadIcon.src =
+            iconUrl;
+
+        downloadIcon.style.display =
+            "inline-block";
+
+    }else{
+
+        downloadIcon.style.display =
+            "none";
+    }
 
 
     progressBar.style.width =
@@ -1943,7 +2615,9 @@ async function startDownload(
         "0%";
 
 
-    modal.classList.add("show");
+    modal.classList.add(
+        "show"
+    );
 
 
     currentDownloadController =
@@ -1964,8 +2638,10 @@ async function startDownload(
                 downloadUrl,
                 {
                     method:"GET",
+
                     signal:
-                        currentDownloadController.signal
+                        currentDownloadController
+                        .signal
                 }
             );
 
@@ -2000,6 +2676,7 @@ async function startDownload(
 
         const chunks = [];
 
+
         let received = 0;
 
 
@@ -2017,7 +2694,10 @@ async function startDownload(
             }
 
 
-            chunks.push(value);
+            chunks.push(
+                value
+            );
+
 
             received +=
                 value.length;
@@ -2043,6 +2723,7 @@ async function startDownload(
 
                 progressText.textContent =
                     percent + "%";
+
             }
 
         }
@@ -2076,19 +2757,23 @@ async function startDownload(
 
         link.download =
             appName
-                .replace(
-                    /[^a-z0-9]/gi,
-                    "_"
-                ) +
+            .replace(
+                /[^a-z0-9]/gi,
+                "_"
+            )
+            +
             ".apk";
 
 
         document
             .body
-            .appendChild(link);
+            .appendChild(
+                link
+            );
 
 
         link.click();
+
 
         link.remove();
 
@@ -2108,9 +2793,11 @@ async function startDownload(
 
         setTimeout(
             () => {
+
                 modal.classList.remove(
                     "show"
                 );
+
             },
             1200
         );
@@ -2127,7 +2814,9 @@ async function startDownload(
         }
 
 
-        console.error(error);
+        console.error(
+            error
+        );
 
 
         modal.classList.remove(
@@ -2168,6 +2857,7 @@ function cancelDownload(){
         .classList.remove(
             "show"
         );
+
 }
 
 
@@ -2177,20 +2867,26 @@ function cancelDownload(){
 
 function openImage(src){
 
-    document
-        .getElementById(
-            "viewerImage"
-        )
-        .src = src;
-
-
-    document
-        .getElementById(
+    const viewer =
+        document.getElementById(
             "imageViewer"
-        )
-        .classList.add(
-            "show"
         );
+
+
+    const image =
+        document.getElementById(
+            "viewerImage"
+        );
+
+
+    image.src =
+        src;
+
+
+    viewer.classList.add(
+        "show"
+    );
+
 }
 
 
@@ -2214,6 +2910,7 @@ function closeImage(event){
         .classList.remove(
             "show"
         );
+
 }
 
 
@@ -2225,7 +2922,10 @@ document.addEventListener(
     "keydown",
     event => {
 
-        if(event.key === "Escape"){
+        if(
+            event.key ===
+            "Escape"
+        ){
 
             document
                 .getElementById(
@@ -2235,6 +2935,7 @@ document.addEventListener(
                     "show"
                 );
 
+
             document
                 .getElementById(
                     "downloadModal"
@@ -2242,6 +2943,7 @@ document.addEventListener(
                 .classList.remove(
                     "show"
                 );
+
         }
 
     }
@@ -2255,6 +2957,7 @@ document.addEventListener(
 loadApps();
 
 </script>
+
 
 </body>
 
