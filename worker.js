@@ -2,16 +2,75 @@ const GITHUB_REPO =
   "https://github.com/wababe-digital/wababe-digital-apps";
 
 const GITHUB_API =
-  "https://api.github.com/repos/wababe-digital/wababe-digital-apps/releases";
+  "https://api.github.com/repos/wababe-digital/wababe-digital-apps/releases?per_page=100";
+
+const DOWNLOAD_WORKER =
+  "https://wababeapps.wababedigitalcentre.workers.dev";
 
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    /*
-     * DOWNLOAD ROUTE
-     * /download?url=GITHUB_APK_URL
-     */
+    // =========================================
+    // GITHUB RELEASES API PROXY
+    // =========================================
+    if (url.pathname === "/api/releases") {
+      if (request.method === "OPTIONS") {
+        return new Response(null, {
+          status: 204,
+          headers: corsHeaders()
+        });
+      }
+
+      if (request.method !== "GET") {
+        return new Response("Method Not Allowed", {
+          status: 405,
+          headers: {
+            "Allow": "GET, OPTIONS",
+            ...corsHeaders()
+          }
+        });
+      }
+
+      try {
+        const response = await fetch(GITHUB_API, {
+          method: "GET",
+          headers: {
+            "Accept": "application/vnd.github+json",
+            "User-Agent": "Wababe-Digital-Apps"
+          }
+        });
+
+        const body = await response.text();
+
+        return new Response(body, {
+          status: response.status,
+          headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            "Cache-Control": "public, max-age=300",
+            ...corsHeaders()
+          }
+        });
+
+      } catch (error) {
+        return new Response(
+          JSON.stringify({
+            error: "Unable to load GitHub releases."
+          }),
+          {
+            status: 500,
+            headers: {
+              "Content-Type": "application/json; charset=utf-8",
+              ...corsHeaders()
+            }
+          }
+        );
+      }
+    }
+
+    // =========================================
+    // APK DOWNLOAD
+    // =========================================
     if (url.pathname === "/download") {
 
       if (request.method === "OPTIONS") {
@@ -40,10 +99,7 @@ export default {
         });
       }
 
-      /*
-       * SECURITY:
-       * Only allow APK downloads from this GitHub repository.
-       */
+      // Only allow APK files from this GitHub repository
       if (
         !apkUrl.startsWith(
           GITHUB_REPO + "/releases/download/"
@@ -59,7 +115,6 @@ export default {
       }
 
       try {
-
         const response = await fetch(apkUrl, {
           method: "GET",
           redirect: "follow"
@@ -119,7 +174,6 @@ export default {
         );
 
       } catch (error) {
-
         return new Response(
           "Download service error.",
           {
@@ -133,38 +187,29 @@ export default {
       }
     }
 
-
-    /*
-     * CORS PREFLIGHT
-     */
+    // =========================================
+    // NORMAL WEBSITE FILES
+    // =========================================
     if (request.method === "OPTIONS") {
-
       return new Response(null, {
         status: 204,
         headers: corsHeaders()
       });
-
     }
 
-
-    /*
-     * SERVE WEBSITE FILES
-     */
     return env.ASSETS.fetch(request);
   }
 };
 
 
-/*
- * CORS HEADERS
- */
+// =========================================
+// CORS HEADERS
+// =========================================
 function corsHeaders() {
-
   return {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods":
       "GET, OPTIONS",
     "Access-Control-Allow-Headers": "*"
   };
-
 }
