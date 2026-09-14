@@ -4,9 +4,6 @@ const GITHUB_REPO =
 const GITHUB_API =
   "https://api.github.com/repos/wababe-digital/wababe-digital-apps/releases?per_page=100";
 
-const DOWNLOAD_WORKER =
-  "https://wababeapps.wababedigitalcentre.workers.dev";
-
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -15,6 +12,7 @@ export default {
     // GITHUB RELEASES API PROXY
     // =========================================
     if (url.pathname === "/api/releases") {
+
       if (request.method === "OPTIONS") {
         return new Response(null, {
           status: 204,
@@ -33,10 +31,13 @@ export default {
       }
 
       try {
+
         const response = await fetch(GITHUB_API, {
           method: "GET",
           headers: {
             "Accept": "application/vnd.github+json",
+            "Authorization": "Bearer " + env.GITHUB_TOKEN,
+            "X-GitHub-Api-Version": "2022-11-28",
             "User-Agent": "Wababe-Digital-Apps"
           }
         });
@@ -53,9 +54,10 @@ export default {
         });
 
       } catch (error) {
+
         return new Response(
           JSON.stringify({
-            error: "Unable to load GitHub releases."
+            error: "Unable to connect to GitHub API."
           }),
           {
             status: 500,
@@ -67,6 +69,7 @@ export default {
         );
       }
     }
+
 
     // =========================================
     // APK DOWNLOAD
@@ -99,7 +102,8 @@ export default {
         });
       }
 
-      // Only allow APK files from this GitHub repository
+
+      // Only allow downloads from Wababe Digital Apps
       if (
         !apkUrl.startsWith(
           GITHUB_REPO + "/releases/download/"
@@ -114,7 +118,9 @@ export default {
         );
       }
 
+
       try {
+
         const response = await fetch(apkUrl, {
           method: "GET",
           redirect: "follow"
@@ -129,6 +135,7 @@ export default {
             }
           );
         }
+
 
         const headers = new Headers();
 
@@ -147,6 +154,7 @@ export default {
           "public, max-age=3600"
         );
 
+
         const contentLength =
           response.headers.get("Content-Length");
 
@@ -157,6 +165,7 @@ export default {
           );
         }
 
+
         const cors = corsHeaders();
 
         Object.entries(cors).forEach(
@@ -164,6 +173,7 @@ export default {
             headers.set(key, value);
           }
         );
+
 
         return new Response(
           response.body,
@@ -174,6 +184,7 @@ export default {
         );
 
       } catch (error) {
+
         return new Response(
           "Download service error.",
           {
@@ -186,6 +197,7 @@ export default {
         );
       }
     }
+
 
     // =========================================
     // NORMAL WEBSITE FILES
