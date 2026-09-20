@@ -68,13 +68,9 @@
       "@id": "https://wababeapps.wababedigitalcentre.workers.dev/#organization",
       "name": "Wababe Digital Centre",
       "url": "https://wababeapps.wababedigitalcentre.workers.dev/",
-      "telephone": "+2348106414154",
-      "email": "wababedigitalcentre@gmail.com",
       "areaServed": "Nigeria",
       "contactPoint": {
         "@type": "ContactPoint",
-        "telephone": "+2348106414154",
-        "email": "wababedigitalcentre@gmail.com",
         "contactType": "customer service",
         "availableLanguage": [
           "English",
@@ -96,6 +92,7 @@
 </script>
 
 <style>
+
 * {
   box-sizing: border-box;
 }
@@ -472,7 +469,9 @@ body.dark .meta-pill {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* ABOUT */
@@ -597,7 +596,7 @@ body.dark .download-modal {
   background: rgba(0,0,0,.07);
   color: #172033;
   font-size: 22px;
-  z-index: 5;
+  z-index: 20;
 }
 
 body.dark .close-modal {
@@ -608,14 +607,15 @@ body.dark .close-modal {
 /* APP DETAILS */
 
 .details-content {
-  padding: 30px;
+  padding: 24px 30px 30px;
 }
 
 .details-top {
   display: flex;
   gap: 18px;
   align-items: center;
-  padding-right: 40px;
+  padding-right: 45px;
+  margin-bottom: 14px;
 }
 
 .details-icon {
@@ -624,6 +624,11 @@ body.dark .close-modal {
   object-fit: cover;
   border-radius: 23px;
   background: #edf2f8;
+  flex: 0 0 100px;
+}
+
+.details-title {
+  min-width: 0;
 }
 
 .details-title h2 {
@@ -636,16 +641,35 @@ body.dark .close-modal {
   color: #6b7280;
 }
 
+/* DOWNLOAD BUTTON AREA
+   It appears immediately after the app title/icon.
+   User does not need to scroll to see it.
+*/
+
+.details-download-area {
+  position: sticky;
+  top: 0;
+  z-index: 12;
+  padding: 8px 0 15px;
+  margin-bottom: 4px;
+  background: white;
+}
+
+body.dark .details-download-area {
+  background: #101a2c;
+}
+
 .details-meta {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin: 20px 0;
+  margin: 14px 0 20px;
 }
 
 .details-description {
   color: #5f6d82;
   line-height: 1.7;
+  margin-top: 18px;
 }
 
 body.dark .details-description,
@@ -888,6 +912,7 @@ footer {
 /* MOBILE */
 
 @media (max-width: 760px) {
+
   .nav-link {
     display: none;
   }
@@ -921,7 +946,7 @@ footer {
   }
 
   .details-content {
-    padding: 22px 18px;
+    padding: 20px 18px 25px;
   }
 
   .details-top {
@@ -931,14 +956,17 @@ footer {
   .details-icon {
     width: 78px;
     height: 78px;
+    flex-basis: 78px;
   }
 
   .details-title h2 {
     font-size: 20px;
   }
+
 }
 
 @media (max-width: 430px) {
+
   .brand {
     font-size: 16px;
   }
@@ -963,14 +991,18 @@ footer {
   .download-modal {
     padding: 22px 16px;
   }
+
 }
+
 </style>
 </head>
 
 <body>
 
 <!-- HEADER -->
+
 <header>
+
   <div class="navbar">
 
     <a href="#" class="brand">
@@ -979,20 +1011,36 @@ footer {
     </a>
 
     <div class="nav-right">
-      <a href="#apps" class="nav-link">Apps</a>
-      <a href="#about" class="nav-link">About</a>
-      <a href="#contact" class="nav-link">Contact</a>
 
-      <button class="theme-btn" id="themeBtn" type="button"
-              aria-label="Toggle dark mode">
+      <a href="#apps" class="nav-link">
+        Apps
+      </a>
+
+      <a href="#about" class="nav-link">
+        About
+      </a>
+
+      <a href="#contact" class="nav-link">
+        Contact
+      </a>
+
+      <button
+        class="theme-btn"
+        id="themeBtn"
+        type="button"
+        aria-label="Toggle dark mode">
         🌙
       </button>
+
     </div>
 
   </div>
+
 </header>
 
+
 <!-- HERO -->
+
 <section class="hero">
 
   <div class="hero-content">
@@ -1006,7 +1054,10 @@ footer {
     </p>
 
     <div class="search-wrap">
-      <span class="search-icon">🔎</span>
+
+      <span class="search-icon">
+        🔎
+      </span>
 
       <input
         type="search"
@@ -1014,135 +1065,207 @@ footer {
         placeholder="Search apps..."
         autocomplete="off"
       >
+
     </div>
 
   </div>
 
 </section>
 
+
 <main>
 
-  <!-- STATS -->
-  <section class="stats">
+<!-- STATS -->
 
-    <div class="stat-card">
-      <div class="stat-number" id="appCount">0</div>
-      <div class="stat-label">Available Apps</div>
+<section class="stats">
+
+  <div class="stat-card">
+
+    <div
+      class="stat-number"
+      id="appCount">
+      0
     </div>
 
-    <div class="stat-card">
-      <div class="stat-number" id="downloadCount">0</div>
-      <div class="stat-label">Total Downloads</div>
+    <div class="stat-label">
+      Available Apps
     </div>
 
-    <div class="stat-card">
-      <div class="stat-number">🇳🇬</div>
-      <div class="stat-label">Nigeria</div>
+  </div>
+
+
+  <div class="stat-card">
+
+    <div
+      class="stat-number"
+      id="downloadCount">
+      0
     </div>
 
-  </section>
-
-  <!-- APPS -->
-  <section class="section" id="apps">
-
-    <div class="section-title">
-      <h2>Available Apps</h2>
-      <span id="appResultText">Loading...</span>
+    <div class="stat-label">
+      Total Downloads
     </div>
 
-    <div class="loading" id="loading">
-      <div class="spinner"></div>
-      <div>Loading apps...</div>
+  </div>
+
+
+  <div class="stat-card">
+
+    <div class="stat-number">
+      🇳🇬
     </div>
 
-    <div class="apps-grid" id="appsGrid"></div>
-
-  </section>
-
-  <!-- ABOUT -->
-  <section class="section" id="about">
-
-    <div class="section-title">
-      <h2>About Wababe Digital Apps</h2>
+    <div class="stat-label">
+      Nigeria
     </div>
 
-    <div class="about-card">
+  </div>
 
-      <p>
-        Wababe Digital Apps is an Android application download platform
-        operated by Wababe Digital Centre in Nigeria.
-      </p>
+</section>
 
-      <p>
-        The platform helps users discover useful Android applications
-        and download official release files from Wababe Digital Apps.
-      </p>
 
-      <div class="services">
+<!-- APPS -->
 
-        <div class="service">
-          📱 Android App Development
-        </div>
+<section
+  class="section"
+  id="apps">
 
-        <div class="service">
-          🎬 Digital Content & Video Editing
-        </div>
+  <div class="section-title">
 
-        <div class="service">
-          💻 Technology Services
-        </div>
+    <h2>
+      Available Apps
+    </h2>
 
+    <span id="appResultText">
+      Loading...
+    </span>
+
+  </div>
+
+
+  <div
+    class="loading"
+    id="loading">
+
+    <div class="spinner"></div>
+
+    <div>
+      Loading apps...
+    </div>
+
+  </div>
+
+
+  <div
+    class="apps-grid"
+    id="appsGrid">
+  </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section
+  class="section"
+  id="about">
+
+  <div class="section-title">
+
+    <h2>
+      About Wababe Digital Apps
+    </h2>
+
+  </div>
+
+
+  <div class="about-card">
+
+    <p>
+      Wababe Digital Apps is an Android application download platform
+      operated by Wababe Digital Centre in Nigeria.
+    </p>
+
+    <p>
+      The platform helps users discover useful Android applications
+      and download official release files from Wababe Digital Apps.
+    </p>
+
+
+    <div class="services">
+
+      <div class="service">
+        📱 Android App Development
+      </div>
+
+      <div class="service">
+        🎬 Digital Content & Video Editing
+      </div>
+
+      <div class="service">
+        💻 Technology Services
       </div>
 
     </div>
 
-  </section>
+  </div>
 
-  <!-- CONTACT -->
-  <section class="section" id="contact">
+</section>
 
-    <div class="section-title">
-      <h2>Contact</h2>
+
+<!-- CONTACT -->
+
+<section
+  class="section"
+  id="contact">
+
+  <div class="section-title">
+
+    <h2>
+      Contact
+    </h2>
+
+  </div>
+
+
+  <div class="about-card">
+
+    <p>
+      For questions, support or digital services,
+      use one of the contact buttons below.
+    </p>
+
+
+    <div class="contact-actions">
+
+      <a
+        class="contact-btn"
+        href="tel:+2348106414154">
+        📞 Contact Us
+      </a>
+
+
+      <a
+        class="contact-btn email"
+        href="mailto:wababedigitalcentre@gmail.com">
+        ✉️ Send Email
+      </a>
+
     </div>
 
-    <div class="about-card">
+  </div>
 
-      <p>
-        For questions, support or digital services, use one of the
-        contact buttons below.
-      </p>
-
-      <!--
-        Phone number and Gmail are intentionally NOT displayed as text.
-        They only exist inside the buttons so they work when clicked.
-      -->
-
-      <div class="contact-actions">
-
-        <a
-          class="contact-btn"
-          href="tel:+2348106414154"
-        >
-          📞 Contact Us
-        </a>
-
-        <a
-          class="contact-btn email"
-          href="mailto:wababedigitalcentre@gmail.com"
-        >
-          ✉️ Send Email
-        </a>
-
-      </div>
-
-    </div>
-
-  </section>
+</section>
 
 </main>
 
+
 <!-- APP DETAILS MODAL -->
-<div class="modal" id="detailsModal" aria-hidden="true">
+
+<div
+  class="modal"
+  id="detailsModal"
+  aria-hidden="true">
 
   <div class="modal-box">
 
@@ -1150,12 +1273,15 @@ footer {
       class="close-modal"
       id="closeDetailsBtn"
       type="button"
-      aria-label="Close"
-    >
+      aria-label="Close">
       ×
     </button>
 
+
     <div class="details-content">
+
+
+      <!-- APP TOP -->
 
       <div class="details-top">
 
@@ -1166,39 +1292,70 @@ footer {
           alt="App icon"
         >
 
+
         <div class="details-title">
 
-          <h2 id="detailsName">App</h2>
+          <h2 id="detailsName">
+            App
+          </h2>
 
-          <p id="detailsVersion">Version</p>
+          <p id="detailsVersion">
+            Version
+          </p>
 
         </div>
 
       </div>
 
+
+      <!-- DOWNLOAD BUTTON
+           NOW VISIBLE WITHOUT SCROLL -->
+
+      <div class="details-download-area">
+
+        <button
+          class="download-main"
+          id="detailsDownloadBtn"
+          type="button">
+
+          ⬇️ Download APK
+
+        </button>
+
+      </div>
+
+
+      <!-- OTHER DETAILS BELOW -->
+
       <div class="details-meta">
 
-        <span class="meta-pill" id="detailsDownloads">
+        <span
+          class="meta-pill"
+          id="detailsDownloads">
           0 downloads
         </span>
 
-        <span class="meta-pill" id="detailsSize">
+
+        <span
+          class="meta-pill"
+          id="detailsSize">
           APK
         </span>
 
       </div>
 
-      <p class="details-description" id="detailsDescription"></p>
 
-      <button
-        class="download-main"
-        id="detailsDownloadBtn"
-        type="button"
-      >
-        ⬇️ Download APK
-      </button>
+      <p
+        class="details-description"
+        id="detailsDescription">
+      </p>
 
-      <div class="screenshots" id="detailsScreenshots"></div>
+
+      <div
+        class="screenshots"
+        id="detailsScreenshots">
+      </div>
+
 
     </div>
 
@@ -1206,156 +1363,257 @@ footer {
 
 </div>
 
+
 <!-- DOWNLOAD MODAL -->
-<div class="modal" id="downloadModal" aria-hidden="true">
+
+<div
+  class="modal"
+  id="downloadModal"
+  aria-hidden="true">
 
   <div class="download-modal">
 
-    <h3 id="downloadTitle">Downloading...</h3>
+    <h3 id="downloadTitle">
+      Downloading...
+    </h3>
 
     <p id="downloadStatus">
       Please wait while your APK is downloading.
     </p>
 
+
     <div class="progress-wrap">
-      <div class="progress-bar" id="progressBar"></div>
+
+      <div
+        class="progress-bar"
+        id="progressBar">
+      </div>
+
     </div>
 
-    <div class="progress-text" id="progressText">
+
+    <div
+      class="progress-text"
+      id="progressText">
       0%
     </div>
+
 
     <button
       class="cancel-btn"
       id="cancelDownloadBtn"
-      type="button"
-    >
+      type="button">
+
       Cancel Download
+
     </button>
 
   </div>
 
 </div>
 
+
 <!-- INSTALLATION GUIDE -->
-<div class="modal" id="installGuideModal" aria-hidden="true">
 
-  <div class="download-modal install-guide-modal">
+<div
+  class="modal"
+  id="installGuideModal"
+  aria-hidden="true">
 
-    <div class="install-success-icon">✓</div>
+  <div
+    class="download-modal install-guide-modal">
 
-    <h3>Download Complete!</h3>
+    <div class="install-success-icon">
+      ✓
+    </div>
+
+
+    <h3>
+      Download Complete!
+    </h3>
+
 
     <p id="installGuideAppName">
       Your app has been downloaded successfully.
     </p>
 
+
     <div class="install-steps">
 
-      <div class="install-step">
-        <span>1</span>
-        <p>
-          Open your phone's <strong>Downloads</strong> folder.
-        </p>
-      </div>
 
       <div class="install-step">
-        <span>2</span>
+
+        <span>
+          1
+        </span>
+
         <p>
-          Find the APK you just downloaded and tap it.
+          Open your phone's
+          <strong>Downloads</strong>
+          folder.
         </p>
+
       </div>
 
+
       <div class="install-step">
-        <span>3</span>
+
+        <span>
+          2
+        </span>
+
+        <p>
+          Find the APK you just downloaded
+          and tap it.
+        </p>
+
+      </div>
+
+
+      <div class="install-step">
+
+        <span>
+          3
+        </span>
+
         <p>
           If Android shows
           <strong>"Install unknown apps"</strong>,
           tap <strong>Settings</strong>.
         </p>
+
       </div>
 
+
       <div class="install-step">
-        <span>4</span>
+
+        <span>
+          4
+        </span>
+
         <p>
-          Turn on <strong>Allow from this source</strong>.
+          Turn on
+          <strong>Allow from this source</strong>.
         </p>
+
       </div>
 
+
       <div class="install-step">
-        <span>5</span>
+
+        <span>
+          5
+        </span>
+
         <p>
-          Go back and tap <strong>Install</strong>.
+          Go back and tap
+          <strong>Install</strong>.
         </p>
+
       </div>
 
+
       <div class="install-step">
-        <span>6</span>
+
+        <span>
+          6
+        </span>
+
         <p>
           Wait for installation to finish,
           then tap <strong>Open</strong>.
         </p>
+
       </div>
 
     </div>
 
+
     <p class="install-warning">
+
       ⚠️ Only install APK files you trust.
-      Make sure this APK was downloaded from Wababe Digital Apps.
+      Make sure this APK was downloaded from
+      Wababe Digital Apps.
+
     </p>
+
 
     <button
       class="download-main"
       id="closeInstallGuideBtn"
-      type="button"
-    >
+      type="button">
+
       ✓ Done
+
     </button>
 
   </div>
 
 </div>
 
+
 <!-- IMAGE VIEWER -->
-<div class="viewer" id="imageViewer">
+
+<div
+  class="viewer"
+  id="imageViewer">
 
   <button
     class="viewer-close"
     id="viewerClose"
     type="button"
-    aria-label="Close image"
-  >
+    aria-label="Close image">
+
     ×
+
   </button>
 
-  <img id="viewerImage" src="" alt="Screenshot">
+
+  <img
+    id="viewerImage"
+    src=""
+    alt="Screenshot">
 
 </div>
 
+
 <!-- FOOTER -->
+
 <footer>
 
   <div class="footer-brand">
     Wababe · Wababe Digital Apps
   </div>
 
+
   <div class="footer-sub">
     Android Apps Download Platform · Nigeria
   </div>
 
+
   <div class="powered">
-    Powered by <strong>Ibrahim Shehu Wababe</strong>
+    Powered by
+    <strong>
+      Ibrahim Shehu Wababe
+    </strong>
   </div>
 
+
   <div class="footer-sub">
-    © <span id="year"></span> Wababe Digital Centre.
+
+    ©
+    <span id="year"></span>
+    Wababe Digital Centre.
     All rights reserved.
+
   </div>
 
 </footer>
 
+
 <script>
 "use strict";
+
 
 /* ================================
    API CONFIGURATION
@@ -1373,7 +1631,9 @@ const DOWNLOAD_WORKER =
 ================================ */
 
 let allApps = [];
+
 let currentApp = null;
+
 let currentController = null;
 
 
@@ -1504,6 +1764,7 @@ function escapeHTML(value) {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
+
 }
 
 
@@ -1515,6 +1776,7 @@ function formatNumber(number) {
 
   return Number(number || 0)
     .toLocaleString("en-US");
+
 }
 
 
@@ -1538,6 +1800,7 @@ function formatSize(bytes) {
   return (
     mb / 1024
   ).toFixed(2) + " GB";
+
 }
 
 
@@ -1559,6 +1822,7 @@ function getApkAsset(release) {
     );
 
   }) || null;
+
 }
 
 
@@ -1589,6 +1853,7 @@ function getIconAsset(release) {
     );
 
   }) || null;
+
 }
 
 
@@ -1676,7 +1941,9 @@ function createAppData(release) {
 
     screenshots:
       screenshots.map(function(asset) {
+
         return asset.browser_download_url;
+
       })
 
   };
@@ -1691,10 +1958,12 @@ function createAppData(release) {
 async function loadApps() {
 
   loading.style.display = "block";
+
   appsGrid.innerHTML = "";
 
   appResultText.textContent =
     "Loading...";
+
 
   try {
 
@@ -1706,6 +1975,7 @@ async function loadApps() {
         }
       );
 
+
     if (!response.ok) {
 
       throw new Error(
@@ -1714,8 +1984,10 @@ async function loadApps() {
 
     }
 
+
     const releases =
       await response.json();
+
 
     allApps =
       Array.isArray(releases)
@@ -1732,13 +2004,17 @@ async function loadApps() {
             .filter(Boolean)
         : [];
 
+
     const totalDownloads =
       allApps.reduce(
         function(total, app) {
+
           return total + app.downloads;
+
         },
         0
       );
+
 
     appCount.textContent =
       formatNumber(allApps.length);
@@ -1746,22 +2022,35 @@ async function loadApps() {
     downloadCount.textContent =
       formatNumber(totalDownloads);
 
+
     loading.style.display =
       "none";
+
 
     renderApps(allApps);
 
     updateAppStructuredData();
 
+
   } catch (error) {
 
     console.error(error);
 
+
     loading.innerHTML = `
-      <div style="font-size:40px;">⚠️</div>
-      <strong>Unable to load apps</strong>
-      <p>Please refresh the page and try again.</p>
+      <div style="font-size:40px;">
+        ⚠️
+      </div>
+
+      <strong>
+        Unable to load apps
+      </strong>
+
+      <p>
+        Please refresh the page and try again.
+      </p>
     `;
+
 
     appResultText.textContent =
       "Error";
@@ -1779,39 +2068,60 @@ function renderApps(apps) {
 
   appsGrid.innerHTML = "";
 
+
   appResultText.textContent =
     apps.length +
-    (apps.length === 1 ? " app" : " apps");
+    (apps.length === 1
+      ? " app"
+      : " apps");
+
 
   if (!apps.length) {
 
     appsGrid.innerHTML = `
+
       <div style="
         grid-column:1/-1;
         text-align:center;
         padding:45px 15px;
         color:#6b7280;
       ">
-        <div style="font-size:42px;">🔎</div>
-        <h3>No apps found</h3>
-        <p>Try another search.</p>
+
+        <div style="font-size:42px;">
+          🔎
+        </div>
+
+        <h3>
+          No apps found
+        </h3>
+
+        <p>
+          Try another search.
+        </p>
+
       </div>
+
     `;
 
     return;
+
   }
+
 
   apps.forEach(function(app) {
 
     const card =
       document.createElement("article");
 
+
     card.className =
       "app-card";
+
 
     const icon =
       app.icon ||
       "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Crect width='100%25' height='100%25' rx='35' fill='%230d6efd'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' font-size='90' fill='white'%3EW%3C/text%3E%3C/svg%3E";
+
 
     card.innerHTML = `
 
@@ -1822,11 +2132,13 @@ function renderApps(apps) {
         loading="lazy"
       >
 
+
       <div class="app-info">
 
         <h3 class="app-name">
           ${escapeHTML(app.name)}
         </h3>
+
 
         <p class="app-description">
           ${escapeHTML(
@@ -1835,15 +2147,19 @@ function renderApps(apps) {
           )}
         </p>
 
+
         <div class="app-meta">
 
           <span class="meta-pill">
             ${escapeHTML(app.version)}
           </span>
 
+
           <span class="meta-pill">
-            ${formatNumber(app.downloads)} downloads
+            ${formatNumber(app.downloads)}
+            downloads
           </span>
+
 
           <span class="meta-pill">
             ${formatSize(app.size)}
@@ -1851,19 +2167,25 @@ function renderApps(apps) {
 
         </div>
 
+
         <div class="view-hint">
           View app details →
         </div>
 
       </div>
+
     `;
+
 
     card.addEventListener(
       "click",
       function() {
+
         openDetails(app);
+
       }
     );
+
 
     appsGrid.appendChild(card);
 
@@ -1880,30 +2202,40 @@ function openDetails(app) {
 
   currentApp = app;
 
+
   detailsIcon.src =
     app.icon ||
     "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Crect width='100%25' height='100%25' rx='35' fill='%230d6efd'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' font-size='90' fill='white'%3EW%3C/text%3E%3C/svg%3E";
 
+
   detailsIcon.alt =
     app.name + " icon";
+
 
   detailsName.textContent =
     app.name;
 
+
   detailsVersion.textContent =
     "Version " + app.version;
+
 
   detailsDownloads.textContent =
     formatNumber(app.downloads) +
     " downloads";
 
+
   detailsSize.textContent =
     formatSize(app.size);
+
 
   detailsDescription.textContent =
     app.description;
 
-  detailsScreenshots.innerHTML = "";
+
+  detailsScreenshots.innerHTML =
+    "";
+
 
   if (app.screenshots.length) {
 
@@ -1912,17 +2244,22 @@ function openDetails(app) {
       const image =
         document.createElement("img");
 
+
       image.className =
         "screenshot";
+
 
       image.src =
         url;
 
+
       image.alt =
         app.name + " screenshot";
 
+
       image.loading =
         "lazy";
+
 
       image.addEventListener(
         "click",
@@ -1935,21 +2272,38 @@ function openDetails(app) {
         }
       );
 
-      detailsScreenshots.appendChild(image);
+
+      detailsScreenshots.appendChild(
+        image
+      );
 
     });
 
   }
 
-  detailsModal.classList.add("show");
+
+  detailsModal.classList.add(
+    "show"
+  );
+
 
   detailsModal.setAttribute(
     "aria-hidden",
     "false"
   );
 
+
   document.body.style.overflow =
     "hidden";
+
+
+  /* Always start details from the top */
+  const modalBox =
+    detailsModal.querySelector(".modal-box");
+
+  if (modalBox) {
+    modalBox.scrollTop = 0;
+  }
 
 }
 
@@ -1960,12 +2314,16 @@ function openDetails(app) {
 
 function closeDetails() {
 
-  detailsModal.classList.remove("show");
+  detailsModal.classList.remove(
+    "show"
+  );
+
 
   detailsModal.setAttribute(
     "aria-hidden",
     "true"
   );
+
 
   document.body.style.overflow =
     "";
@@ -1984,31 +2342,41 @@ function performSearch() {
       .trim()
       .toLowerCase();
 
+
   if (!query) {
 
     renderApps(allApps);
 
     return;
+
   }
+
 
   const filtered =
     allApps.filter(function(app) {
 
       return (
+
         app.name
           .toLowerCase()
-          .includes(query) ||
+          .includes(query)
+
+        ||
 
         app.description
           .toLowerCase()
-          .includes(query) ||
+          .includes(query)
+
+        ||
 
         app.version
           .toLowerCase()
           .includes(query)
+
       );
 
     });
+
 
   renderApps(filtered);
 
@@ -2025,6 +2393,7 @@ async function downloadAPK(app) {
     return;
   }
 
+
   if (
     !app.apkUrl.startsWith(
       "https://github.com/wababe-digital/wababe-digital-apps/releases/download/"
@@ -2036,7 +2405,9 @@ async function downloadAPK(app) {
     );
 
     return;
+
   }
+
 
   if (currentController) {
 
@@ -2044,38 +2415,48 @@ async function downloadAPK(app) {
 
   }
 
+
   currentController =
     new AbortController();
+
 
   downloadTitle.textContent =
     "Downloading " + app.name;
 
+
   downloadStatus.textContent =
     "Please wait while your APK is downloading.";
+
 
   progressBar.style.width =
     "0%";
 
+
   progressText.textContent =
     "0%";
+
 
   downloadModal.classList.add(
     "show"
   );
+
 
   downloadModal.setAttribute(
     "aria-hidden",
     "false"
   );
 
+
   document.body.style.overflow =
     "hidden";
+
 
   try {
 
     const downloadUrl =
       DOWNLOAD_WORKER +
       encodeURIComponent(app.apkUrl);
+
 
     const response =
       await fetch(
@@ -2086,6 +2467,7 @@ async function downloadAPK(app) {
         }
       );
 
+
     if (!response.ok) {
 
       throw new Error(
@@ -2094,37 +2476,47 @@ async function downloadAPK(app) {
 
     }
 
+
     const contentLength =
       response.headers.get(
         "Content-Length"
       );
 
+
     const total =
       Number(contentLength || 0);
+
 
     let received =
       0;
 
+
     const chunks = [];
+
 
     const reader =
       response.body.getReader();
+
 
     while (true) {
 
       const result =
         await reader.read();
 
+
       if (result.done) {
         break;
       }
+
 
       chunks.push(
         result.value
       );
 
+
       received +=
         result.value.length;
+
 
       if (total > 0) {
 
@@ -2136,11 +2528,14 @@ async function downloadAPK(app) {
             )
           );
 
+
         progressBar.style.width =
           percent + "%";
 
+
         progressText.textContent =
           percent + "%";
+
 
         downloadStatus.textContent =
           "Downloading... " +
@@ -2157,6 +2552,7 @@ async function downloadAPK(app) {
 
     }
 
+
     const blob =
       new Blob(
         chunks,
@@ -2166,34 +2562,55 @@ async function downloadAPK(app) {
         }
       );
 
+
     const blobUrl =
       URL.createObjectURL(blob);
+
 
     const link =
       document.createElement("a");
 
+
     link.href =
       blobUrl;
+
 
     link.download =
       getDownloadFileName(app);
 
+
     document.body.appendChild(link);
+
 
     link.click();
 
+
     link.remove();
 
-    URL.revokeObjectURL(blobUrl);
+
+    /*
+      Do not revoke immediately.
+      Give the browser time to start the download.
+    */
+
+    setTimeout(function() {
+
+      URL.revokeObjectURL(blobUrl);
+
+    }, 30000);
+
 
     progressBar.style.width =
       "100%";
 
+
     progressText.textContent =
       "100%";
 
+
     downloadStatus.textContent =
       "Download completed.";
+
 
     setTimeout(function() {
 
@@ -2202,6 +2619,7 @@ async function downloadAPK(app) {
       openInstallGuide(app);
 
     }, 600);
+
 
   } catch (error) {
 
@@ -2214,10 +2632,13 @@ async function downloadAPK(app) {
 
     }
 
+
     console.error(error);
+
 
     downloadStatus.textContent =
       "Download failed. Please try again.";
+
 
     progressText.textContent =
       "Error";
@@ -2237,12 +2658,13 @@ function getDownloadFileName(app) {
     app.name ||
     "Wababe-App";
 
+
   name =
-    name
-      .replace(
-        /[^a-zA-Z0-9._-]/g,
-        "_"
-      );
+    name.replace(
+      /[^a-zA-Z0-9._-]/g,
+      "_"
+    );
+
 
   if (
     !name
@@ -2254,6 +2676,7 @@ function getDownloadFileName(app) {
       ".apk";
 
   }
+
 
   return name;
 
@@ -2270,10 +2693,12 @@ function closeDownloadModal() {
     "show"
   );
 
+
   downloadModal.setAttribute(
     "aria-hidden",
     "true"
   );
+
 
   document.body.style.overflow =
     "";
@@ -2296,6 +2721,7 @@ function cancelDownload() {
 
   }
 
+
   closeDownloadModal();
 
 }
@@ -2311,14 +2737,17 @@ function openInstallGuide(app) {
     app.name +
     " has been downloaded successfully. Follow the steps below to install it.";
 
+
   installGuideModal.classList.add(
     "show"
   );
+
 
   installGuideModal.setAttribute(
     "aria-hidden",
     "false"
   );
+
 
   document.body.style.overflow =
     "hidden";
@@ -2336,10 +2765,12 @@ function closeInstallGuide() {
     "show"
   );
 
+
   installGuideModal.setAttribute(
     "aria-hidden",
     "true"
   );
+
 
   document.body.style.overflow =
     "";
@@ -2356,17 +2787,20 @@ function openViewer(url) {
   viewerImage.src =
     url;
 
+
   imageViewer.classList.add(
     "show"
   );
 
 }
 
+
 function closeViewer() {
 
   imageViewer.classList.remove(
     "show"
   );
+
 
   viewerImage.src =
     "";
@@ -2386,6 +2820,7 @@ function applyTheme(theme) {
       "dark"
     );
 
+
     themeBtn.textContent =
       "☀️";
 
@@ -2395,6 +2830,7 @@ function applyTheme(theme) {
       "dark"
     );
 
+
     themeBtn.textContent =
       "🌙";
 
@@ -2402,12 +2838,15 @@ function applyTheme(theme) {
 
 }
 
+
 const savedTheme =
   localStorage.getItem(
     "wababe-theme"
   ) || "light";
 
+
 applyTheme(savedTheme);
+
 
 themeBtn.addEventListener(
   "click",
@@ -2418,13 +2857,18 @@ themeBtn.addEventListener(
         "dark"
       );
 
+
     const newTheme =
-      dark ? "light" : "dark";
+      dark
+        ? "light"
+        : "dark";
+
 
     localStorage.setItem(
       "wababe-theme",
       newTheme
     );
+
 
     applyTheme(newTheme);
 
@@ -2443,9 +2887,11 @@ function updateAppStructuredData() {
       "dynamicAppStructuredData"
     );
 
+
   if (old) {
     old.remove();
   }
+
 
   const itemList =
     allApps.map(function(app, index) {
@@ -2468,16 +2914,20 @@ function updateAppStructuredData() {
 
     });
 
+
   const script =
     document.createElement(
       "script"
     );
 
+
   script.id =
     "dynamicAppStructuredData";
 
+
   script.type =
     "application/ld+json";
+
 
   script.textContent =
     JSON.stringify({
@@ -2496,6 +2946,7 @@ function updateAppStructuredData() {
 
     });
 
+
   document.head.appendChild(
     script
   );
@@ -2512,10 +2963,12 @@ searchInput.addEventListener(
   performSearch
 );
 
+
 closeDetailsBtn.addEventListener(
   "click",
   closeDetails
 );
+
 
 detailsDownloadBtn.addEventListener(
   "click",
@@ -2525,7 +2978,9 @@ detailsDownloadBtn.addEventListener(
       return;
     }
 
+
     closeDetails();
+
 
     downloadAPK(
       currentApp
@@ -2534,15 +2989,18 @@ detailsDownloadBtn.addEventListener(
   }
 );
 
+
 cancelDownloadBtn.addEventListener(
   "click",
   cancelDownload
 );
 
+
 closeInstallGuideBtn.addEventListener(
   "click",
   closeInstallGuide
 );
+
 
 viewerClose.addEventListener(
   "click",
@@ -2570,6 +3028,7 @@ detailsModal.addEventListener(
   }
 );
 
+
 installGuideModal.addEventListener(
   "click",
   function(event) {
@@ -2585,6 +3044,7 @@ installGuideModal.addEventListener(
 
   }
 );
+
 
 imageViewer.addEventListener(
   "click",
@@ -2615,8 +3075,11 @@ document.addEventListener(
       event.key !==
       "Escape"
     ) {
+
       return;
+
     }
+
 
     if (
       imageViewer.classList.contains(
@@ -2627,7 +3090,9 @@ document.addEventListener(
       closeViewer();
 
       return;
+
     }
+
 
     if (
       installGuideModal.classList.contains(
@@ -2638,7 +3103,9 @@ document.addEventListener(
       closeInstallGuide();
 
       return;
+
     }
+
 
     if (
       downloadModal.classList.contains(
@@ -2649,7 +3116,9 @@ document.addEventListener(
       cancelDownload();
 
       return;
+
     }
+
 
     if (
       detailsModal.classList.contains(
