@@ -1,7 +1,11 @@
-name = "wababe-digital-apps"
+name = "wababeapps"
 main = "worker.js"
 compatibility_date = "2026-08-31"
 
 [assets]
 directory = "."
 binding = "ASSETS"
+
+[[kv_namespaces]]
+binding = "APP_SECURITY"
+id = "029148970c9641eca3f8f9defc452bf8"

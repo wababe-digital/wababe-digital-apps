@@ -1251,6 +1251,14 @@ footer {
         ✉️ Send Email
       </a>
 
+      <a
+        class="contact-btn"
+        href="https://wa.me/2348106414154?text=HELLO%20WABABE%20DIGITALS%20I%20NEED%20MORE%20ABOUT%20YOU"
+        target="_blank"
+        rel="noopener noreferrer">
+        💬 WhatsApp Us
+      </a>
+
     </div>
 
   </div>
@@ -1404,7 +1412,7 @@ footer {
       id="cancelDownloadBtn"
       type="button">
 
-      Cancel Download
+      Close
 
     </button>
 
@@ -1412,6 +1420,42 @@ footer {
 
 </div>
 
+
+<!-- PRIVATE APP SECURITY CODE -->
+<div class="modal" id="privateCodeModal" aria-hidden="true">
+  <div class="download-modal">
+    <button class="close-modal" id="closePrivateCodeBtn" type="button" aria-label="Close">×</button>
+    <h3>🔒 Private App</h3>
+    <p id="privateCodeMessage">Enter the security code to download this app.</p>
+    <input id="privateCodeInput" type="password" autocomplete="off" placeholder="Enter security code" style="width:100%;padding:14px;border:1px solid #cbd5e1;border-radius:12px;margin:12px 0;font-size:16px;">
+    <button class="download-main" id="submitPrivateCodeBtn" type="button">Unlock & Download</button>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div class="modal" id="adminModal" aria-hidden="true">
+  <div class="download-modal" style="max-height:90vh;overflow:auto;text-align:left;">
+    <button class="close-modal" id="closeAdminBtn" type="button" aria-label="Close">×</button>
+    <h3>🛡️ WABABE APPS ADMIN</h3>
+    <p>Manage independent security codes for Private Apps.</p>
+    <div id="adminLoginArea">
+      <p id="adminLoginStatus" role="status" aria-live="polite"></p>
+      <label for="adminPasswordInput">Admin password</label>
+      <input id="adminPasswordInput" type="password" autocomplete="current-password" placeholder="Enter admin password" style="width:100%;padding:13px;border:1px solid #cbd5e1;border-radius:10px;margin:8px 0 12px;">
+      <button class="download-main" id="adminLoginBtn" type="button">Sign in</button>
+    </div>
+    <div id="adminManageArea" style="display:none;">
+      <label for="adminAppSelect">Select private app</label>
+      <select id="adminAppSelect" style="width:100%;padding:13px;border:1px solid #cbd5e1;border-radius:10px;margin:8px 0 12px;"></select>
+      <label for="adminCodeInput">New security code (4–128 characters)</label>
+      <input id="adminCodeInput" type="password" autocomplete="new-password" placeholder="Set or change code" style="width:100%;padding:13px;border:1px solid #cbd5e1;border-radius:10px;margin:8px 0 12px;">
+      <button class="download-main" id="saveAdminCodeBtn" type="button">Save / Change Code</button>
+      <button class="cancel-btn" id="removeAdminCodeBtn" type="button" style="margin-top:10px;">Remove Code</button>
+      <p id="adminStatus" role="status" aria-live="polite"></p>
+      <button class="cancel-btn" id="adminLogoutBtn" type="button" style="margin-top:10px;">Sign out</button>
+    </div>
+  </div>
+</div>
 
 <!-- INSTALLATION GUIDE -->
 
@@ -1429,7 +1473,7 @@ footer {
 
 
     <h3>
-      Download Complete!
+      Download Started!
     </h3>
 
 
@@ -1605,6 +1649,7 @@ footer {
     <span id="year"></span>
     Wababe Digital Centre.
     All rights reserved.
+    <button id="openAdminBtn" type="button" style="margin-left:10px;background:transparent;color:inherit;text-decoration:underline;font-size:12px;">Admin</button>
 
   </div>
 
@@ -1622,8 +1667,11 @@ footer {
 const GITHUB_API =
   "https://wababeapps.wababedigitalcentre.workers.dev/api/releases";
 
+const WORKER_BASE =
+  "https://wababeapps.wababedigitalcentre.workers.dev";
+
 const DOWNLOAD_WORKER =
-  "https://wababeapps.wababedigitalcentre.workers.dev/download?url=";
+  WORKER_BASE + "/download?url=";
 
 
 /* ================================
@@ -1742,6 +1790,29 @@ const viewerImage =
 
 const viewerClose =
   document.getElementById("viewerClose");
+
+const privateCodeModal = document.getElementById("privateCodeModal");
+const privateCodeInput = document.getElementById("privateCodeInput");
+const privateCodeMessage = document.getElementById("privateCodeMessage");
+const submitPrivateCodeBtn = document.getElementById("submitPrivateCodeBtn");
+const closePrivateCodeBtn = document.getElementById("closePrivateCodeBtn");
+
+const adminModal = document.getElementById("adminModal");
+const openAdminBtn = document.getElementById("openAdminBtn");
+const closeAdminBtn = document.getElementById("closeAdminBtn");
+const adminLoginArea = document.getElementById("adminLoginArea");
+const adminManageArea = document.getElementById("adminManageArea");
+const adminPasswordInput = document.getElementById("adminPasswordInput");
+const adminLoginStatus = document.getElementById("adminLoginStatus");
+const adminLoginBtn = document.getElementById("adminLoginBtn");
+const adminAppSelect = document.getElementById("adminAppSelect");
+const adminCodeInput = document.getElementById("adminCodeInput");
+const saveAdminCodeBtn = document.getElementById("saveAdminCodeBtn");
+const removeAdminCodeBtn = document.getElementById("removeAdminCodeBtn");
+const adminStatus = document.getElementById("adminStatus");
+const adminLogoutBtn = document.getElementById("adminLogoutBtn");
+
+let adminSessionToken = sessionStorage.getItem("wababe-admin-session") || "";
 
 
 /* ================================
@@ -1926,7 +1997,13 @@ function createAppData(release) {
       "Latest",
 
     apkUrl:
-      apk.browser_download_url,
+      release.private ? "" : apk.browser_download_url,
+
+    isPrivate:
+      !!release.private,
+
+    privateAppId:
+      release.private ? String(release.privateAppId || "") : "",
 
     downloads:
       Number(apk.download_count || 0),
@@ -1935,15 +2012,13 @@ function createAppData(release) {
       apk.size || 0,
 
     icon:
-      icon
+      (!release.private && icon)
         ? icon.browser_download_url
         : "",
 
     screenshots:
-      screenshots.map(function(asset) {
-
+      release.private ? [] : screenshots.map(function(asset) {
         return asset.browser_download_url;
-
       })
 
   };
@@ -2154,6 +2229,7 @@ function renderApps(apps) {
             ${escapeHTML(app.version)}
           </span>
 
+          ${app.isPrivate ? '<span class="meta-pill">🔒 Private</span>' : '<span class="meta-pill">🌐 Public</span>'}
 
           <span class="meta-pill">
             ${formatNumber(app.downloads)}
@@ -2217,7 +2293,7 @@ function openDetails(app) {
 
 
   detailsVersion.textContent =
-    "Version " + app.version;
+    (app.isPrivate ? "🔒 Private · " : "") + "Version " + app.version;
 
 
   detailsDownloads.textContent =
@@ -2388,265 +2464,83 @@ function performSearch() {
 ================================ */
 
 async function downloadAPK(app) {
+  if (!app) return;
 
-  if (!app || !app.apkUrl) {
+  if (app.isPrivate) {
+    privateCodeInput.value = "";
+    privateCodeMessage.textContent = "Enter the security code for " + app.name + " to continue.";
+    privateCodeModal.classList.add("show");
+    privateCodeModal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    privateCodeInput.focus();
     return;
   }
 
-
-  if (
-    !app.apkUrl.startsWith(
-      "https://github.com/wababe-digital/wababe-digital-apps/releases/download/"
-    )
-  ) {
-
-    alert(
-      "This download link is not valid."
-    );
-
+  if (!app.apkUrl || !app.apkUrl.startsWith("https://github.com/wababe-digital/wababe-digital-apps/releases/download/")) {
+    alert("This download link is not valid.");
     return;
-
   }
 
-
-  if (currentController) {
-
-    currentController.abort();
-
-  }
-
-
-  currentController =
-    new AbortController();
-
-
-  downloadTitle.textContent =
-    "Downloading " + app.name;
-
-
-  downloadStatus.textContent =
-    "Please wait while your APK is downloading.";
-
-
-  progressBar.style.width =
-    "0%";
-
-
-  progressText.textContent =
-    "0%";
-
-
-  downloadModal.classList.add(
-    "show"
-  );
-
-
-  downloadModal.setAttribute(
-    "aria-hidden",
-    "false"
-  );
-
-
-  document.body.style.overflow =
-    "hidden";
-
-
-  try {
-
-    const downloadUrl =
-      DOWNLOAD_WORKER +
-      encodeURIComponent(app.apkUrl);
-
-
-    const response =
-      await fetch(
-        downloadUrl,
-        {
-          signal:
-            currentController.signal
-        }
-      );
-
-
-    if (!response.ok) {
-
-      throw new Error(
-        "Download failed."
-      );
-
-    }
-
-
-    const contentLength =
-      response.headers.get(
-        "Content-Length"
-      );
-
-
-    const total =
-      Number(contentLength || 0);
-
-
-    let received =
-      0;
-
-
-    const chunks = [];
-
-
-    const reader =
-      response.body.getReader();
-
-
-    while (true) {
-
-      const result =
-        await reader.read();
-
-
-      if (result.done) {
-        break;
-      }
-
-
-      chunks.push(
-        result.value
-      );
-
-
-      received +=
-        result.value.length;
-
-
-      if (total > 0) {
-
-        const percent =
-          Math.min(
-            100,
-            Math.round(
-              (received / total) * 100
-            )
-          );
-
-
-        progressBar.style.width =
-          percent + "%";
-
-
-        progressText.textContent =
-          percent + "%";
-
-
-        downloadStatus.textContent =
-          "Downloading... " +
-          formatSize(received) +
-          " / " +
-          formatSize(total);
-
-      } else {
-
-        progressText.textContent =
-          formatSize(received);
-
-      }
-
-    }
-
-
-    const blob =
-      new Blob(
-        chunks,
-        {
-          type:
-            "application/vnd.android.package-archive"
-        }
-      );
-
-
-    const blobUrl =
-      URL.createObjectURL(blob);
-
-
-    const link =
-      document.createElement("a");
-
-
-    link.href =
-      blobUrl;
-
-
-    link.download =
-      getDownloadFileName(app);
-
-
-    document.body.appendChild(link);
-
-
-    link.click();
-
-
-    link.remove();
-
-
-    /*
-      Do not revoke immediately.
-      Give the browser time to start the download.
-    */
-
-    setTimeout(function() {
-
-      URL.revokeObjectURL(blobUrl);
-
-    }, 30000);
-
-
-    progressBar.style.width =
-      "100%";
-
-
-    progressText.textContent =
-      "100%";
-
-
-    downloadStatus.textContent =
-      "Download completed.";
-
-
-    setTimeout(function() {
-
-      closeDownloadModal();
-
-      openInstallGuide(app);
-
-    }, 600);
-
-
-  } catch (error) {
-
-    if (
-      error.name ===
-      "AbortError"
-    ) {
-
-      return;
-
-    }
-
-
-    console.error(error);
-
-
-    downloadStatus.textContent =
-      "Download failed. Please try again.";
-
-
-    progressText.textContent =
-      "Error";
-
-  }
-
+  startNativeDownload(app, DOWNLOAD_WORKER + encodeURIComponent(app.apkUrl));
 }
 
+async function submitPrivateDownload() {
+  if (!currentApp || !currentApp.isPrivate) return;
+  const code = privateCodeInput.value;
+  if (!code) {
+    privateCodeMessage.textContent = "Please enter the security code.";
+    return;
+  }
+  submitPrivateCodeBtn.disabled = true;
+  submitPrivateCodeBtn.textContent = "Verifying...";
+  try {
+    const response = await fetch(WORKER_BASE + "/api/private-download-ticket", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ appId: currentApp.privateAppId, code: code })
+    });
+    const data = await response.json();
+    if (!response.ok || !data.url) throw new Error(data.error || "Security code verification failed.");
+    closePrivateCodeModal();
+    startNativeDownload(currentApp, WORKER_BASE + data.url);
+  } catch (error) {
+    privateCodeMessage.textContent = error.message || "Unable to verify code. Please try again.";
+  } finally {
+    submitPrivateCodeBtn.disabled = false;
+    submitPrivateCodeBtn.textContent = "Unlock & Download";
+  }
+}
+
+function startNativeDownload(app, url) {
+  downloadTitle.textContent = "Preparing " + app.name;
+  downloadStatus.textContent = "Your APK is being sent directly to your device. Check your Downloads or notification panel.";
+  progressBar.style.width = "100%";
+  progressText.textContent = "Starting";
+  downloadModal.classList.add("show");
+  downloadModal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = getDownloadFileName(app);
+  link.rel = "noopener";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+
+  downloadStatus.textContent = "Download started. If prompted, allow the download and check your Downloads folder.";
+  progressText.textContent = "Started";
+  setTimeout(function () {
+    closeDownloadModal();
+    openInstallGuide(app);
+  }, 1400);
+}
+
+function closePrivateCodeModal() {
+  privateCodeModal.classList.remove("show");
+  privateCodeModal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+}
 
 /* ================================
    DOWNLOAD FILE NAME
@@ -2711,19 +2605,7 @@ function closeDownloadModal() {
 ================================ */
 
 function cancelDownload() {
-
-  if (currentController) {
-
-    currentController.abort();
-
-    currentController =
-      null;
-
-  }
-
-
   closeDownloadModal();
-
 }
 
 
@@ -2734,8 +2616,7 @@ function cancelDownload() {
 function openInstallGuide(app) {
 
   installGuideAppName.textContent =
-    app.name +
-    " has been downloaded successfully. Follow the steps below to install it.";
+    "Your download of " + app.name + " should now be in your Downloads folder. Follow the steps below when it finishes.";
 
 
   installGuideModal.classList.add(
@@ -2954,6 +2835,95 @@ function updateAppStructuredData() {
 }
 
 
+async function openAdminPanel() {
+  adminModal.classList.add("show");
+  adminModal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+  if (adminSessionToken) await loadAdminApps();
+}
+
+function closeAdminPanel() {
+  adminModal.classList.remove("show");
+  adminModal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+}
+
+async function adminLogin() {
+  adminLoginStatus.textContent = "Signing in...";
+  try {
+    const response = await fetch(WORKER_BASE + "/api/admin/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ password: adminPasswordInput.value })
+    });
+    const data = await response.json();
+    if (!response.ok || !data.token) throw new Error(data.error || "Login failed.");
+    adminSessionToken = data.token;
+    sessionStorage.setItem("wababe-admin-session", adminSessionToken);
+    adminPasswordInput.value = "";
+    await loadAdminApps();
+  } catch (error) {
+    adminLoginStatus.textContent = error.message || "Unable to sign in.";
+  }
+}
+
+async function loadAdminApps() {
+  adminStatus.textContent = "Loading private apps...";
+  try {
+    const response = await fetch(WORKER_BASE + "/api/admin/apps", {
+      headers: { "Authorization": "Bearer " + adminSessionToken }
+    });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || "Admin session expired.");
+    adminAppSelect.innerHTML = "";
+    (data.apps || []).forEach(function (app) {
+      const option = document.createElement("option");
+      option.value = app.id;
+      option.textContent = app.name + " · " + (app.protected ? "Protected" : "No code yet");
+      adminAppSelect.appendChild(option);
+    });
+    adminLoginArea.style.display = "none";
+    adminManageArea.style.display = "block";
+    adminStatus.textContent = data.apps && data.apps.length ? "Select an app to manage its code." : "No private APK releases found. Publish a release containing an APK in the private repository first.";
+  } catch (error) {
+    adminSessionToken = "";
+    sessionStorage.removeItem("wababe-admin-session");
+    adminLoginArea.style.display = "block";
+    adminManageArea.style.display = "none";
+    adminStatus.textContent = error.message || "Unable to load private apps.";
+  }
+}
+
+async function saveAdminCode(remove) {
+  const appId = adminAppSelect.value;
+  if (!appId) { adminStatus.textContent = "No private app is available."; return; }
+  const code = remove ? "" : adminCodeInput.value;
+  if (!remove && code.length < 4) { adminStatus.textContent = "Enter at least 4 characters."; return; }
+  adminStatus.textContent = remove ? "Removing code..." : "Saving code...";
+  try {
+    const response = await fetch(WORKER_BASE + "/api/admin/security", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Authorization": "Bearer " + adminSessionToken },
+      body: JSON.stringify({ appId: appId, code: code })
+    });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || "Unable to update code.");
+    adminCodeInput.value = "";
+    await loadAdminApps();
+    adminStatus.textContent = data.message || "Updated.";
+  } catch (error) {
+    adminStatus.textContent = error.message || "Unable to update code.";
+  }
+}
+
+function adminLogout() {
+  adminSessionToken = "";
+  sessionStorage.removeItem("wababe-admin-session");
+  adminManageArea.style.display = "none";
+  adminLoginArea.style.display = "block";
+  adminLoginStatus.textContent = "Signed out.";
+}
+
 /* ================================
    EVENTS
 ================================ */
@@ -2962,6 +2932,16 @@ searchInput.addEventListener(
   "input",
   performSearch
 );
+
+submitPrivateCodeBtn.addEventListener("click", submitPrivateDownload);
+closePrivateCodeBtn.addEventListener("click", closePrivateCodeModal);
+privateCodeInput.addEventListener("keydown", function (event) { if (event.key === "Enter") submitPrivateDownload(); });
+openAdminBtn.addEventListener("click", openAdminPanel);
+closeAdminBtn.addEventListener("click", closeAdminPanel);
+adminLoginBtn.addEventListener("click", adminLogin);
+saveAdminCodeBtn.addEventListener("click", function () { saveAdminCode(false); });
+removeAdminCodeBtn.addEventListener("click", function () { if (confirm("Remove the security code for this app?")) saveAdminCode(true); });
+adminLogoutBtn.addEventListener("click", adminLogout);
 
 
 closeDetailsBtn.addEventListener(
@@ -3028,6 +3008,9 @@ detailsModal.addEventListener(
   }
 );
 
+
+privateCodeModal.addEventListener("click", function(event) { if (event.target === privateCodeModal) closePrivateCodeModal(); });
+adminModal.addEventListener("click", function(event) { if (event.target === adminModal) closeAdminPanel(); });
 
 installGuideModal.addEventListener(
   "click",
@@ -3119,6 +3102,9 @@ document.addEventListener(
 
     }
 
+
+    if (adminModal.classList.contains("show")) { closeAdminPanel(); return; }
+    if (privateCodeModal.classList.contains("show")) { closePrivateCodeModal(); return; }
 
     if (
       detailsModal.classList.contains(
