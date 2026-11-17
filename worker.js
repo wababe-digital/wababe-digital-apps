@@ -58,17 +58,48 @@ export default {
           }
         });
 
-        const body = await response.text();
+        if (!response.ok) {
+          const errorBody = await response.text();
+          return new Response(errorBody, {
+            status: response.status,
+            headers: {
+              "Content-Type": "application/json; charset=utf-8",
+              "Cache-Control": "no-store",
+              ...corsHeaders()
+            }
+          });
+        }
 
-        return new Response(body, {
-          status: response.status,
+        const publicReleases = await response.json();
+        const privateReleases = latestPrivateApps(await fetchPrivateReleases(installationToken));
+        const safePrivateReleases = privateReleases.map(function (release) {
+          return {
+            id: "private-" + privateAppKey(release),
+            private: true,
+            privateAppId: privateAppKey(release),
+            name: release.name || release.tag_name || "Private App",
+            tag_name: release.tag_name || "Latest",
+            body: release.body || "Private Android application from Wababe Digital Apps.",
+            draft: !!release.draft,
+            prerelease: !!release.prerelease,
+            assets: (release.assets || []).map(function (asset) {
+              return {
+                id: asset.id,
+                name: asset.name,
+                size: asset.size,
+                download_count: asset.download_count || 0
+              };
+            })
+          };
+        });
+
+        return new Response(JSON.stringify(
+          (Array.isArray(publicReleases) ? publicReleases : []).concat(safePrivateReleases)
+        ), {
+          status: 200,
           headers: {
-            "Content-Type":
-              "application/json; charset=utf-8",
-
-            "Cache-Control":
-              "public, max-age=300",
-
+            "Content-Type": "application/json; charset=utf-8",
+            "Cache-Control": "public, max-age=120",
             ...corsHeaders()
           }
         });
@@ -103,6 +134,140 @@ export default {
       }
     }
 
+
+    /* PRIVATE APP ADMIN LOGIN */
+    if (url.pathname === "/api/admin/login" && request.method === "POST") {
+      try {
+        const body = await request.json();
+        if (!env.ADMIN_PASSWORD || !env.ADMIN_SESSION_SECRET) {
+          return jsonResponse({ error: "Admin security secrets are not configured." }, 503);
+        }
+        const ip = request.headers.get("CF-Connecting-IP") || "unknown";
+        const loginKey = "admin-attempt:" + ip;
+        const attempts = Number(await env.APP_SECURITY.get(loginKey) || 0);
+        if (attempts >= 8) return jsonResponse({ error: "Too many login attempts. Try again in 10 minutes." }, 429);
+        if (!constantTimeEqual(String(body.password || ""), env.ADMIN_PASSWORD)) {
+          await env.APP_SECURITY.put(loginKey, String(attempts + 1), { expirationTtl: 600 });
+          return jsonResponse({ error: "Incorrect admin password." }, 401);
+        }
+        await env.APP_SECURITY.delete(loginKey);
+        const token = await createAdminToken(env.ADMIN_SESSION_SECRET);
+        return jsonResponse({ token, expiresIn: 21600 });
+      } catch (error) {
+        return jsonResponse({ error: "Invalid login request." }, 400);
+      }
+    }
+
+    /* PRIVATE APP ADMIN LIST */
+    if (url.pathname === "/api/admin/apps" && request.method === "GET") {
+      if (!(await isAdminRequest(request, env))) return jsonResponse({ error: "Unauthorized." }, 401);
+      try {
+        const token = await getInstallationToken(env);
+        const releases = latestPrivateApps(await fetchPrivateReleases(token));
+        const apps = [];
+        for (const release of releases) {
+          const appKey = privateAppKey(release);
+          const apk = (release.assets || []).find(a => String(a.name || "").toLowerCase().endsWith(".apk"));
+          if (!apk) continue;
+          const stored = await env.APP_SECURITY.get("code:" + appKey);
+          apps.push({ id: appKey, name: release.name || release.tag_name || "Private App", version: release.tag_name || "Latest", apkName: apk.name, protected: !!stored });
+        }
+        return jsonResponse({ apps });
+      } catch (error) {
+        return jsonResponse({ error: "Unable to load private apps." }, 500);
+      }
+    }
+
+    /* SET OR REMOVE A PRIVATE APP CODE */
+    if (url.pathname === "/api/admin/security" && request.method === "POST") {
+      if (!(await isAdminRequest(request, env))) return jsonResponse({ error: "Unauthorized." }, 401);
+      try {
+        const body = await request.json();
+        const appId = String(body.appId || "");
+        const code = String(body.code || "");
+        if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(appId)) return jsonResponse({ error: "Invalid app selection." }, 400);
+        if (!code) {
+          await env.APP_SECURITY.delete("code:" + appId);
+          return jsonResponse({ ok: true, message: "Code removed. This app remains locked until a new code is set." });
+        }
+        if (code.length < 4 || code.length > 128) return jsonResponse({ error: "Code must contain 4 to 128 characters." }, 400);
+        const salt = crypto.getRandomValues(new Uint8Array(16));
+        const hash = await hashCode(code, salt);
+        await env.APP_SECURITY.put("code:" + appId, JSON.stringify({ salt: bytesToHex(salt), hash, iterations: 120000 }));
+        return jsonResponse({ ok: true, message: "Private app code saved." });
+      } catch (error) {
+        return jsonResponse({ error: "Unable to save app security." }, 500);
+      }
+    }
+
+    /* CHECK CODE AND ISSUE A ONE-TIME DOWNLOAD TICKET */
+    if (url.pathname === "/api/private-download-ticket" && request.method === "POST") {
+      try {
+        const body = await request.json();
+        const appId = String(body.appId || "");
+        const code = String(body.code || "");
+        if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(appId) || !code) return jsonResponse({ error: "App and security code are required." }, 400);
+        const ip = request.headers.get("CF-Connecting-IP") || "unknown";
+        const rateKey = "attempt:" + appId + ":" + ip;
+        const attempts = Number(await env.APP_SECURITY.get(rateKey) || 0);
+        if (attempts >= 8) return jsonResponse({ error: "Too many attempts. Try again later." }, 429);
+        const saved = await env.APP_SECURITY.get("code:" + appId);
+        if (!saved) return jsonResponse({ error: "This app is not protected or its code is unavailable." }, 403);
+        const record = JSON.parse(saved);
+        const salt = hexToBytes(record.salt);
+        const candidate = await hashCode(code, salt, record.iterations || 120000);
+        if (!constantTimeEqual(candidate, record.hash)) {
+          await env.APP_SECURITY.put(rateKey, String(attempts + 1), { expirationTtl: 600 });
+          return jsonResponse({ error: "Incorrect security code." }, 403);
+        }
+        await env.APP_SECURITY.delete(rateKey);
+        const ghToken = await getInstallationToken(env);
+        const releases = latestPrivateApps(await fetchPrivateReleases(ghToken));
+        const release = releases.find(r => privateAppKey(r) === appId);
+        const apk = release && (release.assets || []).find(a => String(a.name || "").toLowerCase().endsWith(".apk"));
+        if (!apk) return jsonResponse({ error: "APK not found for this app." }, 404);
+        const ticket = randomHex(24);
+        await env.APP_SECURITY.put("ticket:" + ticket, JSON.stringify({ assetId: apk.id, filename: apk.name }), { expirationTtl: 90 });
+        return jsonResponse({ url: "/download/private?ticket=" + ticket });
+      } catch (error) {
+        return jsonResponse({ error: "Unable to authorize this download." }, 500);
+      }
+    }
+
+    /* STREAM PRIVATE APK AFTER ONE-TIME TICKET VALIDATION */
+    if (url.pathname === "/download/private" && request.method === "GET") {
+      const ticket = url.searchParams.get("ticket") || "";
+      if (!/^[a-f0-9]{48}$/.test(ticket)) return new Response("Invalid download ticket.", { status: 403 });
+      const key = "ticket:" + ticket;
+      const saved = await env.APP_SECURITY.get(key);
+      if (!saved) return new Response("Download ticket expired or already used.", { status: 403 });
+      await env.APP_SECURITY.delete(key);
+      try {
+        const data = JSON.parse(saved);
+        const ghToken = await getInstallationToken(env);
+        const assetResponse = await fetch("https://api.github.com/repos/wababe-digital/wababe-private-apps/releases/assets/" + encodeURIComponent(data.assetId), {
+          headers: {
+            "Accept": "application/octet-stream",
+            "Authorization": "Bearer " + ghToken,
+            "X-GitHub-Api-Version": GITHUB_API_VERSION,
+            "User-Agent": "Wababe-Digital-Apps"
+          },
+          redirect: "follow"
+        });
+        if (!assetResponse.ok || !assetResponse.body) return new Response("Unable to retrieve private APK.", { status: 502 });
+        const headers = new Headers({
+          "Content-Type": "application/vnd.android.package-archive",
+          "Content-Disposition": "attachment; filename=\"" + safeFilename(data.filename) + "\"",
+          "Cache-Control": "private, no-store",
+          "X-Content-Type-Options": "nosniff"
+        });
+        const length = assetResponse.headers.get("Content-Length");
+        if (length) headers.set("Content-Length", length);
+        return new Response(assetResponse.body, { status: 200, headers });
+      } catch (error) {
+        return new Response("Private download service error.", { status: 500 });
+      }
+    }
 
     /*
      * ============================================================
@@ -188,9 +353,12 @@ export default {
           "application/vnd.android.package-archive"
         );
 
+        const publicFilename = safeFilename(
+          decodeURIComponent(new URL(apkUrl).pathname.split("/").pop() || "Wababe-App.apk")
+        );
         headers.set(
           "Content-Disposition",
-          'attachment; filename="app.apk"'
+          'attachment; filename="' + publicFilename + '"'
         );
 
         headers.set(
@@ -272,6 +440,88 @@ export default {
   }
 };
 
+
+
+async function fetchPrivateReleases(token) {
+  const response = await fetch("https://api.github.com/repos/wababe-digital/wababe-private-apps/releases?per_page=100", {
+    headers: {
+      "Accept": "application/vnd.github+json",
+      "Authorization": "Bearer " + token,
+      "X-GitHub-Api-Version": GITHUB_API_VERSION,
+      "User-Agent": "Wababe-Digital-Apps"
+    }
+  });
+  if (!response.ok) throw new Error("Private releases request failed: " + response.status);
+  const data = await response.json();
+  return Array.isArray(data) ? data : [];
+}
+
+function jsonResponse(data, status = 200) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store", ...corsHeaders() }
+  });
+}
+
+function constantTimeEqual(a, b) {
+  a = String(a); b = String(b);
+  let diff = a.length ^ b.length;
+  const max = Math.max(a.length, b.length);
+  for (let i = 0; i < max; i++) diff |= (a.charCodeAt(i) || 0) ^ (b.charCodeAt(i) || 0);
+  return diff === 0;
+}
+
+async function createAdminToken(secret) {
+  const payload = base64UrlEncode(JSON.stringify({ exp: Date.now() + 6 * 60 * 60 * 1000, role: "admin" }));
+  const key = await crypto.subtle.importKey("raw", new TextEncoder().encode(secret), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+  const sig = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(payload));
+  return payload + "." + arrayBufferToBase64Url(sig);
+}
+
+async function isAdminRequest(request, env) {
+  if (!env.ADMIN_SESSION_SECRET) return false;
+  const header = request.headers.get("Authorization") || "";
+  const token = header.startsWith("Bearer ") ? header.slice(7) : "";
+  const parts = token.split(".");
+  if (parts.length !== 2) return false;
+  const key = await crypto.subtle.importKey("raw", new TextEncoder().encode(env.ADMIN_SESSION_SECRET), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+  const sig = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(parts[0]));
+  if (!constantTimeEqual(arrayBufferToBase64Url(sig), parts[1])) return false;
+  try {
+    const payload = JSON.parse(new TextDecoder().decode(base64UrlDecode(parts[0])));
+    return payload.role === "admin" && payload.exp > Date.now();
+  } catch (error) { return false; }
+}
+
+async function hashCode(code, salt, iterations = 120000) {
+  const material = await crypto.subtle.importKey("raw", new TextEncoder().encode(code), "PBKDF2", false, ["deriveBits"]);
+  const bits = await crypto.subtle.deriveBits({ name: "PBKDF2", salt, iterations, hash: "SHA-256" }, material, 256);
+  return arrayBufferToBase64Url(bits);
+}
+
+function bytesToHex(bytes) { return Array.from(bytes).map(b => b.toString(16).padStart(2, "0")).join(""); }
+function hexToBytes(hex) { const out = new Uint8Array(hex.length / 2); for (let i = 0; i < out.length; i++) out[i] = parseInt(hex.slice(i * 2, i * 2 + 2), 16); return out; }
+function randomHex(size) { return bytesToHex(crypto.getRandomValues(new Uint8Array(size))); }
+function base64UrlDecode(value) { const normalized = value.replace(/-/g, "+").replace(/_/g, "/"); const binary = atob(normalized + "=".repeat((4 - normalized.length % 4) % 4)); return Uint8Array.from(binary, c => c.charCodeAt(0)); }
+function safeFilename(name) { return String(name || "Wababe-App.apk").replace(/[^a-zA-Z0-9._-]/g, "_").slice(0, 120); }
+function privateAppKey(release) {
+  const base = String(release.name || release.tag_name || "private-app").toLowerCase()
+    .normalize("NFKD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 64);
+  return base || "private-app-" + String(release.id);
+}
+
+function latestPrivateApps(releases) {
+  const seen = new Set();
+  return releases.filter(function (release) {
+    if (release.draft || release.prerelease) return false;
+    if (!(release.assets || []).some(a => String(a.name || "").toLowerCase().endsWith(".apk"))) return false;
+    const key = privateAppKey(release);
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
 
 /*
  * ================================================================
@@ -365,7 +615,8 @@ async function getInstallationToken(env) {
 
         body: JSON.stringify({
           repositories: [
-            "wababe-digital-apps"
+            "wababe-digital-apps",
+            "wababe-private-apps"
           ]
         })
       }
@@ -849,7 +1100,7 @@ function corsHeaders() {
       "*",
 
     "Access-Control-Allow-Methods":
-      "GET, OPTIONS",
+      "GET, POST, OPTIONS",
 
     "Access-Control-Allow-Headers":
       "*"
